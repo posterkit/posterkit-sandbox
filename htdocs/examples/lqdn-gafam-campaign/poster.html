@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8"/>
+
+    <title>Poster campaign maker</title>
+    <meta name="description" content="Automatically layout poster designs using translated texts.">
+    <meta name="keywords" content="poster, sticker, campaign, information, translation, localization, toolkit">
+
+    <meta property="og:title" content="Poster campaign maker"/>
+    <meta property="og:description" content="Automatically layout poster designs using translated texts."/>
+
+    <!-- Let browser know website is optimized for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Load whole application -->
+
+    <!-- Development -->
+    <script type="text/javascript" src="../../static/assets/commons.bundle.js"></script>
+    <script type="text/javascript" src="../../static/assets/example-lqdn-gafam.bundle.js"></script>
+
+    <!-- Production -->
+    <!--
+    <script type="text/javascript" src="../static/assets/commons.bundle.min.js"></script>
+    <script type="text/javascript" src="../static/assets/example-lqdn-gafam.bundle.min.js"></script>
+    -->
+
+</head>
+
+<body>
+
+<page size="A4">
+    <div id="title-container" class="content-centered inverted">
+        <div id="title-content">
+            <span id="title-text" class="fit">
+            </span>
+        </div>
+    </div>
+    <div id="body-container" class="content-centered">
+        <div id="body-content">
+        </div>
+    </div>
+    <div id="footer-container" class="content-centered inverted">
+        <div id="footer-content">
+            <div id="footer-left" class="pull-left">
+                <div id="footer-text" class="fit">
+                </div>
+                <div id="organization-name">
+                </div>
+            </div>
+            <div id="footer-right" class="pull-right">
+                <img id="organization-logo"/>
+            </div>
+        </div>
+    </div>
+</page>
+
+</body>
+</html>
