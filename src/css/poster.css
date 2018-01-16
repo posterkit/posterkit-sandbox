@@ -1,0 +1,89 @@
+html {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    padding: 16px;
+    font-family: Futura, Arial;
+    color: black;
+}
+
+#title-container {
+    height: 7cm;
+}
+#title-content {
+    width: 72%;
+}
+
+#title-text {
+    display: block;
+}
+
+#body-container {
+    height: 17.9cm;
+}
+#body-content {
+
+    /* Three lines */
+    /* width: 72%; */
+
+    /* Four lines */
+    width: 55%;
+
+    line-height: 1;
+    font-weight: 900;
+}
+
+#footer-container {
+    height: 4.8cm;
+}
+#footer-content {
+    width: 85%;
+}
+
+#footer-left {
+    width: 65%;
+}
+
+#footer-right {
+    width: 35%;
+    text-align: right
+}
+
+#footer-text {
+    line-height: 1.0;
+    margin-bottom: 0.8em;
+}
+
+#footer-content #organization-name {
+    font-weight: 900;
+    font-size: x-large;
+}
+#footer-content #organization-logo {
+    width: 3.0cm;
+}
+
+
+.inverted {
+    color: white;
+    background: black;
+}
+
+.content-centered {
+    /* https://css-tricks.com/centering-css-complete-guide/ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pull-left {
+    float: left;
+}
+.pull-right {
+    float: right;
+}
+.clearfix {
+    clear: both;
+}
