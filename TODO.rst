@@ -16,7 +16,13 @@ Content
 
 Printing
 ========
-- [o] PDF rendering
+- [o] PDF rendering::
+
+        "electron-pdf": "^1.2.2",
+        "html-pdf": "^2.2.0",
+        "html-pdf-chrome": "^0.4.2",
+        "pm2": "^2.9.1",
+
 - [o] "medium" and "light" versions for saving toner using grey colors or dithering
 - [o] Slightly reduce height / Honor printer page margins to make page fit on one physical page
 
