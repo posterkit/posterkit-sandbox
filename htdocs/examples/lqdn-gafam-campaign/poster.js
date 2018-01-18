@@ -140,6 +140,33 @@ $(document).ready(function() {
             // Resize all texts with class="fit" to fit their parent containers
             posterkit.fit_text('.fit');
 
+            // Fix overflowing body contents
+            // Needed for fr:Apple and probably others
+            // FIXME: Add callback to "fitty" in order to get informed after text has been fitted.
+            //        Right now, we just delay the refitting by 250 ms, which will produce flaky
+            //        outcomes, especially on slower machines.
+            window.setTimeout(function() {
+
+                var body_container_height = $('#body-container').height();
+                var body_content_height = $('#body-content').height();
+
+                //console.log('body_container_height:', body_container_height);
+                //console.log('body_content_height:', body_content_height);
+
+                if (body_content_height >= body_container_height) {
+
+                    // Reduce container element width
+                    $('#body-content').css('width', '55%');
+
+                    // Get text lines closer to each other
+                    $('#body-content').css('line-height', 0.8);
+
+                    // Re-fit text to reduced container element width
+                    posterkit.fit_text('.fit');
+
+                }
+            }, 250);
+
         });
 
 });

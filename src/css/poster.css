@@ -31,9 +31,12 @@ body {
     /* width: 72%; */
 
     /* Four lines */
-    width: 55%;
+    /* width: 55%; */
 
-    line-height: 1;
+    /* New default, will be reduced at runtime on demand */
+    width: 65%;
+
+    line-height: 1.0;
     font-weight: 900;
 }
 
