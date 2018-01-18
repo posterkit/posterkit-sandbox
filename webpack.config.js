@@ -17,13 +17,12 @@ module.exports = {
 
     amd: {
         'jquery': true,
-        'fitty': true,
     },
 
     output: {
-        path: path.resolve(__dirname, 'htdocs', 'static', 'assets'),
+        path: path.resolve(__dirname, 'htdocs', 'examples', '_static', 'assets'),
         filename: '[name].bundle.js',
-        publicPath: './static/assets/',
+        publicPath: '../_static/assets/',
     },
 
     module: {

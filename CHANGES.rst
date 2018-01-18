@@ -5,6 +5,7 @@ PosterKit-O-Mat CHANGES
 
 in progress
 -----------
+- Fix asset paths re. deployment to examples.posterkit.net
 
 2018-01-18 0.1.0
 ----------------

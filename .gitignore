@@ -1,8 +1,13 @@
+# Base
 /.idea
 /.venv*
 .DS_Store
-/htdocs/static/assets/*
-!/htdocs/static/assets/README.txt
 /node_modules
 yarn-error.log
 yarn.lock
+
+# Custom
+/htdocs/static/assets/*
+!/htdocs/static/assets/README.txt
+/htdocs/examples/_static/assets/*
+!/htdocs/examples/_static/assets/README.txt
