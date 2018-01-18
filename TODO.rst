@@ -9,9 +9,10 @@ Content
     - [x] Add matrix-based chooser for language vs. name
     - [x] Add description text to chooser.html re. passepartout parameter and borders for printing
     - [x] Add all company logos as SVG images
+    - [o] Add description about the projects' origins to chooser.html
 
 - [o] Add "le-phraseur" example for obtaining dynamic content via query parameters
-- [o] Add basic user interface for "le-phraseur"
+- [o] Add basic user interface for "le-phraseur". Implement form for data entry and/or contenteditable
 
 Printing
 ========
@@ -23,7 +24,8 @@ HTML layout
 ===========
 - [x] Body text should be larger
 - [x] Take care of the line height in "body-content" re. different text sizes
-- [o] Fix line breaks in footer of lqdn-gafam-campaign/poster.html?lang=de&name=apple
+- [o] Create issue for "Fitty" asking for "after-fit" event
+- [o] Fix line breaks and improve line-height in footer, e.g. lqdn-gafam-campaign/poster.html?lang=de&name=apple
 - [o] What about tuning font stretch and -kerning parameters?
 
 Content attributions
@@ -33,6 +35,10 @@ Content attributions
     - https://commons.wikimedia.org/wiki/File:Google_2015_logo.svg
     - https://en.wikipedia.org/wiki/File:Facebook_New_Logo_(2015).svg
     - https://en.wikipedia.org/wiki/File:Amazon_logo_plain.svg
+
+Meta
+====
+- [o] Add logo for GitHub organization
 
 Backend
 =======
