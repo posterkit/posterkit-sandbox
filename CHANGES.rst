@@ -15,6 +15,7 @@ in progress
     - Dynamic refitting if body content overflows its container element
     - Apply passepartout style by query parameter
     - Add description text to chooser.html re. passepartout parameter and more
+    - Add company logos as SVG images
 
 2018-01-15 0.0.0
 ----------------

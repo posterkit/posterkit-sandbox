@@ -32,7 +32,9 @@ var layout = {
 }
 
 var title_logo_map = {
+    'google': './img/logo-google-white.svg',
     'facebook': './img/logo-facebook-white.svg',
+    'amazon': './img/logo-amazon-white.svg',
 }
 
 
@@ -40,10 +42,11 @@ var title_logo_map = {
 // Transformation functions
 // ------------------------
 function title_to_logo(element, value) {
-    if (element.attr('id') == 'title-text' && title_logo_map[value]) {
+    var logo_key = value.toLowerCase();
+    if (element.attr('id') == 'title-text' && title_logo_map[logo_key]) {
         element.removeClass('fit');
 
-        var logo_url = title_logo_map[value];
+        var logo_url = title_logo_map[logo_key];
         value = $('<img/>').attr('src', logo_url);
 
         element.append(value);

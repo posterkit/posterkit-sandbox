@@ -8,7 +8,7 @@ Content
 
     - [x] Add matrix-based chooser for language vs. name
     - [x] Add description text to chooser.html re. passepartout parameter and borders for printing
-    - [o] Add all company logos as SVG images
+    - [x] Add all company logos as SVG images
 
 - [o] Add "le-phraseur" example for obtaining dynamic content via query parameters
 - [o] Add basic user interface for "le-phraseur"
@@ -28,7 +28,11 @@ HTML layout
 
 Content attributions
 ====================
-- [o] https://en.wikipedia.org/wiki/File:Facebook_New_Logo_(2015).svg
+- [o] Logos
+
+    - https://commons.wikimedia.org/wiki/File:Google_2015_logo.svg
+    - https://en.wikipedia.org/wiki/File:Facebook_New_Logo_(2015).svg
+    - https://en.wikipedia.org/wiki/File:Amazon_logo_plain.svg
 
 Backend
 =======
