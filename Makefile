@@ -32,5 +32,6 @@ upgrade:
 	git stash save
 	git pull
 	git stash pop
+	yarn install
 	yarn run release
 
