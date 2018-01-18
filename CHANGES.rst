@@ -5,8 +5,14 @@ PosterKit-O-Mat CHANGES
 
 in progress
 -----------
-- lqdn-gafam-campaign
 
+2018-01-18 0.1.0
+----------------
+- Improve the auto layouter
+- Add some examples
+- lqdn-gafam-campaign example
+
+    - Use translated texts from repository on GitHub
     - Obtain "lang" and "name" variables from query parameters,
       e.g. https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang=fr&name=google
     - Apply custom layout settings based on poster name
