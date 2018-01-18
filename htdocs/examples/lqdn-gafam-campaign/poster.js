@@ -67,6 +67,8 @@ function nl2br(element, value) {
 // ----
 $(document).ready(function() {
 
+    console.log('Loading poster.js');
+
     // Propagate version
     $('#version').html(__version__);
 
@@ -79,6 +81,12 @@ $(document).ready(function() {
     // TODO: Refactor defaults out of here
     var language = (options.lang || 'fr').toLowerCase();
     var poster_name = (options.name || 'google').toLowerCase();
+    var passepartout = (options.passepartout && options.passepartout.toLowerCase() == 'true' || false);
+
+    // Display in passepartout style
+    if (passepartout) {
+        $('body').attr({class: 'passepartout'});
+    }
 
     // Apply text from translation file
     i18next

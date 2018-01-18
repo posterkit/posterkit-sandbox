@@ -13,6 +13,7 @@ in progress
     - Add matrix-based chooser for language vs. name,
       see. https://examples.posterkit.net/lqdn-gafam-campaign/chooser.html
     - Dynamic refitting if body content overflows its container element
+    - Apply passepartout style by query parameter
 
 2018-01-15 0.0.0
 ----------------
