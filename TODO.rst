@@ -6,21 +6,34 @@ Content
 =======
 - lqdn-gafam-campaign example
 
+    - [x] Add matrix-based chooser for language vs. name
+    - [x] Add description text to chooser.html re. passepartout parameter and borders for printing
     - [o] Add all company logos as SVG images
-    - [o] Add matrix-based chooser for language vs. name
 
 - [o] Add "le-phraseur" example for obtaining dynamic content via query parameters
 - [o] Add basic user interface for "le-phraseur"
 
+Printing
+========
+- [o] PDF rendering
+- [o] "medium" and "light" versions for saving toner using grey colors or dithering
+- [o] Slightly reduce height / Honor printer page margins to make page fit on one physical page
+
 HTML layout
 ===========
-- [o] Take care of the line height in "body-content" re. different text sizes
+- [x] Body text should be larger
+- [x] Take care of the line height in "body-content" re. different text sizes
 - [o] Fix line breaks in footer of lqdn-gafam-campaign/poster.html?lang=de&name=apple
 - [o] What about tuning font stretch and -kerning parameters?
 
 Content attributions
 ====================
-- https://en.wikipedia.org/wiki/File:Facebook_New_Logo_(2015).svg
+- [o] https://en.wikipedia.org/wiki/File:Facebook_New_Logo_(2015).svg
+
+Backend
+=======
+- [o] GitHub-style editing and forking of JSON poster recipes.
+      Just add query parameter "&edit=true".
 
 Online printing
 ===============

@@ -45,11 +45,7 @@ GitHub repository in real time.
 
 Enjoy:
 
-- https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang=fr&name=google
-- https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang=en&name=apple
-- https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang=de&name=facebook
-
-... you get the idea.
+- https://examples.posterkit.net/lqdn-gafam-campaign/chooser.html
 
 .. _gafam-poster-translations: https://github.com/gafam/gafam-poster-translations
 .. _i18next: https://www.i18next.com/
@@ -71,3 +67,10 @@ Have a look::
 
     open ./htdocs/examples/34c3-endlich-normale-menschen/poster.html
 
+
+Credits
+=======
+This uses Fitty_ by `Rik Schennink`_, a library for snugly text resizing. Kudos!
+
+.. _Fitty: https://github.com/rikschennink/fitty
+.. _Rik Schennink: https://github.com/rikschennink
