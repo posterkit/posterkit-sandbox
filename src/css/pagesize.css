@@ -1,13 +1,21 @@
 /* https://codepen.io/rafaelcastrocouto/pen/LFAes */
-body {
+
+body.passepartout {
     background: rgb(204,204,204);
+    /* Counter Bulma */
+    padding-top: 1cm !important;
+    padding-bottom: 1cm !important;
 }
-page {
-    background: white;
+body.passepartout page {
     display: block;
     margin: 0 auto;
     margin-bottom: 0.5cm;
     box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+}
+
+page {
+    background: white;
+    display: block;
 }
 page[size="A4"] {
     width: 21cm;

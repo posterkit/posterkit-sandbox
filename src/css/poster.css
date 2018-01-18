@@ -5,9 +5,9 @@ html {
 }
 
 body {
-    padding: 16px;
+    margin: 0px;
     font-family: Futura, Arial;
-    color: black;
+    color: black !important;
 }
 
 #title-container {

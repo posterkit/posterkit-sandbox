@@ -26,6 +26,7 @@
         "release": "webpack --config=webpack.release.config.js --display detailed --display-error-details --progress"
     },
     "devDependencies": {
+        "bulma": "^0.6.2",
         "css-loader": "^0.28.7",
         "expose-loader": "^0.7.3",
         "file-loader": "^1.1.5",
