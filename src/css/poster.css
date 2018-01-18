@@ -14,7 +14,8 @@ body {
     height: 7cm;
 }
 #title-content {
-    width: 72%;
+    /* width: 72%; */
+    width: 16.0cm;
 }
 
 #title-text {

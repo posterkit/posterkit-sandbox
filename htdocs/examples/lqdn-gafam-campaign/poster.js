@@ -26,6 +26,9 @@ var mapping = [
     {id: 'organization-logo',   attributes: {src: './img/logo-lqdn-white.svg'}},
 ];
 
+// Custom styles to be applied at runtime
+var layout = {
+    'apple': {selector: '#title-content', css: {width: '12.0cm'}}
 }
 
 var title_logo_map = {
@@ -122,6 +125,17 @@ $(document).ready(function() {
 
                 //console.log(map.id, value);
             });
+
+            // Apply custom layout settings
+            var settings = layout[poster_name];
+            if (settings) {
+                if (settings.selector && settings.css) {
+                    var element = $(settings.selector);
+                    if (element) {
+                        element.css(settings.css);
+                    }
+                }
+            }
 
             // Resize all texts with class="fit" to fit their parent containers
             posterkit.fit_text('.fit');
