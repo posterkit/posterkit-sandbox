@@ -10,6 +10,7 @@ Content
     - [x] Add description text to chooser.html re. passepartout parameter and borders for printing
     - [x] Add all company logos as SVG images
     - [o] Add description about the projects' origins to chooser.html
+    - [o] Button to open poster directly without passepartout
 
 - [o] Add "le-phraseur" example for obtaining dynamic content via query parameters
 - [o] Add basic user interface for "le-phraseur". Implement form for data entry and/or contenteditable
@@ -30,6 +31,7 @@ HTML layout
 ===========
 - [x] Body text should be larger
 - [x] Take care of the line height in "body-content" re. different text sizes
+- [o] Use True Type font from LQDN
 - [o] Create issue for "Fitty" asking for "after-fit" event
 - [o] Fix line breaks and improve line-height in footer, e.g. lqdn-gafam-campaign/poster.html?lang=de&name=apple
 - [o] What about tuning font stretch and -kerning parameters?
