@@ -36,7 +36,11 @@ the GitHub repository in real time.
 
 Enjoy:
 
-- https://examples.posterkit.net/lqdn-gafam-campaign/poster.html
+- https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang=fr&name=google
+- https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang=en&name=apple
+- https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang=de&name=facebook
+
+... you get the idea.
 
 .. _gafam-poster-translations: https://github.com/gafam/gafam-poster-translations
 .. _i18next: https://www.i18next.com/
