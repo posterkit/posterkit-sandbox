@@ -12,6 +12,7 @@ $(document).ready(function() {
         {code: 'de', label: 'German'},
         {code: 'jp', label: 'Japanese'},
         {code: 'eo', label: 'Espéranto'},
+        {code: 'ru', label: 'Russian'},
     ];
 
     var names = [

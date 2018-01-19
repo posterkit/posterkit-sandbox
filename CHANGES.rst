@@ -8,6 +8,7 @@ in progress
 - Fix asset paths re. deployment to examples.posterkit.net
 - lqdn-gafam-campaign: Add more remarks about printer settings
 - Add translation to Espéranto. Thanks, David!
+- Add translation to Russian. Thanks, Elena!
 
 2018-01-18 0.1.0
 ----------------
