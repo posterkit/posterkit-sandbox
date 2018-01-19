@@ -9,6 +9,7 @@ in progress
 - lqdn-gafam-campaign: Add more remarks about printer settings
 - Add translation to Esperanto. Thanks, David!
 - Add translation to Russian. Thanks, Elena!
+- Add RFA example
 
 2018-01-18 0.1.0
 ----------------
