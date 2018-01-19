@@ -14,6 +14,7 @@ Content
 
 - [o] Add "le-phraseur" example for obtaining dynamic content via query parameters
 - [o] Add basic user interface for "le-phraseur". Implement form for data entry and/or contenteditable
+- [o] Link from examples back to project page
 
 Printing
 ========
@@ -35,6 +36,7 @@ HTML layout
 - [o] Create issue for "Fitty" asking for "after-fit" event
 - [o] Fix line breaks and improve line-height in footer, e.g. lqdn-gafam-campaign/poster.html?lang=de&name=apple
 - [o] What about tuning font stretch and -kerning parameters?
+- [o] Not everything is all right on mobile yet
 
 Content attributions
 ====================

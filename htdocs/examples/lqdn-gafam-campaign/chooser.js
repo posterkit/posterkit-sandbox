@@ -11,7 +11,7 @@ $(document).ready(function() {
         {code: 'en', label: 'English'},
         {code: 'de', label: 'German'},
         {code: 'jp', label: 'Japanese'},
-        {code: 'eo', label: 'Espéranto'},
+        {code: 'eo', label: 'Esperanto'},
         {code: 'ru', label: 'Russian'},
     ];
 
