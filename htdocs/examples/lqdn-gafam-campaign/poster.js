@@ -27,9 +27,43 @@ var mapping = [
 ];
 
 // Custom styles to be applied at runtime
-var layout = {
-    'apple': {selector: '#title-content', css: {width: '12.0cm'}}
-}
+var layout_rules_override = [
+    {
+        predicate: function(language, poster_name) {
+            return poster_name.toLowerCase() == 'apple';
+        },
+        elements: [
+            {selector: '#title-content', css: {width: '12.0cm'}},
+        ]
+    },
+    {
+        predicate: function(language, poster_name) {
+            return language.toLowerCase() == 'cmn';
+        },
+        refitting: false,
+        elements: [
+            {selector: '#title-content', css: {width: '12.0cm'}},
+            {selector: '#body-content', css: {width: '40%'}},
+        ]
+    },
+    {
+        predicate: function(language, poster_name) {
+            return language.toLowerCase() == 'cmn' && poster_name.toLowerCase() == 'apple';
+        },
+        elements: [
+            {selector: '#body-content', css: {width: '35%'}},
+        ]
+    },
+    {
+        predicate: function(language, poster_name) {
+            return language.toLowerCase() == 'cmn' && (poster_name.toLowerCase() == 'facebook' || poster_name.toLowerCase() == 'microsoft');
+        },
+        elements: [
+            {selector: '#footer-left', css: {width: '50%'}},
+        ]
+    },
+];
+
 
 var title_logo_map = {
     'google': './img/logo-google-white.svg',
@@ -138,18 +172,34 @@ $(document).ready(function() {
             });
 
             // Apply custom layout settings
-            var settings = layout[poster_name];
-            if (settings) {
-                if (settings.selector && settings.css) {
-                    var element = $(settings.selector);
-                    if (element) {
-                        element.css(settings.css);
+            var refitting = true;
+            layout_rules_override.forEach(function(layout_rule) {
+                if (layout_rule.predicate && layout_rule.predicate(language, poster_name)) {
+                    var settings = layout_rule;
+                    if (settings) {
+                        if (settings.refitting != undefined) {
+                            refitting = settings.refitting;
+                        }
+                        if (settings.elements) {
+                            settings.elements.forEach(function(setting) {
+                                if (setting.selector && setting.css) {
+                                    var element = $(setting.selector);
+                                    if (element) {
+                                        element.css(setting.css);
+                                    }
+                                }
+                            });
+                        }
                     }
                 }
-            }
+            });
 
             // Resize all texts with class="fit" to fit their parent containers
             posterkit.fit_text('.fit');
+
+            // Just attempt dynamic refitting if not blocked by custom settings
+            console.log('refitting:', refitting);
+            if (!refitting) return;
 
             // Fix overflowing body contents
             // Needed for fr:Apple and probably others

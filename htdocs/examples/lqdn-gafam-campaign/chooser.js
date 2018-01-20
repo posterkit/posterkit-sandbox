@@ -13,6 +13,7 @@ $(document).ready(function() {
         {code: 'jp', label: 'Japanese'},
         {code: 'eo', label: 'Esperanto'},
         {code: 'ru', label: 'Russian'},
+        {code: 'cmn', label: 'Mandarin Chinese'},
     ];
 
     var names = [

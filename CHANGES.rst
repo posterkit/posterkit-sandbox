@@ -6,10 +6,13 @@ PosterKit-O-Mat CHANGES
 in progress
 -----------
 - Fix asset paths re. deployment to examples.posterkit.net
-- lqdn-gafam-campaign: Add more remarks about printer settings
-- Add translation to Esperanto. Thanks, David!
-- Add translation to Russian. Thanks, Elena!
 - Add RFA example
+- lqdn-gafam-campaign example
+
+    - Add more remarks about printer settings
+    - Add translation to Esperanto. Thanks, David!
+    - Add translation to Russian. Thanks, Elena!
+    - Add translation to Mandarin Chinese. Thanks, Jenny!
 
 2018-01-18 0.1.0
 ----------------
