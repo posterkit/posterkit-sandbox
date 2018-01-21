@@ -42,6 +42,21 @@ HTML layout
 - [o] We have to think about refitting to text height instead of width eventually. Or a combination of both.
       Why? To get rid of the special settings for custom styles.
 
+Content editor
+==============
+- [o] Add icons etc. from
+
+    - Twitter Bootstrap
+    - Font Awesome
+    - http://entypo.com/
+
+- [o] Is there a state-of-the-art free online content editor like
+
+    - | https://mobirise.com/
+      | https://github.com/Mobirise/Mobirise
+    - https://webflow.com/
+
+
 Content attributions
 ====================
 - [o] Logos
@@ -53,7 +68,11 @@ Content attributions
 Meta
 ====
 - [o] Add logo for GitHub organization
-- [o] Think about doing a Scrabble-like thing for non-digital environments: Cut various words from paper and reassemble them.
+- [o] Think about doing a Scrabble-like thing for non-digital environments:
+      Cut various words (and pictograms!) from paper and reassemble them together.
+- [o] Re-adapt this to the digital environment and make a drag & drop like
+      thing out of it to provide campaign organizers a set of artefacts
+      for letting the community remix it.
 
 Backend
 =======
