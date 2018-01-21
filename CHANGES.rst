@@ -5,14 +5,17 @@ PosterKit-O-Mat CHANGES
 
 in progress
 -----------
+
+2018-01-22 0.2.0
+----------------
 - Fix asset paths re. deployment to examples.posterkit.net
-- Add RFA example
 - lqdn-gafam-campaign example
 
     - Add more remarks about printer settings
-    - Add translation to Esperanto. Thanks, David!
-    - Add translation to Russian. Thanks, Elena!
-    - Add translation to Mandarin Chinese. Thanks, Jenny!
+    - Add more translations from the community
+    - Tweak layout for specific translations
+
+- Add RFA example
 
 2018-01-18 0.1.0
 ----------------
