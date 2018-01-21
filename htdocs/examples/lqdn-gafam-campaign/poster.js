@@ -30,25 +30,28 @@ var mapping = [
 var layout_rules_override = [
     {
         predicate: function(language, poster_name) {
-            return poster_name.toLowerCase() == 'apple';
+            return poster_name == 'apple';
         },
         elements: [
             {selector: '#title-content', css: {width: '12.0cm'}},
         ]
     },
+
+    // Manual body size adjustments re. overflow height
+    // FIXME: Implement this into the automatic layouting
     {
         predicate: function(language, poster_name) {
-            return language.toLowerCase() == 'cmn';
+            return language == 'cmn';
         },
         refitting: false,
         elements: [
             {selector: '#title-content', css: {width: '12.0cm'}},
-            {selector: '#body-content', css: {width: '40%'}},
+            {selector: '#body-content', css: {width2: '55%'}},
         ]
     },
     {
         predicate: function(language, poster_name) {
-            return language.toLowerCase() == 'cmn' && poster_name.toLowerCase() == 'apple';
+            return language == 'cmn' && (poster_name == 'apple');
         },
         elements: [
             {selector: '#body-content', css: {width: '35%'}},
@@ -56,7 +59,16 @@ var layout_rules_override = [
     },
     {
         predicate: function(language, poster_name) {
-            return language.toLowerCase() == 'cmn' && (poster_name.toLowerCase() == 'facebook' || poster_name.toLowerCase() == 'microsoft');
+            return language == 'cmn' && (poster_name == 'facebook' || poster_name == 'amazon' || poster_name == 'microsoft');
+        },
+        elements: [
+            {selector: '#body-content', css: {width: '50%'}},
+        ]
+    },
+
+    {
+        predicate: function(language, poster_name) {
+            return language == 'cmn' && (poster_name == 'facebook' || poster_name == 'microsoft');
         },
         elements: [
             {selector: '#footer-left', css: {width: '50%'}},
@@ -174,7 +186,7 @@ $(document).ready(function() {
             // Apply custom layout settings
             var refitting = true;
             layout_rules_override.forEach(function(layout_rule) {
-                if (layout_rule.predicate && layout_rule.predicate(language, poster_name)) {
+                if (layout_rule.predicate && layout_rule.predicate(language.toLowerCase(), poster_name.toLowerCase())) {
                     var settings = layout_rule;
                     if (settings) {
                         if (settings.refitting != undefined) {
