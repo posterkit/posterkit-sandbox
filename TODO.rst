@@ -34,16 +34,16 @@ HTML layout
 ===========
 - [x] Body text should be larger
 - [x] Take care of the line height in "body-content" re. different text sizes
-- [o] Use True Type font from LQDN
+- [x] Use True Type font from LQDN
 - [o] Create issue for "Fitty" asking for "after-fit" event
 - [o] Fix line breaks and improve line-height in footer, e.g. lqdn-gafam-campaign/poster.html?lang=de&name=apple
 - [o] What about tuning font stretch and -kerning parameters?
 - [o] Not everything is all right on mobile yet
-- [o] With very short words (e.g. three letters) in the header, the font size will be autofitted too large
+- [c] With very short words (e.g. three letters) in the header, the font size will be autofitted too large
 - [o] Pull "#organization-name" to the bottom of its container
 - [o] We have to think about refitting to text height instead of width eventually. Or a combination of both.
       Why? To get rid of the special settings for custom styles.
-- [o] Take care about the fonts
+- [o] Take care about the fonts on production
 
     ::
 

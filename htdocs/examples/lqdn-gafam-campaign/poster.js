@@ -9,6 +9,7 @@ const i18next = require('i18next');
 const i18nextXHRBackend = require('i18next-xhr-backend');
 const i18nextBrowserLanguageDetector = require('i18next-browser-languagedetector');
 
+const FontFaceObserver = require('fontfaceobserver');
 
 // -------------
 // Configuration
@@ -55,6 +56,14 @@ var layout_rules_override = [
         },
         elements: [
             {selector: '#body-content', css: {width: '35%'}},
+        ]
+    },
+    {
+        predicate: function(language, poster_name) {
+            return (language == 'fr' || language == 'en' || language == 'de') && (poster_name == 'apple');
+        },
+        elements: [
+            {selector: '#body-content', css: {width: '47.5%'}},
         ]
     },
     {
@@ -137,6 +146,23 @@ $(document).ready(function() {
         $('body').attr({class: 'passepartout'});
     }
 
+    content(language, poster_name);
+
+    var fonts = [
+        new FontFaceObserver('Open Sans').load(),
+        new FontFaceObserver('FuturaExtended').load(),
+        new FontFaceObserver('FuturaMaxiBold').load(),
+    ];
+
+    Promise.all(fonts).then(function () {
+        console.log('Fonts have loaded');
+        layout(language, poster_name);
+    });
+
+});
+
+function content(language, poster_name) {
+
     // Apply text from translation file
     i18next
         .use(i18nextXHRBackend)
@@ -183,63 +209,69 @@ $(document).ready(function() {
                 //console.log(map.id, value);
             });
 
-            // Apply custom layout settings
-            var refitting = true;
-            layout_rules_override.forEach(function(layout_rule) {
-                if (layout_rule.predicate && layout_rule.predicate(language.toLowerCase(), poster_name.toLowerCase())) {
-                    var settings = layout_rule;
-                    if (settings) {
-                        if (settings.refitting != undefined) {
-                            refitting = settings.refitting;
-                        }
-                        if (settings.elements) {
-                            settings.elements.forEach(function(setting) {
-                                if (setting.selector && setting.css) {
-                                    var element = $(setting.selector);
-                                    if (element) {
-                                        element.css(setting.css);
-                                    }
-                                }
-                            });
-                        }
-                    }
-                }
-            });
-
-            // Resize all texts with class="fit" to fit their parent containers
-            posterkit.fit_text('.fit');
-
-            // Just attempt dynamic refitting if not blocked by custom settings
-            console.log('refitting:', refitting);
-            if (!refitting) return;
-
-            // Fix overflowing body contents
-            // Needed for fr:Apple and probably others
-            // FIXME: Add callback to "fitty" in order to get informed after text has been fitted.
-            //        Right now, we just delay the refitting by 250 ms, which will produce flaky
-            //        outcomes, especially on slower machines.
-            window.setTimeout(function() {
-
-                var body_container_height = $('#body-container').height();
-                var body_content_height = $('#body-content').height();
-
-                //console.log('body_container_height:', body_container_height);
-                //console.log('body_content_height:', body_content_height);
-
-                if (body_content_height >= body_container_height) {
-
-                    // Reduce container element width
-                    $('#body-content').css('width', '55%');
-
-                    // Get text lines closer to each other
-                    $('#body-content').css('line-height', 0.8);
-
-                    // Re-fit text to reduced container element width
-                    posterkit.fit_text('.fit');
-
-                }
-            }, 250);
-
         });
 
-});
+}
+
+function layout(language, poster_name) {
+
+    // Apply custom layout settings
+    var refitting = true;
+    layout_rules_override.forEach(function(layout_rule) {
+        if (layout_rule.predicate && layout_rule.predicate(language.toLowerCase(), poster_name.toLowerCase())) {
+            var settings = layout_rule;
+            if (settings) {
+                if (settings.refitting != undefined) {
+                    refitting = settings.refitting;
+                }
+                if (settings.elements) {
+                    settings.elements.forEach(function(setting) {
+                        if (setting.selector && setting.css) {
+                            var element = $(setting.selector);
+                            if (element) {
+                                element.css(setting.css);
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    });
+
+    // Resize all texts with class="fit" to fit their parent containers
+    posterkit.fit_text('.fit');
+
+    // Just attempt dynamic refitting if not blocked by custom settings
+    console.log('Allow refitting:', refitting);
+    if (!refitting) return;
+
+    // Fix overflowing body contents
+    // Needed for fr:Apple and probably others
+    // FIXME: Add callback to "fitty" in order to get informed after text has been fitted.
+    //        Right now, we just delay the refitting by 250 ms, which will produce flaky
+    //        outcomes, especially on slower machines.
+    window.setTimeout(function() {
+
+        var body_container_height = $('#body-container').height();
+        var body_content_height = $('#body-content').height();
+
+        //console.log('body_container_height:', body_container_height);
+        //console.log('body_content_height:', body_content_height);
+
+        if (body_content_height >= body_container_height) {
+
+            console.log('Refitting body.')
+
+            // Reduce container element width
+            $('#body-content').css('width', '55%');
+
+            // Get text lines closer to each other
+            $('#body-content').css('line-height', 0.8);
+
+            // Re-fit text to reduced container element width
+            posterkit.fit_text('.fit');
+
+        }
+    }, 250);
+
+}
