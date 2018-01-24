@@ -2,7 +2,7 @@
 import os
 import sys
 
-DRY_RUN = True
+DRY_RUN = False
 
 names = [
     'google',
@@ -12,8 +12,9 @@ names = [
     'microsoft',
 ];
 
+nodejs = '/opt/nodejs-9.4.0/bin/nodejs'
 decktape = '/opt/nodejs-9.4.0/bin/decktape'
-render_command_tpl = "{decktape} --no-sandbox --load-pause 1500 --slides 1 --size 793x1118 generic 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang={language}&name={postername}' {outputfile}"
+render_command_tpl = "{nodejs} {decktape} --no-sandbox --load-pause 1500 --slides 1 --size 793x1118 generic 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang={language}&name={postername}' {outputfile}"
 
 
 def makepdf(language):
@@ -24,6 +25,7 @@ def makepdf(language):
     for name in names:
         outputfile = 'lqdn-gafam-poster-{language}-{name}.pdf'.format(language=language, name=name)
         render_command = render_command_tpl.format(
+            nodejs=nodejs,
             decktape=decktape,
             language=language,
             postername=name,
@@ -46,4 +48,3 @@ def makepdf(language):
 
 if __name__ == '__main__':
     makepdf(sys.argv[1])
-

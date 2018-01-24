@@ -5,6 +5,8 @@ PosterKit-O-Mat CHANGES
 
 in progress
 -----------
+- lqdn-gafam-campaign: Add wrapper for ad hoc PDF renderer
+
 
 2018-01-22 0.2.0
 ----------------
