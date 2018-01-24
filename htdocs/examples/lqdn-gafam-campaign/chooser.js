@@ -6,6 +6,7 @@ $(document).ready(function() {
 
     console.log('Loading chooser.js');
 
+    // TODO: Inquire this information from a central index file somehow
     var languages = [
         {code: 'fr', label: 'French'},
         {code: 'en', label: 'English'},
@@ -25,7 +26,7 @@ $(document).ready(function() {
     ];
 
     languages.forEach(function(language) {
-        console.log(language);
+        //console.log(language);
 
         var header = $('<h2/>').attr({class: 'is-size-3'}).text(language.label);
         $('#chooser-matrix').append(header);

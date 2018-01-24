@@ -6,8 +6,9 @@ html {
 
 body {
     margin: 0px;
-    font-family: Futura, Arial;
+    /* Counter Bulma */
     color: black !important;
+    font-family: Futura, Arial;
 }
 
 #title-container {

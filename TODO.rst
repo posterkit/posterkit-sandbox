@@ -11,6 +11,7 @@ Content
     - [x] Add all company logos as SVG images
     - [o] Add description about the projects' origins to chooser.html
     - [o] Button to open poster directly without passepartout
+    - [o] Improve chooser.html to better scale for more languages
 
 - [o] Add "le-phraseur" example for obtaining dynamic content via query parameters
 - [o] Add basic user interface for "le-phraseur". Implement form for data entry and/or contenteditable
@@ -27,6 +28,7 @@ Printing
 
 - [o] "medium" and "light" versions for saving toner using grey colors or dithering
 - [o] Slightly reduce height / Honor printer page margins to make page fit on one physical page
+- [o] Wrapper API service to render PDFs for everyone
 
 HTML layout
 ===========
@@ -41,6 +43,17 @@ HTML layout
 - [o] Pull "#organization-name" to the bottom of its container
 - [o] We have to think about refitting to text height instead of width eventually. Or a combination of both.
       Why? To get rid of the special settings for custom styles.
+- [o] Take care about the fonts
+
+    ::
+
+        apt search fonts-
+
+    And::
+
+        fonts-beteckna/oldstable 0.4-8 all
+          geometric Futura-like sans-serif TrueType font
+
 
 Content editor
 ==============

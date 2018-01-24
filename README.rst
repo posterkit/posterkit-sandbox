@@ -73,3 +73,57 @@ Watch files for rebundling::
 Have a look::
 
     open ./htdocs/examples/34c3-endlich-normale-menschen/poster.html
+
+
+
+Setup PDF rendering
+===================
+
+
+Install decktape
+----------------
+Prerequisites::
+
+    apt install build-essential libxss1 libgconf libgconf2-4 libasound2
+
+Use a recent Node.js::
+
+    apt install nodeenv
+    nodeenv --node=9.4.0 /opt/nodejs-9.4.0
+    source /opt/nodejs-9.4.0/bin/activate
+    npm install --unsafe-perm -g decktape
+
+
+Install font packages
+---------------------
+- https://unix.stackexchange.com/questions/39542/how-to-make-chinese-characters-display-properly-on-chromium
+- https://superuser.com/questions/192704/why-cant-my-chromium-display-japanese-characters
+
+::
+
+    # The basics
+    apt install fonts-arphic-ukai fonts-arphic-uming
+
+    # Looks differently
+    apt install fonts-arphic-uming fonts-arphic-ukai fonts-ipafont-mincho fonts-ipafont-gothic fonts-unfonts-core
+
+
+Example
+-------
+::
+
+    su - www-data
+    decktape --no-sandbox --load-pause 3000 --slides 1 --size 793x1118 generic 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang=cmn&name=google' lqdn-gafam-poster-cmn-google.pdf
+
+.. note:: 793x1118 seems to be A4, kind of.
+
+
+Install PDFtk
+-------------
+We use PDFtk_ for joining single PDF pages together.
+::
+
+    apt install pdftk
+
+.. _PDFtk: https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
+
