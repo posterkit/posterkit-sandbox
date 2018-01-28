@@ -10,8 +10,11 @@ module.exports = {
         'layout-basic': [
             path.resolve('src', 'js', 'layout-basic'),
         ],
-        'example-lqdn-gafam': [
-            path.resolve('htdocs', 'examples', 'lqdn-gafam-campaign'),
+        'example-lqdn-gafam-chooser': [
+            path.resolve('htdocs', 'examples', 'lqdn-gafam-campaign/chooser.js'),
+        ],
+        'example-lqdn-gafam-poster': [
+            path.resolve('htdocs', 'examples', 'lqdn-gafam-campaign/poster.js'),
         ],
     },
 

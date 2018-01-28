@@ -12,6 +12,7 @@ Content
     - [o] Add description about the projects' origins to chooser.html
     - [o] Button to open poster directly without passepartout
     - [o] Improve chooser.html to better scale for more languages
+    - [o] Fix size of logo-lqdn-white.svg
 
 - [o] Add "le-phraseur" example for obtaining dynamic content via query parameters
 - [o] Add basic user interface for "le-phraseur". Implement form for data entry and/or contenteditable
@@ -32,18 +33,21 @@ Printing
 
 HTML layout
 ===========
+- [x] Use Promises to encapsulate the "content" function to improve timing problems
+- [o] Handle more errors like ?lang=undefined
 - [x] Body text should be larger
 - [x] Take care of the line height in "body-content" re. different text sizes
 - [x] Use True Type font from LQDN
 - [o] Create issue for "Fitty" asking for "after-fit" event
 - [o] Fix line breaks and improve line-height in footer, e.g. lqdn-gafam-campaign/poster.html?lang=de&name=apple
-- [o] What about tuning font stretch and -kerning parameters?
+- [o] What about tuning font stretch, -kerning and letter-spacing parameters?
 - [o] Not everything is all right on mobile yet
-- [c] With very short words (e.g. three letters) in the header, the font size will be autofitted too large
+- [x] With very short words (e.g. three letters) in the header, the font size will be autofitted too large
 - [o] Pull "#organization-name" to the bottom of its container
 - [o] We have to think about refitting to text height instead of width eventually. Or a combination of both.
       Why? To get rid of the special settings for custom styles.
-- [o] Take care about the fonts on production
+- [o] Put all posters on one page to aid when changing the formatting algorithm
+- [o] Take care about the fonts on production re. PDF rendering
 
     ::
 
@@ -114,3 +118,39 @@ Digital print
   https://mimeo.3scale.net/
 - https://developers.canvaspop.com/
 - https://www.google.com/cloudprint/learn/
+
+Text autofitting
+================
+- https://discourse.wicg.io/t/auto-sizing-text-to-fit-container/1053
+- | http://fittextjs.com/
+  | https://github.com/davatron5000/FitText.js
+- | http://simplefocus.com/flowtype/
+  | https://github.com/simplefocus/FlowType.JS
+- https://stackoverflow.com/questions/16056591/font-scaling-based-on-width-of-container
+- https://vimeo.com/channels/kinetictypography
+- | https://github.com/tmcw/big
+  | https://tmcw.github.io/big/demo.html#11
+- | https://rikschennink.github.io/fitty/
+  | https://github.com/rikschennink/fitty
+
+Flexbox
+=======
+- https://yoksel.github.io/flex-cheatsheet/
+- https://stackoverflow.com/questions/44102146/flexbox-child-overflow-auto-to-respect-parent-height
+- https://stackoverflow.com/questions/14262938/child-with-max-height-100-overflows-parent
+- https://www.sitepoint.com/are-we-ready-to-use-flexbox/
+- http://getbootstrap.com.vn/examples/equal-height-columns/
+- https://davidwalsh.name/css-vertical-center-flexbox
+
+More fitting
+============
+- https://codepen.io/afonsoduarte/pen/EaOROW
+- https://dev.opera.com/articles/css3-object-fit-object-position/
+- https://www.sitepoint.com/community/t/make-inner-divs-same-height-as-parent-div-with-auto-height/233152/2
+- https://stackoverflow.com/questions/10794891/getting-height-of-a-div-in-centimeter-using-jquery
+
+Misc
+====
+- https://github.com/xdamman/js-line-wrap-detector
+- https://stackoverflow.com/questions/16744366/javascript-detecting-if-text-would-wrap
+- https://coderwall.com/p/ahazha/force-redraw-on-an-element-jquery

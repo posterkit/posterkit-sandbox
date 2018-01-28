@@ -19,32 +19,17 @@
 
     <!-- Development -->
     <script type="text/javascript" src="../_static/assets/commons.bundle.js"></script>
-    <script type="text/javascript" src="../_static/assets/example-lqdn-gafam.bundle.js"></script>
+    <script type="text/javascript" src="../_static/assets/example-lqdn-gafam-poster.bundle.js"></script>
 
     <!-- Production -->
     <!--
     <script type="text/javascript" src="../_static/assets/commons.bundle.min.js"></script>
-    <script type="text/javascript" src="../_static/assets/example-lqdn-gafam.bundle.min.js"></script>
+    <script type="text/javascript" src="../_static/assets/example-lqdn-gafam-poster.bundle.min.js"></script>
     -->
 
     <style type="text/css">
 
         /* Custom styles deviating from the default settings */
-
-        @font-face {
-            font-family: 'Open Sans';
-            font-style: normal;
-            font-weight: 400;
-            src: local('Open Sans Regular'), local('OpenSans-Regular'), url('https://ptrace.gafam.info/upstream/font/OpenSans-Regular.ttf') format('truetype');
-        }
-        @font-face {
-            font-family: 'FuturaExtended';
-            src: url('https://ptrace.gafam.info/upstream/font/FuturaExtended.ttf') format('truetype');
-        }
-        @font-face {
-            font-family: 'FuturaMaxiBold';
-            src: url('https://ptrace.gafam.info/upstream/font/FuturaMaxiBold.ttf') format('truetype');
-        }
 
         #title-text {
             /* "Open Sans" is an alternative to Segoe */
@@ -63,6 +48,14 @@
 
         #organization-name {
             font-family: FuturaMaxiBold;
+        }
+
+        #footer-content {
+            height: 65%;
+        }
+
+        #footer-right {
+            width: 3.5cm;
         }
 
     </style>
@@ -90,8 +83,8 @@
                 <div id="organization-name">
                 </div>
             </div>
-            <div id="footer-right" class="pull-right">
-                <img id="organization-logo"/>
+            <div id="footer-right" class="pull-right content-centered">
+                <img id="organization-logo" class="image-fit"/>
             </div>
         </div>
     </div>

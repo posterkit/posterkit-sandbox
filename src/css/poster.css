@@ -45,31 +45,57 @@ body {
     height: 4.8cm;
 }
 #footer-content {
-    width: 85%;
-}
+    /*
+    width: 90%;
+    height: 70%;
+    margin: 0;
+    padding: 0;
+    */
+    width: 80%;
+    /* height: 65%; */
 
-#footer-left {
-    width: 65%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 #footer-right {
-    width: 35%;
-    text-align: right
+    width: 15%;
+}
+
+#footer-left {
+    max-width: 85%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #footer-text {
-    line-height: 1.0;
-    margin-bottom: 0.8em;
+
+    overflow-wrap: normal;
+    white-space: nowrap;
+
+    font-size: x-large;
+    line-height: 1.1;
+
+    display: flex;
 }
 
 #footer-content #organization-name {
     font-weight: 900;
-    font-size: x-large;
+    font-size: xx-large;
 }
 #footer-content #organization-logo {
     width: 3.0cm;
 }
 
+/* https://stackoverflow.com/questions/15295697/make-an-image-to-fit-its-parent-dimensions/15295754#15295754 */
+.image-fit {
+    max-width: 100%;
+    overflow: hidden;
+}
 
 .inverted {
     color: white;

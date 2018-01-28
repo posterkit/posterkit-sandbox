@@ -7,6 +7,7 @@ in progress
 -----------
 - lqdn-gafam-campaign: Add wrapper for ad hoc PDF renderer
 - lqdn-gafam-campaign: Use appropriate fonts
+- More tweaks for pixel-perfect reproduction
 
 
 2018-01-22 0.2.0

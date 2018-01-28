@@ -1,3 +1,8 @@
+// ---------
+// CSS style
+// ---------
+require('./fonts.css');
+
 // --------------
 // Module imports
 // --------------
@@ -40,6 +45,59 @@ var layout_rules_override = [
 
     // Manual body size adjustments re. overflow height
     // FIXME: Implement this into the automatic layouting
+
+
+    // ==========================================
+    //                 en, de and eo
+    // ==========================================
+    {
+        predicate: function(language, poster_name) {
+            return language == 'en' || language == 'de' || language == 'ru';
+        },
+        refitting: false,
+        elements: [
+            {selector: '#body-content', css: {width: '85%'}},
+        ]
+    },
+    {
+        predicate: function(language, poster_name) {
+            return language == 'eo';
+        },
+        refitting: false,
+        elements: [
+            {selector: '#body-content', css: {width: '70%'}},
+        ]
+    },
+
+    {
+        predicate: function(language, poster_name) {
+            return (language == 'fr' || language == 'en' || language == 'de') && (poster_name == 'apple');
+        },
+        elements: [
+            {selector: '#body-content', css: {width: '45.0%'}},
+        ]
+    },
+    {
+        predicate: function(language, poster_name) {
+            return (language == 'fr') && (poster_name == 'google');
+        },
+        elements: [
+            {selector: '#body-content', css: {width: '60%'}},
+        ]
+    },
+    {
+        predicate: function(language, poster_name) {
+            return (language == 'de') && (poster_name == 'amazon');
+        },
+        elements: [
+            {selector: '#body-content', css: {width: '65%'}},
+        ]
+    },
+
+
+    // ==========================================
+    //                 jp and cmn
+    // ==========================================
     {
         predicate: function(language, poster_name) {
             return language == 'cmn';
@@ -47,23 +105,24 @@ var layout_rules_override = [
         refitting: false,
         elements: [
             {selector: '#title-content', css: {width: '12.0cm'}},
-            {selector: '#body-content', css: {width2: '55%'}},
+            //{selector: '#body-content', css: {width2: '55%'}},
         ]
     },
     {
         predicate: function(language, poster_name) {
-            return language == 'cmn' && (poster_name == 'apple');
+            return language == 'cmn' || language == 'jp';
         },
+        refitting: false,
         elements: [
-            {selector: '#body-content', css: {width: '35%'}},
+            {selector: '#body-content', css: {'width': '85%', 'line-height': 1.05}},
         ]
     },
     {
         predicate: function(language, poster_name) {
-            return (language == 'fr' || language == 'en' || language == 'de') && (poster_name == 'apple');
+            return language == 'cmn' && (poster_name == 'google');
         },
         elements: [
-            {selector: '#body-content', css: {width: '47.5%'}},
+            {selector: '#body-content', css: {width: '75%'}},
         ]
     },
     {
@@ -74,13 +133,21 @@ var layout_rules_override = [
             {selector: '#body-content', css: {width: '50%'}},
         ]
     },
+    {
+        predicate: function(language, poster_name) {
+            return language == 'cmn' && (poster_name == 'apple');
+        },
+        elements: [
+            {selector: '#body-content', css: {width: '35%'}},
+        ]
+    },
 
     {
         predicate: function(language, poster_name) {
             return language == 'cmn' && (poster_name == 'facebook' || poster_name == 'microsoft');
         },
         elements: [
-            {selector: '#footer-left', css: {width: '50%'}},
+            //{selector: '#footer-left', css: {width: '50%'}},
         ]
     },
 ];
@@ -111,9 +178,21 @@ function title_to_logo(element, value) {
     }
 }
 function nl2span_fit(element, value) {
+    var last_child;
     value.split('\n').forEach(function(line) {
-        element.append($('<span/>').html(line).addClass('fit'));
+        var child = $('<span/>').html(line).addClass('fit');
+        element.append(child);
+        last_child = child;
     });
+
+    // Fix space reserved for descenders on the last liine
+    // https://stackoverflow.com/questions/14061228/remove-white-space-above-and-below-large-text-in-an-inline-block-element
+    /*
+    if (last_child) {
+        last_child.css('margin-bottom', '-100px');
+    }
+    */
+
 }
 function nl2br(element, value) {
     return value.replace(/\n/g, '<br/>');
@@ -146,86 +225,119 @@ $(document).ready(function() {
         $('body').attr({class: 'passepartout'});
     }
 
-    content(language, poster_name);
+    load_fonts().then(function() {
 
-    var fonts = [
-        new FontFaceObserver('Open Sans').load(),
-        new FontFaceObserver('FuturaExtended').load(),
-        new FontFaceObserver('FuturaMaxiBold').load(),
-    ];
+    }).catch(function(error) {
+        console.log('Font error');
 
-    Promise.all(fonts).then(function () {
-        console.log('Fonts have loaded');
-        layout(language, poster_name);
+    }).then(function() {
+        load_content(language).then(function(content) {
+            console.log('Content has loaded');
+            content_to_dom(poster_name, content);
+            run_autolayout(language, poster_name);
+        });
+
     });
 
 });
 
-function content(language, poster_name) {
-
-    // Apply text from translation file
-    i18next
-        .use(i18nextXHRBackend)
-        //.use(i18nextBrowserLanguageDetector)
-        .init({
-            lng: language,
-            fallbackLng: language,
-            debug: true,
-            backend: {
-                loadPath: i18next_data_url,
-                crossDomain: true
-            }
-        }, function(err, t) {
-
-            // Transfer values from i18next JSON to DOM
-            mapping.forEach(function(map) {
-                var element = $('#' + map.id);
-                var value = null;
-
-                if (map.value) {
-                    value = map.value;
-
-                } else if (map.field) {
-                    var data_key = poster_name + '-' + map.field;
-                    value = t(data_key);
-
-                } else if (map.attributes) {
-                    value = null;
-                    for (var attr_name in map.attributes) {
-                        var attr_value = map.attributes[attr_name];
-                        element.attr(attr_name, attr_value);
-                    }
-                }
-                //console.log(map.id, value);
-
-                if (map.transform) {
-                    value = map.transform(element, value);
-                }
-
-                if (value) {
-                    element.html(value);
-                }
-
-                //console.log(map.id, value);
-            });
-
+function load_fonts() {
+    console.info('Loading fonts');
+    return new Promise(function(resolve, reject) {
+        var fonts = [
+            new FontFaceObserver('Open Sans').load(),
+            new FontFaceObserver('FuturaExtended').load(),
+            new FontFaceObserver('FuturaMaxiBold').load(),
+        ];
+        Promise.all(fonts).then(function() {
+            console.log('Successful loaded fonts');
+            resolve();
+        }).catch(function(error) {
+            console.error('Error loading fonts:', error);
+            reject(error);
         });
+    });
+}
+
+function load_content(language) {
+    console.info('Loading content');
+    return new Promise(function(resolve, reject) {
+        // Apply text from translation file
+        i18next
+            .use(i18nextXHRBackend)
+            //.use(i18nextBrowserLanguageDetector)
+            .init({
+                lng: language,
+                fallbackLng: language,
+                //debug: true,
+                backend: {
+                    loadPath: i18next_data_url,
+                    crossDomain: true
+                }
+            }, function(err, t) {
+                //console.log('err:', err, t);
+                if (err !== undefined) {
+                    reject(err);
+                } else {
+                    resolve(t);
+                }
+            });
+    });
+}
+
+function content_to_dom(poster_name, get_content) {
+
+    console.info('Transferring content to DOM');
+
+    // Transfer values from i18next JSON to DOM
+    mapping.forEach(function(map) {
+        var element = $('#' + map.id);
+        var value = null;
+
+        if (map.value) {
+            value = map.value;
+
+        } else if (map.field) {
+            var data_key = poster_name + '-' + map.field;
+            value = get_content(data_key);
+
+        } else if (map.attributes) {
+            value = null;
+            for (var attr_name in map.attributes) {
+                var attr_value = map.attributes[attr_name];
+                element.attr(attr_name, attr_value);
+            }
+        }
+        //console.log(map.id, value);
+
+        if (map.transform) {
+            value = map.transform(element, value);
+        }
+
+        if (value) {
+            element.html(value);
+        }
+
+        //console.log(map.id, value);
+    });
 
 }
 
-function layout(language, poster_name) {
+function run_autolayout(language, poster_name) {
+
+    console.info('Run autolayout');
 
     // Apply custom layout settings
-    var refitting = true;
-    layout_rules_override.forEach(function(layout_rule) {
+    var refitting_allowed = true;
+    layout_rules_override.forEach(function (layout_rule) {
         if (layout_rule.predicate && layout_rule.predicate(language.toLowerCase(), poster_name.toLowerCase())) {
             var settings = layout_rule;
             if (settings) {
                 if (settings.refitting != undefined) {
-                    refitting = settings.refitting;
+                    refitting_allowed = settings.refitting;
                 }
                 if (settings.elements) {
-                    settings.elements.forEach(function(setting) {
+                    settings.elements.forEach(function (setting) {
                         if (setting.selector && setting.css) {
                             var element = $(setting.selector);
                             if (element) {
@@ -241,9 +353,54 @@ function layout(language, poster_name) {
     // Resize all texts with class="fit" to fit their parent containers
     posterkit.fit_text('.fit');
 
-    // Just attempt dynamic refitting if not blocked by custom settings
-    console.log('Allow refitting:', refitting);
-    if (!refitting) return;
+
+    if (language != 'cmn' && language != 'jp' && language != 'ru') {
+        run_autolayout_stage2(language, poster_name);
+    }
+
+    /*
+    if (refitting_allowed) {
+        run_autolayout_stage3(language, poster_name);
+    }
+    */
+
+}
+
+function run_autolayout_stage2(language, poster_name) {
+
+    window.setTimeout(function() {
+        /*
+        $('.fit').parent().parent().redraw();
+        $('#footer-text').redraw();
+        $('#footer-text').css({'display': 'block'});
+        $('#footer-text').css({'display': 'inline-block'});
+        */
+
+        $('#body-content').find('span').each(function(index, element) {
+            console.log('child:', element);
+            var line_height = parseFloat($(element).css('line-height').replace('px', ''));
+            var font_size = parseFloat($(element).css('font-size').replace('px', ''));
+            var diff = line_height - font_size;
+            if (font_size < 160) { return; }
+            console.log('diff:', diff);
+            //var margin = line_height / 30.0;
+            var margin = diff * 1.75;
+            //var margin = (line_height / font_size) * 30;
+            var margin_property = margin + 'px';
+            console.log(margin_property);
+            $(element).css('margin-bottom', margin_property);
+        });
+    }, 250);
+}
+
+
+function run_autolayout_stage3(language, poster_name) {
+
+    // Just an attempt for dynamic refitting if not blocked by custom settings
+    /*
+    console.log('Allow refitting:', refitting_allowed);
+    if (!refitting_allowed) return;
+    */
 
     // Fix overflowing body contents
     // Needed for fr:Apple and probably others
@@ -275,3 +432,12 @@ function layout(language, poster_name) {
     }, 250);
 
 }
+
+
+// Force redraw on an element (jQuery)
+// https://coderwall.com/p/ahazha/force-redraw-on-an-element-jquery
+$.fn.redraw = function(){
+    $(this).each(function(){
+        var redraw = this.offsetHeight;
+    });
+};
