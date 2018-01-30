@@ -28,9 +28,28 @@ var mapping = [
     {id: 'title-text',          field: 'title',     transform: title_to_logo},
     {id: 'body-content',        field: 'body',      transform: nl2span_fit},
     {id: 'footer-text',         field: 'footer',    transform: nl2br},
-    {id: 'organization-name',   value: 'laquadrature.net'},
-    {id: 'organization-logo',   attributes: {src: './img/logo-lqdn-white.svg'}},
+    {id: 'organization-name',                       value: 'laquadrature.net'},
+    {id: 'organization-logo',                       transform: footer_logo},
 ];
+
+// Which headlines to swap by its depicted representations
+var title_logo_map = {
+    'white': {
+        'google': './img/logo-google-white.svg',
+        'facebook': './img/logo-facebook-white.svg',
+        'amazon': './img/logo-amazon-white.svg',
+    },
+    'dark': {
+        'google': './img/logo-google-dark.svg',
+        'facebook': './img/logo-facebook-dark.svg',
+        'amazon': './img/logo-amazon-dark.svg',
+    },
+}
+
+var footer_logo_map = {
+    'white': './img/logo-lqdn-white.svg',
+    'dark': './img/logo-lqdn-dark.svg',
+}
 
 // Custom styles to be applied at runtime
 var layout_rules_override = [
@@ -170,22 +189,21 @@ var layout_rules_override = [
 ];
 
 
-var title_logo_map = {
-    'google': './img/logo-google-white.svg',
-    'facebook': './img/logo-facebook-white.svg',
-    'amazon': './img/logo-amazon-white.svg',
-}
-
-
 // ------------------------
 // Transformation functions
 // ------------------------
-function title_to_logo(element, value) {
+function title_to_logo(options, element, value) {
+
     var logo_key = value.toLowerCase();
-    if (element.attr('id') == 'title-text' && title_logo_map[logo_key]) {
+    var logo_variant = 'white';
+    if (options.economy && options.economy.toLowerCase() == 'true') {
+        logo_variant = 'dark';
+    }
+
+    if (element.attr('id') == 'title-text' && title_logo_map[logo_variant] && title_logo_map[logo_variant][logo_key]) {
         element.removeClass('fit');
 
-        var logo_url = title_logo_map[logo_key];
+        var logo_url = title_logo_map[logo_variant][logo_key];
         value = $('<img/>').attr('src', logo_url);
 
         element.append(value);
@@ -194,7 +212,20 @@ function title_to_logo(element, value) {
         return value;
     }
 }
-function nl2span_fit(element, value) {
+
+function footer_logo(options, element, value) {
+    var logo_variant = 'white';
+    if (options.economy && options.economy.toLowerCase() == 'true') {
+        logo_variant = 'dark';
+    }
+
+    if (footer_logo_map[logo_variant]) {
+        var logo_url = footer_logo_map[logo_variant];
+        element.attr('src', logo_url);
+    }
+}
+
+function nl2span_fit(options, element, value) {
     var last_child;
     value.split('\n').forEach(function(line) {
         var child = $('<span/>').html(line).addClass('fit');
@@ -211,7 +242,8 @@ function nl2span_fit(element, value) {
     */
 
 }
-function nl2br(element, value) {
+
+function nl2br(options, element, value) {
     return value.replace(/\n/g, '<br/>');
 }
 
@@ -248,7 +280,7 @@ $(document).ready(function() {
     }).then(function() {
         load_content(language).then(function(content) {
             console.log('Content has loaded');
-            content_to_dom(poster_name, content);
+            content_to_dom(poster_name, content, options);
             run_autolayout(language, poster_name);
         });
 
@@ -265,14 +297,15 @@ function setup_display(options) {
 
     // Economy mode
     if (options.economy && options.economy.toLowerCase() == 'true') {
-        $('body').children().css('color', '#656565');
-        $('.inverted').css('background', '#656565');
+        $('body').children().css('color', '#252525');
+        $('.inverted').css('background', '#bbbbbb');
+        $('.inverted').css('color', '#252525');
     }
 
-    // Contrast mode
-    if (options.contrast && options.contrast.toLowerCase() == 'true') {
-        $('.inverted').css('background', '#bbbbbb');
-        $('.inverted').css('color', '#202020');
+    // Grey mode
+    if (options.grey && options.grey.toLowerCase() == 'true') {
+        $('body').children().css('color', '#656565');
+        $('.inverted').css('background', '#656565');
     }
 
 }
@@ -321,7 +354,7 @@ function load_content(language) {
     });
 }
 
-function content_to_dom(poster_name, get_content) {
+function content_to_dom(poster_name, get_content, options) {
 
     console.info('Transferring content to DOM');
 
@@ -347,7 +380,7 @@ function content_to_dom(poster_name, get_content) {
         //console.log(map.id, value);
 
         if (map.transform) {
-            value = map.transform(element, value);
+            value = map.transform(options, element, value);
         }
 
         if (value) {

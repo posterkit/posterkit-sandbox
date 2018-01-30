@@ -10,6 +10,7 @@ in progress
 
     - Improve company SVG logos
     - Add dark variants of company SVGs
+    - Use different logo variants for economy display mode
 
 2018-01-30 0.3.0
 ----------------
