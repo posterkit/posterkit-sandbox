@@ -68,6 +68,15 @@ var layout_rules_override = [
             {selector: '#body-content', css: {width: '70%'}},
         ]
     },
+    {
+        predicate: function(language, poster_name) {
+            return language == 'eo' && poster_name == 'apple';
+        },
+        refitting: false,
+        elements: [
+            {selector: '#body-content', css: {width: '65%'}},
+        ]
+    },
 
     {
         predicate: function(language, poster_name) {
@@ -139,6 +148,14 @@ var layout_rules_override = [
         },
         elements: [
             {selector: '#body-content', css: {width: '35%'}},
+        ]
+    },
+    {
+        predicate: function(language, poster_name) {
+            return language == 'jp' && (poster_name == 'apple');
+        },
+        elements: [
+            {selector: '#footer-left', css: {'max-width': '86%'}},
         ]
     },
 

@@ -11,6 +11,7 @@ in progress
     - Use appropriate fonts
     - More tweaks for pixel-perfect reproduction
     - Use cropped version of LQDN logo. Thanks, weef!
+    - Minor Pareto adjustments to layout
 
 2018-01-22 0.2.0
 ----------------
