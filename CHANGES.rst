@@ -5,7 +5,10 @@ PosterKit-O-Mat CHANGES
 
 in progress
 -----------
-- lqdn-gafam-campaign
+
+2018-01-30 0.3.0
+----------------
+- lqdn-gafam-campaign example
 
     - Add wrapper for ad hoc PDF renderer
     - Use appropriate fonts
