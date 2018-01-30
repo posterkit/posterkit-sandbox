@@ -5,6 +5,7 @@ PosterKit-O-Mat CHANGES
 
 in progress
 -----------
+- Add economy display mode
 
 2018-01-30 0.3.0
 ----------------

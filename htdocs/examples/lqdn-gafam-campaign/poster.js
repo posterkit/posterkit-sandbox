@@ -235,12 +235,10 @@ $(document).ready(function() {
     // TODO: Refactor defaults out of here
     var language = (options.lang || 'fr').toLowerCase();
     var poster_name = (options.name || 'google').toLowerCase();
-    var passepartout = (options.passepartout && options.passepartout.toLowerCase() == 'true' || false);
 
-    // Display in passepartout style
-    if (passepartout) {
-        $('body').attr({class: 'passepartout'});
-    }
+
+    // Setup display options
+    setup_display(options);
 
     load_fonts().then(function() {
 
@@ -257,6 +255,27 @@ $(document).ready(function() {
     });
 
 });
+
+function setup_display(options) {
+
+    // Display in passepartout style
+    if (options.passepartout && options.passepartout.toLowerCase() == 'true') {
+        $('body').attr({class: 'passepartout'});
+    }
+
+    // Economy mode
+    if (options.economy && options.economy.toLowerCase() == 'true') {
+        $('body').children().css('color', '#656565');
+        $('.inverted').css('background', '#656565');
+    }
+
+    // Contrast mode
+    if (options.contrast && options.contrast.toLowerCase() == 'true') {
+        $('.inverted').css('background', '#bbbbbb');
+        $('.inverted').css('color', '#202020');
+    }
+
+}
 
 function load_fonts() {
     console.info('Loading fonts');
