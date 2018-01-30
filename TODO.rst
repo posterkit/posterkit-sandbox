@@ -13,6 +13,7 @@ Content
     - [o] Button to open poster directly without passepartout
     - [o] Improve chooser.html to better scale for more languages
     - [o] Fix size of logo-lqdn-white.svg
+    - [o] Add link to individual PDF file to chooser
 
 - [o] Add "le-phraseur" example for obtaining dynamic content via query parameters
 - [o] Add basic user interface for "le-phraseur". Implement form for data entry and/or contenteditable
