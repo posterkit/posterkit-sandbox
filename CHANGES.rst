@@ -6,6 +6,9 @@ PosterKit-O-Mat CHANGES
 in progress
 -----------
 - Add economy display mode
+- lqdn-gafam-campaign example
+
+    - Improve company SVG logos
 
 2018-01-30 0.3.0
 ----------------
