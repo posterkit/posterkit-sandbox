@@ -7,6 +7,12 @@ import tempfile
 
 DRY_RUN = False
 
+# Engine configuration
+nodejs = '/opt/nodejs-9.4.0/bin/nodejs'
+decktape = '/opt/nodejs-9.4.0/bin/decktape'
+
+# Job configuration
+uri_tpl = 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang={language}&name={name}'
 names = [
     'google',
     'apple',
@@ -15,26 +21,29 @@ names = [
     'microsoft',
 ];
 
-output_path = tempfile.mkdtemp()
-nodejs = '/opt/nodejs-9.4.0/bin/nodejs'
-decktape = '/opt/nodejs-9.4.0/bin/decktape'
-render_command_tpl = "{nodejs} {decktape} --no-sandbox --load-pause 1500 --slides 1 --size 793x1118 generic 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang={language}&name={postername}' {outputfile}"
-
 
 def makepdf(language):
+
+    temp_path = tempfile.mkdtemp()
+
+    render_command_tpl = "{nodejs} {decktape} --no-sandbox --load-pause 1500 --slides 1 --size 793x1118 generic '{uri}' {outputfile}"
 
     # Generate single-page PDF files
     outputfiles = []
     for name in names:
-        outputfile = os.path.join(output_path, 'lqdn-gafam-poster-{language}-{name}.pdf'.format(language=language, name=name))
+        outputfile = os.path.join(temp_path, 'lqdn-gafam-poster-{language}-{name}.pdf'.format(language=language, name=name))
+
+        uri = uri_tpl.format(
+            language=language,
+            name=name)
+
         render_command = render_command_tpl.format(
             nodejs=nodejs,
             decktape=decktape,
-            language=language,
-            postername=name,
+            uri=uri,
             outputfile=outputfile)
 
-        print 'render_command:', render_command
+        print 'Rendering command:', render_command
         if not DRY_RUN:
             os.system(render_command)
 
@@ -42,9 +51,9 @@ def makepdf(language):
 
     # Join PDF files
     input_files = ' '.join(outputfiles)
-    output_file = os.path.join(output_path, 'lqdn-gafam-poster-{language}.pdf'.format(language=language))
+    output_file = os.path.join(temp_path, 'lqdn-gafam-poster-{language}.pdf'.format(language=language))
     join_command = 'pdftk {input_files} output {output_file}'.format(**locals())
-    print 'join_command:', join_command
+    print 'Join command:', join_command
     if not DRY_RUN:
         os.system(join_command)
 
