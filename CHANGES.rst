@@ -9,6 +9,7 @@ in progress
 - lqdn-gafam-campaign example
 
     - Improve company SVG logos
+    - Add dark variants of company SVGs
 
 2018-01-30 0.3.0
 ----------------
