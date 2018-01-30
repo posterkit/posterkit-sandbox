@@ -1,7 +1,7 @@
 {
     "name": "posterkit-o-mat",
     "description": "We created the PosterKit-O-Mat to support the lovely people of La Quadrature du Net and gafam.info in their endeavours.",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "license": "CC0-1.0",
     "author": {
         "name": "The PosterKit developers",
