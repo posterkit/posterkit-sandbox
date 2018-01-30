@@ -12,6 +12,7 @@ in progress
     - More tweaks for pixel-perfect reproduction
     - Use cropped version of LQDN logo. Thanks, weef!
     - Minor Pareto adjustments to layout
+    - Automate the PDF rendering and publishing
 
 2018-01-22 0.2.0
 ----------------

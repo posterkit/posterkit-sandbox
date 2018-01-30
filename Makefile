@@ -35,3 +35,25 @@ upgrade:
 	yarn install
 	yarn run release
 
+
+# ========
+# preprint
+# ========
+
+# Which posters to render to PDF
+LANGUAGES = fr en de jp eo ru cmn
+
+# Render single PDF
+pdf-single:
+	@echo
+	@echo ------------------------
+	@echo Rendering poster \"$(lang)\"
+	@echo ------------------------
+	./htdocs/examples/lqdn-gafam-campaign/makepdf.py $(lang) $(TARGET_DIR)
+
+# Render all PDFs
+pdf-all:
+	$(foreach language,$(LANGUAGES),make pdf-single lang=$(language);)
+
+upgrade-pdf: pdf-all
+
