@@ -12,6 +12,7 @@ nodejs = '/opt/nodejs-9.4.0/bin/nodejs'
 decktape = '/opt/nodejs-9.4.0/bin/decktape'
 
 # Job configuration
+# TODO: Add passepartout=true, economy=true, contrast=true query parameters
 uri_tpl = 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang={language}&name={name}'
 names = [
     'google',
@@ -22,7 +23,7 @@ names = [
 ];
 
 
-def makepdf(language):
+def makepdf(language, variant):
 
     temp_path = tempfile.mkdtemp()
 
@@ -36,6 +37,9 @@ def makepdf(language):
         uri = uri_tpl.format(
             language=language,
             name=name)
+
+        if variant:
+            uri += '&{variant}=true'.format(variant)
 
         render_command = render_command_tpl.format(
             nodejs=nodejs,
@@ -64,8 +68,12 @@ if __name__ == '__main__':
 
     input_file = sys.argv[1]
     output_path = sys.argv[2]
+    try:
+        variant = sys.argv[3]
+    except:
+        variant = None
 
-    output_file = makepdf(input_file)
+    output_file = makepdf(input_file, variant)
     shutil.copy(output_file, output_path)
     shutil.rmtree(os.path.dirname(output_file))
 

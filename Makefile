@@ -49,7 +49,7 @@ pdf-single:
 	@echo ------------------------
 	@echo Rendering poster \"$(lang)\"
 	@echo ------------------------
-	./htdocs/examples/lqdn-gafam-campaign/makepdf.py $(lang) $(TARGET_DIR)
+	./htdocs/examples/lqdn-gafam-campaign/makepdf.py $(lang) $(TARGET_DIR) $(VARIANT)
 
 # Render all PDFs
 pdf-all:
