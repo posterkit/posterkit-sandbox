@@ -127,3 +127,27 @@ We use PDFtk_ for joining single PDF pages together.
 
 .. _PDFtk: https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
 
+
+
+Publish
+=======
+
+HTML
+----
+::
+
+    ssh www-data@examples.posterkit.net
+    make upgrade
+
+PDF
+---
+::
+
+    ssh www-data@examples.posterkit.net
+
+    export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial/pdf/full
+    make pdf-all VARIANT=
+
+    export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial/pdf/economy
+    make pdf-all VARIANT=economy
+

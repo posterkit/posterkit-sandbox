@@ -39,7 +39,7 @@ def makepdf(language, variant):
             name=name)
 
         if variant:
-            uri += '&{variant}=true'.format(variant)
+            uri += '&{variant}=true'.format(variant=variant)
 
         render_command = render_command_tpl.format(
             nodejs=nodejs,
@@ -72,6 +72,9 @@ if __name__ == '__main__':
         variant = sys.argv[3]
     except:
         variant = None
+
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)
 
     output_file = makepdf(input_file, variant)
     shutil.copy(output_file, output_path)

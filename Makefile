@@ -41,7 +41,7 @@ upgrade:
 # ========
 
 # Which posters to render to PDF
-LANGUAGES = fr en de jp eo ru cmn
+LANGUAGES = fr en de jp eo ru cmn it
 
 # Render single PDF
 pdf-single:
@@ -54,6 +54,4 @@ pdf-single:
 # Render all PDFs
 pdf-all:
 	$(foreach language,$(LANGUAGES),make pdf-single lang=$(language);)
-
-upgrade-pdf: pdf-all
 

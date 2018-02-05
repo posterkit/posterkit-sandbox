@@ -10,20 +10,22 @@ var names = [
     'Microsoft',
 ];
 
+// TODO: Maybe inquire this information from a central index file somehow
+var languages = [
+    {code: 'fr', label: 'French'},
+    {code: 'en', label: 'English'},
+    {code: 'de', label: 'German'},
+    {code: 'jp', label: 'Japanese'},
+    {code: 'eo', label: 'Esperanto'},
+    {code: 'ru', label: 'Russian'},
+    {code: 'cmn', label: 'Mandarin Chinese'},
+    {code: 'it', label: 'Italian'},
+];
+
 $(document).ready(function() {
 
     console.log('Loading chooser.js');
 
-    // TODO: Inquire this information from a central index file somehow
-    var languages = [
-        {code: 'fr', label: 'French'},
-        {code: 'en', label: 'English'},
-        {code: 'de', label: 'German'},
-        {code: 'jp', label: 'Japanese'},
-        {code: 'eo', label: 'Esperanto'},
-        {code: 'ru', label: 'Russian'},
-        {code: 'cmn', label: 'Mandarin Chinese'},
-    ];
 
     languages.forEach(function(language) {
         //console.log(language);
