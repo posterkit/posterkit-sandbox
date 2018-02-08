@@ -137,6 +137,8 @@ HTML
 ::
 
     ssh www-data@examples.posterkit.net
+    cd /srv/www/organizations/posterkit/sources/posterkit-o-mat/
+
     make upgrade
 
 PDF
@@ -144,6 +146,7 @@ PDF
 ::
 
     ssh www-data@examples.posterkit.net
+    cd /srv/www/organizations/posterkit/sources/posterkit-o-mat/
 
     export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial/pdf/full
     make pdf-all VARIANT=

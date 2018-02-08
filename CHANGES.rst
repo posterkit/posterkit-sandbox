@@ -5,6 +5,9 @@ PosterKit-O-Mat CHANGES
 
 in progress
 -----------
+
+2018-02-08 0.4.0
+----------------
 - Add economy display mode
 - lqdn-gafam-campaign example
 
@@ -12,7 +15,7 @@ in progress
     - Add dark variants of company SVGs
     - Use different logo variants for economy display mode
     - Prepare PDF rendering for additional dimension "variant"
-    - Add another translation
+    - Add more translations
 
 2018-01-30 0.3.0
 ----------------

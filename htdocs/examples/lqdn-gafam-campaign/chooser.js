@@ -20,6 +20,7 @@ var languages = [
     {code: 'ru', label: 'Russian'},
     {code: 'cmn', label: 'Mandarin Chinese'},
     {code: 'it', label: 'Italian'},
+    {code: 'pl', label: 'Polish'},
 ];
 
 $(document).ready(function() {

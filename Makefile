@@ -41,7 +41,7 @@ upgrade:
 # ========
 
 # Which posters to render to PDF
-LANGUAGES = fr en de jp eo ru cmn it
+LANGUAGES = fr en de jp eo ru cmn it pl
 
 # Render single PDF
 pdf-single:

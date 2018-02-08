@@ -121,6 +121,14 @@ var layout_rules_override = [
             {selector: '#body-content', css: {width: '65%'}},
         ]
     },
+    {
+        predicate: function(language, poster_name) {
+            return (language == 'pl') && (poster_name == 'amazon');
+        },
+        elements: [
+            {selector: '#body-content', css: {width: '60%'}},
+        ]
+    },
 
 
     // ==========================================
