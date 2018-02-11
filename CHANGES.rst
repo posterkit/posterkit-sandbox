@@ -8,6 +8,7 @@ in progress
 - lqdn-gafam-campaign example
 
     - Add translations into Norwegian and Catalan
+    - Don't lower case language name for honoring labels like "nb_NO"
 
 2018-02-08 0.4.0
 ----------------

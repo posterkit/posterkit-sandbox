@@ -99,7 +99,7 @@ var layout_rules_override = [
 
     {
         predicate: function(language, poster_name) {
-            return (language == 'fr' || language == 'en' || language == 'de') && (poster_name == 'apple');
+            return (language == 'fr' || language == 'en' || language == 'de' || language == 'nb_NO') && (poster_name == 'apple');
         },
         elements: [
             {selector: '#body-content', css: {width: '45.0%'}},
@@ -273,7 +273,7 @@ $(document).ready(function() {
 
     // Read parameters using reasonable defaults
     // TODO: Refactor defaults out of here
-    var language = (options.lang || 'fr').toLowerCase();
+    var language = (options.lang || 'fr');
     var poster_name = (options.name || 'google').toLowerCase();
 
 
@@ -407,7 +407,7 @@ function run_autolayout(language, poster_name) {
     // Apply custom layout settings
     var refitting_allowed = true;
     layout_rules_override.forEach(function (layout_rule) {
-        if (layout_rule.predicate && layout_rule.predicate(language.toLowerCase(), poster_name.toLowerCase())) {
+        if (layout_rule.predicate && layout_rule.predicate(language, poster_name.toLowerCase())) {
             var settings = layout_rule;
             if (settings) {
                 if (settings.refitting != undefined) {
