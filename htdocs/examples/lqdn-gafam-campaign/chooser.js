@@ -21,6 +21,8 @@ var languages = [
     {code: 'cmn', label: 'Mandarin Chinese'},
     {code: 'it', label: 'Italian'},
     {code: 'pl', label: 'Polish'},
+    {code: 'nb_NO', label: 'Norwegian Bokmål'},
+    {code: 'ca', label: 'Catalan'},
 ];
 
 $(document).ready(function() {

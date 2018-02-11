@@ -5,6 +5,9 @@ PosterKit-O-Mat CHANGES
 
 in progress
 -----------
+- lqdn-gafam-campaign example
+
+    - Add translations into Norwegian and Catalan
 
 2018-02-08 0.4.0
 ----------------
@@ -15,7 +18,7 @@ in progress
     - Add dark variants of company SVGs
     - Use different logo variants for economy display mode
     - Prepare PDF rendering for additional dimension "variant"
-    - Add more translations
+    - Add translation into Polish
 
 2018-01-30 0.3.0
 ----------------
