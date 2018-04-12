@@ -12,17 +12,18 @@ var names = [
 
 // TODO: Maybe inquire this information from a central index file somehow
 var languages = [
-    {code: 'fr', label: 'French'},
-    {code: 'en', label: 'English'},
-    {code: 'de', label: 'German'},
-    {code: 'jp', label: 'Japanese'},
-    {code: 'eo', label: 'Esperanto'},
-    {code: 'ru', label: 'Russian'},
-    {code: 'cmn', label: 'Mandarin Chinese'},
-    {code: 'it', label: 'Italian'},
-    {code: 'pl', label: 'Polish'},
-    {code: 'nb_NO', label: 'Norwegian Bokmål'},
     {code: 'ca', label: 'Catalan'},
+    {code: 'en', label: 'English'},
+    {code: 'eo', label: 'Esperanto'},
+    {code: 'fr', label: 'French'},
+    {code: 'de', label: 'German'},
+    {code: 'it', label: 'Italian'},
+    {code: 'jp', label: 'Japanese'},
+    {code: 'cmn', label: 'Mandarin Chinese'},
+    {code: 'nb_NO', label: 'Norwegian Bokmål'},
+    {code: 'pl', label: 'Polish'},
+    {code: 'ru', label: 'Russian'},
+    {code: 'es', label: 'Spanish'},
 ];
 
 $(document).ready(function() {
