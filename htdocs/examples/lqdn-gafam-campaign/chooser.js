@@ -22,8 +22,10 @@ var languages = [
     {code: 'cmn', label: 'Mandarin Chinese'},
     {code: 'nb_NO', label: 'Norwegian Bokmål'},
     {code: 'pl', label: 'Polish'},
+    {code: 'pt', label: 'Portuguese'},
     {code: 'ru', label: 'Russian'},
     {code: 'es', label: 'Spanish'},
+    {code: 'se', label: 'Swedish'},
 ];
 
 $(document).ready(function() {
