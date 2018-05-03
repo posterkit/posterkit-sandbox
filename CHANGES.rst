@@ -14,6 +14,7 @@ in progress
     - Reflect renaming of language codes in poster layouter
     - Adjust formatting for Portuguese
     - Improve "variant" processing of PDF generator
+    - Fine-tune Portuguese layout
 
 - Upgrade to webpack4
 

@@ -16,7 +16,7 @@ Prio 1
 - [o] Will poster.html also work on mobile with appropriate zooming?
 - [o] Improve anomaly between ``make pdf-*`` and ``makepdf.py``,
       also add dynamic inquiry to get rid of ``LANGUAGES`` definition in Makefile
-
+- [o] Make ``makepdf.py`` also work on Mac OS X
 
 ******
 Prio 2

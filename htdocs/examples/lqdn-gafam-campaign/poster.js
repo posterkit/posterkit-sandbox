@@ -145,7 +145,7 @@ var layout_rules_override = [
             return (language == 'pt');
         },
         elements: [
-            {selector: '#body-content', css: {width: '85%'}},
+            {selector: '#body-content', css: {width: '75%'}},
         ]
     },
     {
@@ -161,7 +161,7 @@ var layout_rules_override = [
             return (language == 'pt') && (poster_name == 'apple');
         },
         elements: [
-            {selector: '#body-content', css: {width: '57.5%'}},
+            {selector: '#body-content', css: {width: '50%'}},
             {selector: ".fit:contains('MÃE')", css: {'margin-top': '10%'}},
             {selector: ".fit:contains('ESTÁ')", css: {'margin-top': '10%'}},
         ]
