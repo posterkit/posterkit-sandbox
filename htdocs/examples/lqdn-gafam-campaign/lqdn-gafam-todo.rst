@@ -14,6 +14,8 @@ Prio 1
 - [o] Improve autolayouter, also honoring diacritics
 - [o] On mobile, the media box must not be left <-> right
 - [o] Will poster.html also work on mobile with appropriate zooming?
+- [o] Improve anomaly between ``make pdf-*`` and ``makepdf.py``,
+      also add dynamic inquiry to get rid of ``LANGUAGES`` definition in Makefile
 
 
 ******

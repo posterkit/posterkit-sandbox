@@ -148,9 +148,9 @@ PDF
     ssh www-data@examples.posterkit.net
     cd /srv/www/organizations/posterkit/sources/posterkit-o-mat/
 
-    export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial/pdf/full
-    make pdf-all VARIANT=
+    export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial/pdf/black
+    make pdf-all VARIANT=black
 
-    export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial/pdf/economy
-    make pdf-all VARIANT=economy
+    export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial/pdf/eco
+    make pdf-all VARIANT=eco
 

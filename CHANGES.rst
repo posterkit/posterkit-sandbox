@@ -13,6 +13,7 @@ in progress
     - Improve language/variant chooser page significantly
     - Reflect renaming of language codes in poster layouter
     - Adjust formatting for Portuguese
+    - Improve "variant" processing of PDF generator
 
 - Upgrade to webpack4
 

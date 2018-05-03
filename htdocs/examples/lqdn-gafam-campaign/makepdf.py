@@ -13,7 +13,7 @@ decktape = '/opt/nodejs-9.4.0/bin/decktape'
 
 # Job configuration
 # TODO: Add passepartout=true, economy=true, contrast=true query parameters
-uri_tpl = 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang={language}&name={name}'
+uri_tpl = 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang={language}&name={name}&variant={variant}'
 names = [
     'google',
     'apple',
@@ -24,6 +24,8 @@ names = [
 
 
 def makepdf(language, variant):
+
+    variant = variant or 'default'
 
     temp_path = tempfile.mkdtemp()
 
@@ -36,10 +38,8 @@ def makepdf(language, variant):
 
         uri = uri_tpl.format(
             language=language,
-            name=name)
-
-        if variant:
-            uri += '&variant={variant}'.format(variant=variant)
+            name=name,
+            variant=variant)
 
         render_command = render_command_tpl.format(
             nodejs=nodejs,
@@ -55,7 +55,7 @@ def makepdf(language, variant):
 
     # Join PDF files
     input_files = ' '.join(outputfiles)
-    output_file = os.path.join(temp_path, 'lqdn-gafam-poster-{language}.pdf'.format(language=language))
+    output_file = os.path.join(temp_path, 'lqdn-gafam-poster-{language}-{variant}.pdf'.format(language=language, variant=variant))
     join_command = 'pdftk {input_files} output {output_file}'.format(**locals())
     print 'Join command:', join_command
     if not DRY_RUN:
