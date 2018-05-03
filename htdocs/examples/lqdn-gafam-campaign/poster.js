@@ -137,6 +137,37 @@ var layout_rules_override = [
         ]
     },
 
+    // ===================
+    //   Portuguese (pt)
+    // ===================
+    {
+        predicate: function(language, poster_name) {
+            return (language == 'pt');
+        },
+        elements: [
+            {selector: '#body-content', css: {width: '85%'}},
+        ]
+    },
+    {
+        predicate: function(language, poster_name) {
+            return (language == 'pt');
+        },
+        elements: [
+            {selector: ".fit:contains('VOCÊ')", css: {'margin-top': '10%'}},
+        ]
+    },
+    {
+        predicate: function(language, poster_name) {
+            return (language == 'pt') && (poster_name == 'apple');
+        },
+        elements: [
+            {selector: '#body-content', css: {width: '57.5%'}},
+            {selector: ".fit:contains('MÃE')", css: {'margin-top': '10%'}},
+            {selector: ".fit:contains('ESTÁ')", css: {'margin-top': '10%'}},
+        ]
+    },
+
+
     // ==================================
     //   Japanese (ja) and Chinese (zh)
     // ==================================

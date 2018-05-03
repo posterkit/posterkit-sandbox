@@ -12,6 +12,7 @@ in progress
     - Don't lower case language name for honoring labels like "nb_NO"
     - Improve language/variant chooser page significantly
     - Reflect renaming of language codes in poster layouter
+    - Adjust formatting for Portuguese
 
 2018-02-08 0.4.0
 ----------------
