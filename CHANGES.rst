@@ -5,12 +5,13 @@ PosterKit-O-Mat CHANGES
 
 in progress
 -----------
-- lqdn-gafam-campaign example
+- lqdn-gafam-campaign
 
     - Add translations into Norwegian, Catalan and Spanish
     - Add translations into Portuguese and Swedish
     - Don't lower case language name for honoring labels like "nb_NO"
     - Improve language/variant chooser page significantly
+    - Reflect renaming of language codes in poster layouter
 
 2018-02-08 0.4.0
 ----------------

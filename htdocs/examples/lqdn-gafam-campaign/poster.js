@@ -53,6 +53,16 @@ var footer_logo_map = {
 
 // Custom styles to be applied at runtime
 var layout_rules_override = [
+
+    /**
+     * Manual body size adjustments re. overflow height
+     * FIXME: Implement this into the automatic layouting
+    **/
+
+
+    // =========
+    //   Apple
+    // =========
     {
         predicate: function(language, poster_name) {
             return poster_name == 'apple';
@@ -62,13 +72,10 @@ var layout_rules_override = [
         ]
     },
 
-    // Manual body size adjustments re. overflow height
-    // FIXME: Implement this into the automatic layouting
 
-
-    // ==========================================
-    //                 en, de and eo
-    // ==========================================
+    // ========================================================================================================
+    //   English (en), German (de), French (fr), Norwegian (nb), Russian (ru), Polish (pl) and Esperanto (eo)
+    // ========================================================================================================
     {
         predicate: function(language, poster_name) {
             return language == 'en' || language == 'de' || language == 'ru';
@@ -99,7 +106,7 @@ var layout_rules_override = [
 
     {
         predicate: function(language, poster_name) {
-            return (language == 'fr' || language == 'en' || language == 'de' || language == 'nb_NO') && (poster_name == 'apple');
+            return (language == 'fr' || language == 'en' || language == 'de' || language == 'nb') && (poster_name == 'apple');
         },
         elements: [
             {selector: '#body-content', css: {width: '45.0%'}},
@@ -130,13 +137,39 @@ var layout_rules_override = [
         ]
     },
 
-
-    // ==========================================
-    //                 jp and cmn
-    // ==========================================
+    // ==================================
+    //   Japanese (ja) and Chinese (zh)
+    // ==================================
     {
         predicate: function(language, poster_name) {
-            return language == 'cmn';
+            return language == 'zh' || language == 'ja';
+        },
+        refitting: false,
+        elements: [
+            {selector: '#body-content', css: {'width': '85%', 'line-height': 1.05}},
+        ]
+    },
+
+
+    // =================
+    //   Japanese (ja)
+    // =================
+    {
+        predicate: function(language, poster_name) {
+            return language == 'ja' && (poster_name == 'apple');
+        },
+        elements: [
+            {selector: '#footer-left', css: {'max-width': '86%'}},
+        ]
+    },
+
+
+    // ================
+    //   Chinese (zh)
+    // ================
+    {
+        predicate: function(language, poster_name) {
+            return language == 'zh';
         },
         refitting: false,
         elements: [
@@ -146,16 +179,7 @@ var layout_rules_override = [
     },
     {
         predicate: function(language, poster_name) {
-            return language == 'cmn' || language == 'jp';
-        },
-        refitting: false,
-        elements: [
-            {selector: '#body-content', css: {'width': '85%', 'line-height': 1.05}},
-        ]
-    },
-    {
-        predicate: function(language, poster_name) {
-            return language == 'cmn' && (poster_name == 'google');
+            return language == 'zh' && (poster_name == 'google');
         },
         elements: [
             {selector: '#body-content', css: {width: '75%'}},
@@ -163,7 +187,7 @@ var layout_rules_override = [
     },
     {
         predicate: function(language, poster_name) {
-            return language == 'cmn' && (poster_name == 'facebook' || poster_name == 'amazon' || poster_name == 'microsoft');
+            return language == 'zh' && (poster_name == 'facebook' || poster_name == 'amazon' || poster_name == 'microsoft');
         },
         elements: [
             {selector: '#body-content', css: {width: '50%'}},
@@ -171,7 +195,7 @@ var layout_rules_override = [
     },
     {
         predicate: function(language, poster_name) {
-            return language == 'cmn' && (poster_name == 'apple');
+            return language == 'zh' && (poster_name == 'apple');
         },
         elements: [
             {selector: '#body-content', css: {width: '35%'}},
@@ -179,16 +203,7 @@ var layout_rules_override = [
     },
     {
         predicate: function(language, poster_name) {
-            return language == 'jp' && (poster_name == 'apple');
-        },
-        elements: [
-            {selector: '#footer-left', css: {'max-width': '86%'}},
-        ]
-    },
-
-    {
-        predicate: function(language, poster_name) {
-            return language == 'cmn' && (poster_name == 'facebook' || poster_name == 'microsoft');
+            return language == 'zh' && (poster_name == 'facebook' || poster_name == 'microsoft');
         },
         elements: [
             //{selector: '#footer-left', css: {width: '50%'}},
@@ -204,7 +219,7 @@ function title_to_logo(options, element, value) {
 
     var logo_key = value.toLowerCase();
     var logo_variant = 'white';
-    if (options.economy && options.economy.toLowerCase() == 'true') {
+    if (options.variant == 'eco') {
         logo_variant = 'dark';
     }
 
@@ -223,7 +238,7 @@ function title_to_logo(options, element, value) {
 
 function footer_logo(options, element, value) {
     var logo_variant = 'white';
-    if (options.economy && options.economy.toLowerCase() == 'true') {
+    if (options.variant == 'eco') {
         logo_variant = 'dark';
     }
 
@@ -304,14 +319,14 @@ function setup_display(options) {
     }
 
     // Economy mode
-    if (options.economy && options.economy.toLowerCase() == 'true') {
+    if (options.variant == 'eco') {
         $('body').children().css('color', '#252525');
         $('.inverted').css('background', '#bbbbbb');
         $('.inverted').css('color', '#252525');
     }
 
     // Grey mode
-    if (options.grey && options.grey.toLowerCase() == 'true') {
+    if (options.variant == 'grey') {
         $('body').children().css('color', '#656565');
         $('.inverted').css('background', '#656565');
     }
@@ -378,12 +393,14 @@ function content_to_dom(poster_name, get_content, options) {
             var data_key = poster_name + '-' + map.field;
             value = get_content(data_key);
 
+        /*
         } else if (map.attributes) {
             value = null;
             for (var attr_name in map.attributes) {
                 var attr_value = map.attributes[attr_name];
                 element.attr(attr_name, attr_value);
             }
+        */
         }
         //console.log(map.id, value);
 
@@ -431,7 +448,7 @@ function run_autolayout(language, poster_name) {
     posterkit.fit_text('.fit');
 
 
-    if (language != 'cmn' && language != 'jp' && language != 'ru') {
+    if (language != 'zh' && language != 'ja' && language != 'ru') {
         run_autolayout_stage2(language, poster_name);
     }
 
