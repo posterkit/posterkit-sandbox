@@ -11,3 +11,4 @@ yarn.lock
 !/htdocs/static/assets/README.txt
 /htdocs/examples/_static/assets/*
 !/htdocs/examples/_static/assets/README.txt
+/tmp

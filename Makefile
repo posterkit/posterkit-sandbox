@@ -55,3 +55,10 @@ pdf-single:
 pdf-all:
 	$(foreach language,$(LANGUAGES),make pdf-single lang=$(language);)
 
+
+
+# ===============
+# local webserver
+# ===============
+webserver:
+	cd htdocs; python -m SimpleHTTPServer 9999

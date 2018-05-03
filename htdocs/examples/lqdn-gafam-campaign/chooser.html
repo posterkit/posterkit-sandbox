@@ -3,14 +3,14 @@
 
 <head>
 
-    <meta charset="UTF-8"/>
+    <meta charset="utf-8"/>
 
-    <title>The GAFAM poster campaign » PosterKit example</title>
-    <meta name="description" content="The GAFAM poster campaign by La Quadrature du Net » PosterKit example. https://posterkit.org/">
-    <meta name="keywords" content="poster, sticker, campaign, information, translation, localization, toolkit">
+    <title>The GAFAM poster campaign library</title>
+    <meta name="description" content="Translations of the GAFAM poster campaign by La Quadrature du Net">
+    <meta name="keywords" content="lqdn, gafam, poster, sticker, campaign, information, translation, localization">
 
-    <meta property="og:title" content="The GAFAM poster campaign » PosterKit example"/>
-    <meta property="og:description" content="The GAFAM poster campaign by La Quadrature du Net » PosterKit example. https://posterkit.org/"/>
+    <meta property="og:title" content="The GAFAM poster campaign library"/>
+    <meta property="og:description" content="Translations of the GAFAM poster campaign by La Quadrature du Net"/>
 
     <!-- Let browser know website is optimized for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -34,33 +34,231 @@
 
 <body>
 
+<script id="page" type="text/template" class="template">
 <section class="section">
     <div class="container is-fluid">
         <h1 class="content is-spaced has-text-dark is-size-1 has-text-weight-bold" style="line-height: 1.0">
-            GAFAM poster campaign chooser
+            The GAFAM poster campaign library
         </h1>
-        <div class="content is-spaced">
-            These files will get displayed with a beautiful passepartout around the layouts.
-            Just strip away the <code>passepartout=true</code> parameter from the url
-            in order to get a printable view. Then, you should be able to print this easily
-            while considering appropriate printer settings, e.g.:
+        <h2 class="is-size-4">
+            Translations of the <a href="https://gafam.info/">GAFAM poster campaign texts by La Quadrature du Net</a>.
+        </h2>
+        <div class="content">
             <ul>
                 <li>
-                    Margins: <code>None</code>
+                    The files are also available as <a href="https://ptrace.gafam.info/unofficial/pdf/">PDF documents</a>.
+                    <!--
+                    we encourage <a class="modal-button" data-target="#howto-mirror" aria-haspopup="true">mirroring them</a>.
+                    -->
                 </li>
                 <li>
-                    Background graphics: <code>True</code>
+                    All resources and the derived output is CC0-licensed and has been rendered using <a href="https://github.com/posterkit/posterkit-o-mat">PosterKit</a>.
                 </li>
             </ul>
         </div>
-        <p>
-            The posters are rendered using <a href="https://github.com/posterkit/posterkit-o-mat">PosterKit</a>
-            and are also available as <a href="https://ptrace.gafam.info/unofficial/pdf/">PDF documents</a>. Enjoy!
-        </p>
+
+        <!--
+        <div class="modal" id="howto-mirror">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <pre class="is-4by3">
+                    wget --mirror --level=2 --accept=pdf https://ptrace.gafam.info/unofficial/pdf/
+                </pre>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+            <div class="box">
+                <article class="media">
+                    <div class="media-left">
+                        <figure class="image is-64x64">
+                            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
+                                <br>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+                            </p>
+                        </div>
+                        <nav class="level is-mobile">
+                            <div class="level-left">
+                                <a class="level-item" aria-label="retweet">
+                                    <span class="icon is-small">
+                                      <i class="fa fa-retweet" aria-hidden="true"></i>
+                                    </span>
+                                </a>
+                                <a class="level-item" aria-label="like">
+                                    <span class="icon is-small">
+                                      <i class="fa fa-like" aria-hidden="true"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+                </article>
+            </div>
+        </div>
+        -->
         <hr/>
+
+        <h2 class="content is-spaced has-text-dark is-size-3 has-text-weight-bold">
+            Choose display format
+        </h2>
+        <div class="tabs is-toggle is-large">
+            <ul>
+                <li class="is-active" data-target="#display-format-passepartout">
+                    <a>
+                        <span class="icon is-small"><i class="fa fa-image" aria-hidden="true"></i></span>
+                        <span>Passepartout</span>
+                    </a>
+                </li>
+                <li data-target="#display-format-print">
+                    <a>
+                        <span class="icon is-small"><i class="fa fa-print" aria-hidden="true"></i></span>
+                        <span>Print view</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content display-format-details">
+            <div id="display-format-passepartout">
+                By default, the layouts will be framed by a beautiful passepartout.
+            </div>
+            <div id="display-format-print" class="is-display-none">
+                When using the "Print view" display format, please also consider appropriate print job settings like
+                <ul>
+                    <li>
+                        Background graphics: <code>True</code>
+                    </li>
+                    <li>
+                        Margins: <code>None</code>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr/>
+
+        <h2 class="content is-spaced has-text-dark is-size-3 has-text-weight-bold" id="select-language">
+            Choose language and variant
+        </h2>
+        <p class="content is-spaced">
+            The library offers translations into <%= language_names.slice(0, -1).join(', ') %>
+            and <%= language_names.slice(-1) %>,
+            each with multiple variants (<%= variant_names.join(', ') %>).
+        </p>
         <div id="chooser-matrix"/>
     </div>
 </section>
+</script>
+
+<script id="theader" type="text/template" class="template">
+    <!--
+    <tr>
+        <th><abbr title="Variant">Variant</abbr></th>
+        <% _.forEach(names, function(name) { %>
+        <th><abbr title="<%= name %>"><%= name %></abbr></th>
+        <% }); %>
+    </tr>
+    -->
+</script>
+
+<script id="language-variant" type="text/template" class="template">
+
+    <div class="box language-variant-box">
+        <article class="media">
+            <div class="media-left">
+                <div class="item-box-preview-wrapper" style="border-defunct: 1px solid lightgray">
+                    <iframe class="item-box-preview-frame" src="poster.html?lang=<%= language.code %>&name=google&variant=<%= variant %>&passepartout=false"></iframe>
+                </div>
+            </div>
+            <div class="media-content is-flex" style="align-items: stretch;">
+                <div class="content columns">
+                    <div class="column is-10 is-flex">
+                        <div class="is-size-5">
+                            Variant "<strong><%= variant %></strong>"
+                            <small></small>
+                        </div>
+                        <div class="buttons has-addons language-variant-buttons">
+                            <a class="button has-background-grey has-text-light poster-link-all" data-language="<%= language.code %>" data-variant="<%= variant %>">All</a>
+                            <% _.forEach(items, function(item) { %>
+                            <a class="button is-outlined" href="<%= item.uri %>" title="<%= item.title %>" target="_blank"><%= item.title %></a>
+                            <% }); %>
+                        </div>
+                    </div>
+                    <div class="column is-4 is-flex">
+                        <div class="is-size-5">
+                            Download
+                        </div>
+                        <div>
+                            <a class="button is-outlined2 is-large is-link" href="https://ptrace.gafam.info/unofficial/pdf/<%= variant %>/lqdn-gafam-poster-<%= language.code %>-<%= variant %>.pdf" target="_blank">
+                                <div class="icon">
+                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                </div>
+                                <br/>
+                                PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <!--
+    <div class="columns is-mobile">
+        <div class="column is-1">
+            <%= variant %>
+        </div>
+        <div class="column is-5">
+            <div class="buttons has-addons">
+            <% _.forEach(items, function(item) { %>
+            <a class="button" href="<%= item.uri %>" title="<%= item.title %>" target="_blank"><%= item.title %></a>
+            <% }); %>
+            </div>
+        </div>
+        <div class="column is-2">
+            <a class="button is-link poster-link" data-language="<%= language %>" data-variant="<%= variant %>">All</a>
+        </div>
+    </div>
+    -->
+
+</script>
+
+<script id="language-entry" type="text/template" class="template">
+
+    <div class="columns language-header">
+        <div class="column is-8">
+            <a id="language-<%= language.code %>"/>
+            <h2 class="is-size-3">
+                <%= language.name %>
+                &nbsp;
+                <span class="is-size-5">
+                    <%= language.local %>
+                </span>
+            </h2>
+        </div>
+        <div class="column is-4 has-text-right language-icons">
+            <a href="https://github.com/gafam/gafam-poster-translations/blob/master/po/<%= language.code %>.po" aria-label="github" target="_blank">
+                <span class="icon is-medium2">
+                    <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+                </span>
+            </a>
+            <a href="https://hosted.weblate.org/projects/gafam/translations/<%= language.code %>/" aria-label="weblate" target="_blank">
+                <img src="img/weblate-128.png" width="26"/>
+            </a>
+            <a href="#select-language">
+                <i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+
+    <%
+    _.forEach(rows, function(row) {
+    print(row);
+    });
+    %>
+</script>
 
 </body>
 </html>
