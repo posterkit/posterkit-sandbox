@@ -14,6 +14,8 @@ in progress
     - Reflect renaming of language codes in poster layouter
     - Adjust formatting for Portuguese
 
+- Upgrade to webpack4
+
 2018-02-08 0.4.0
 ----------------
 - Add economy display mode

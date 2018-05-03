@@ -28,6 +28,16 @@ module.exports = {
         publicPath: '../_static/assets/',
     },
 
+    optimization: {
+        usedExports: true,
+
+        // https://webpack.js.org/plugins/module-concatenation-plugin/
+        //concatenateModules: false,
+
+        // To keep filename consistent between different modes (for example building only)
+        occurrenceOrder: true
+    },
+
     module: {
         rules: [
             // Do these to expose their symbols to the template namespace
