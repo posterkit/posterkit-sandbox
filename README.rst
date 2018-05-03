@@ -1,16 +1,16 @@
-.. image:: https://img.shields.io/github/tag/posterkit/posterkit-o-mat.svg
-    :target: https://github.com/posterkit/posterkit-o-mat
+.. image:: https://img.shields.io/github/tag/posterkit/posterkit-sandbox.svg
+    :target: https://github.com/posterkit/posterkit-sandbox
 
 |
 
-###############
-PosterKit-O-Mat
-###############
+#################
+PosterKit Sandbox
+#################
 
 
 About
 =====
-We created the PosterKit-O-Mat to support the lovely people
+PosterKit has been created to support the lovely people
 of `La Quadrature du Net`_ and `gafam.info`_ in their endeavours.
 Big kudos to them for making their material available to the
 public domain (CC0), so we could easily build upon it.
@@ -104,6 +104,10 @@ Install font packages
     # The basics
     apt install fonts-arphic-ukai fonts-arphic-uming
 
+    # You might want to play around installing them, but it will yield different outcomes for some languages.
+    # You have been warned.
+    #apt install fonts-beteckna fonts-uralic
+
     # Looks differently
     apt install fonts-arphic-uming fonts-arphic-ukai fonts-ipafont-mincho fonts-ipafont-gothic fonts-unfonts-core
 
@@ -137,7 +141,7 @@ HTML
 ::
 
     ssh www-data@examples.posterkit.net
-    cd /srv/www/organizations/posterkit/sources/posterkit-o-mat/
+    cd /srv/www/organizations/posterkit/sources/posterkit-sandbox/
 
     make upgrade
 
@@ -146,7 +150,7 @@ PDF
 ::
 
     ssh www-data@examples.posterkit.net
-    cd /srv/www/organizations/posterkit/sources/posterkit-o-mat/
+    cd /srv/www/organizations/posterkit/sources/posterkit-sandbox/
 
     export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial/pdf/black
     make pdf-all VARIANT=black

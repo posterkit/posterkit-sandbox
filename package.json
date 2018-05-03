@@ -1,6 +1,6 @@
 {
-    "name": "posterkit-o-mat",
-    "description": "We created the PosterKit-O-Mat to support the lovely people of La Quadrature du Net and gafam.info in their endeavours.",
+    "name": "posterkit",
+    "description": "PosterKit has been created to support the lovely people of La Quadrature du Net and gafam.info in their endeavours.",
     "version": "0.4.0",
     "license": "CC0-1.0",
     "author": {
@@ -12,13 +12,13 @@
         "builder",
         "toolkit"
     ],
-    "homepage": "https://github.com/posterkit/posterkit-o-mat",
+    "homepage": "https://github.com/posterkit/posterkit-sandbox",
     "repository": {
         "type": "git",
-        "url": "git://github.com/posterkit/posterkit-o-mat.git"
+        "url": "git://github.com/posterkit/posterkit-sandbox.git"
     },
     "bugs": {
-        "url": "https://github.com/posterkit/posterkit-o-mat/issues"
+        "url": "https://github.com/posterkit/posterkit-sandbox/issues"
     },
     "scripts": {
         "watch": "webpack --mode=development --config=webpack.develop.config.js --watch --hot",

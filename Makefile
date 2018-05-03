@@ -46,9 +46,9 @@ LANGUAGES = fr en de ja eo ru zh it pl nb ca es pt sv
 # Render single PDF
 pdf-single:
 	@echo
-	@echo ------------------------
+	@echo ---------------------
 	@echo Rendering poster \"$(lang)\"
-	@echo ------------------------
+	@echo ---------------------
 	./htdocs/examples/lqdn-gafam-campaign/makepdf.py $(lang) $(TARGET_DIR) $(VARIANT)
 
 # Render all PDFs
@@ -62,3 +62,6 @@ pdf-all:
 # ===============
 webserver:
 	cd htdocs; python -m SimpleHTTPServer 9999
+
+open-chooser:
+	open http://localhost:9999/examples/lqdn-gafam-campaign/chooser.html
