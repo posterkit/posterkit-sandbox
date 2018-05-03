@@ -175,9 +175,17 @@
             <div class="media-content is-flex" style="align-items: stretch;">
                 <div class="content columns">
                     <div class="column is-10 is-flex">
-                        <div class="is-size-5">
-                            Variant "<strong><%= variant %></strong>"
-                            <small></small>
+                        <div>
+                            <div class="is-size-5">
+                                Variant "<strong><%= variant %></strong>"
+                            </div>
+                            <small>
+                            <% if (variant == 'black') { %>
+                                For saturated printing
+                            <% } else if (variant == 'eco') { %>
+                                For economic printing
+                            <% } %>
+                            </small>
                         </div>
                         <div class="buttons has-addons language-variant-buttons">
                             <a class="button has-background-grey has-text-light poster-link-all" data-language="<%= language.code %>" data-variant="<%= variant %>">All</a>
