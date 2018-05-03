@@ -39,7 +39,7 @@ def makepdf(language, variant):
             name=name)
 
         if variant:
-            uri += '&{variant}=true'.format(variant=variant)
+            uri += '&variant={variant}'.format(variant=variant)
 
         render_command = render_command_tpl.format(
             nodejs=nodejs,
