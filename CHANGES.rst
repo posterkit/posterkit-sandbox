@@ -15,6 +15,7 @@ in progress
     - Adjust formatting for Portuguese
     - Improve "variant" processing of PDF generator
     - Fine-tune Portuguese layout
+    - Add display format chooser (passepartout vs. print)
 
 - Upgrade to webpack4
 

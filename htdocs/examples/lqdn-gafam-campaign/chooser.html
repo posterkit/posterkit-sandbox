@@ -105,15 +105,15 @@
         <h2 class="content is-spaced has-text-dark is-size-3 has-text-weight-bold">
             Choose display format
         </h2>
-        <div class="tabs is-toggle is-large">
+        <div id="display-format-chooser" class="tabs is-toggle is-large">
             <ul>
-                <li class="is-active" data-target="#display-format-passepartout">
+                <li class="is-active" data-format="passepartout" data-target="#display-format-passepartout">
                     <a>
                         <span class="icon is-small"><i class="fa fa-image" aria-hidden="true"></i></span>
                         <span>Passepartout</span>
                     </a>
                 </li>
-                <li data-target="#display-format-print">
+                <li data-format="print" data-target="#display-format-print">
                     <a>
                         <span class="icon is-small"><i class="fa fa-print" aria-hidden="true"></i></span>
                         <span>Print view</span>
@@ -123,10 +123,16 @@
         </div>
         <div class="content display-format-details">
             <div id="display-format-passepartout">
-                By default, the layouts will be framed by a beautiful passepartout.
+                This layout frames all posters using a beautiful passepartout
+                and is optimized for displaying.
             </div>
             <div id="display-format-print" class="is-display-none">
-                When using the "Print view" display format, please also consider appropriate print job settings like
+                <p>
+                This layout comes without any bells and whistles and is optimized for printing.
+                </p>
+                <p>
+                Please also consider appropriate print job settings like
+                </p>
                 <ul>
                     <li>
                         Background graphics: <code>True</code>
@@ -146,6 +152,7 @@
             The library offers translations into <%= language_names.slice(0, -1).join(', ') %>
             and <%= language_names.slice(-1) %>,
             each with multiple variants (<%= variant_names.join(', ') %>).
+            Thanks to all the translators who contributed to this!
         </p>
         <div id="chooser-matrix"/>
     </div>
@@ -190,7 +197,7 @@
                         <div class="buttons has-addons language-variant-buttons">
                             <a class="button has-background-grey has-text-light poster-link-all" data-language="<%= language.code %>" data-variant="<%= variant %>">All</a>
                             <% _.forEach(items, function(item) { %>
-                            <a class="button is-outlined" href="<%= item.uri %>" title="<%= item.title %>" target="_blank"><%= item.title %></a>
+                            <a class="button is-outlined poster-link-single" data-href="<%= item.uri %>" title="<%= item.title %>" target="_blank"><%= item.title %></a>
                             <% }); %>
                         </div>
                     </div>

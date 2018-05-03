@@ -43,6 +43,7 @@ function render_page(languages) {
 
     console.info('Rendering page');
 
+    $('#chooser-matrix').empty();
 
     // Render body
     var language_names = [];
@@ -116,7 +117,10 @@ function setup_mechanics() {
     $('.tabs li').on('click', function() {
         $('.tabs li.is-active').toggleClass('is-active');
         $(this).toggleClass('is-active');
+        update_poster_links();
     });
+
+    update_poster_links();
 
     $('[data-target]').on('click', function(){
         var target = $(this).data('target');
@@ -125,16 +129,38 @@ function setup_mechanics() {
 
 }
 
+function update_poster_links() {
+    var display_format = get_display_format();
+    console.info('Updating poster links for display format:', display_format);
+    $('.poster-link-single').each(function() {
+        var href = $(this).data('href');
+        if (display_format == 'passepartout') {
+            href += '&passepartout=true';
+        }
+        $(this).attr('href', href);
+    });
+}
+
+function get_display_format() {
+    var element = $('#display-format-chooser').find('li.is-active');
+    var format = element.data('format');
+    return format;
+}
+
 function get_poster_url(language, name, variant) {
     //console.log('get_poster_url language:', language);
-    var poster_url = 'poster.html?lang=' + language + '&name=' + name + '&variant=' + variant + '&passepartout=true';
+    var poster_url = 'poster.html?lang=' + language + '&name=' + name + '&variant=' + variant;
     return poster_url;
 }
 
 function open_all(language, variant) {
+    var display_format = get_display_format();
     names.forEach(function(name) {
         //console.log('opening', name, language);
         var poster_url = get_poster_url(language, name.toLowerCase(), variant);
+        if (display_format == 'passepartout') {
+            poster_url += '&passepartout=true';
+        }
         //console.log(poster_url);
         window.open(poster_url, '_blank');
     });
