@@ -1,14 +1,16 @@
 # Base
 /.idea
 /.venv*
+*.pyc
+*.egg-info
 .DS_Store
 /node_modules
 yarn-error.log
 yarn.lock
+/tmp
 
 # Custom
 /htdocs/static/assets/*
 !/htdocs/static/assets/README.txt
 /htdocs/examples/_static/assets/*
 !/htdocs/examples/_static/assets/README.txt
-/tmp

@@ -23,6 +23,42 @@ Contributions are always welcome!
 .. _La Quadrature du Net: https://www.laquadrature.net/
 
 
+How to work with it
+===================
+
+Browser display
+---------------
+Bundle Javascript and CSS assets using webpack::
+
+    yarn install
+    yarn run build
+
+Watch files for rebundling::
+
+    yarn run watch
+
+Open document in browser::
+
+    open ./htdocs/examples/34c3-endlich-normale-menschen/poster.html
+
+
+PDF rendering
+-------------
+::
+
+    # Define where PDF documents should be stored
+    export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial/pdf
+
+    # Render all variants of French posters
+    make pdf-single LANGUAGE=fr VARIANT=all
+
+    # Render all variants for all languages
+    make pdf-all
+
+
+Have fun!
+
+
 Examples
 ========
 
@@ -59,102 +95,4 @@ This uses Fitty_ by `Rik Schennink`_, a library for snugly text resizing. Kudos!
 .. _Rik Schennink: https://github.com/rikschennink
 
 
-How to work with it
-===================
-Bundle Javascript and CSS assets using webpack::
-
-    yarn install
-    yarn run build
-
-Watch files for rebundling::
-
-    yarn run watch
-
-Have a look::
-
-    open ./htdocs/examples/34c3-endlich-normale-menschen/poster.html
-
-
-
-Setup PDF rendering
-===================
-
-
-Install decktape
-----------------
-Prerequisites::
-
-    apt install build-essential libxss1 libgconf libgconf2-4 libasound2
-
-Use a recent Node.js::
-
-    apt install nodeenv
-    nodeenv --node=9.4.0 /opt/nodejs-9.4.0
-    source /opt/nodejs-9.4.0/bin/activate
-    npm install --unsafe-perm -g decktape
-
-
-Install font packages
----------------------
-- https://unix.stackexchange.com/questions/39542/how-to-make-chinese-characters-display-properly-on-chromium
-- https://superuser.com/questions/192704/why-cant-my-chromium-display-japanese-characters
-
-::
-
-    # The basics
-    apt install fonts-arphic-ukai fonts-arphic-uming
-
-    # You might want to play around installing them, but it will yield different outcomes for some languages.
-    # You have been warned.
-    #apt install fonts-beteckna fonts-uralic
-
-    # Looks differently
-    apt install fonts-arphic-uming fonts-arphic-ukai fonts-ipafont-mincho fonts-ipafont-gothic fonts-unfonts-core
-
-
-Example
--------
-::
-
-    su - www-data
-    decktape --no-sandbox --load-pause 3000 --slides 1 --size 793x1118 generic 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang=cmn&name=google' lqdn-gafam-poster-cmn-google.pdf
-
-.. note:: 793x1118 seems to be A4, kind of.
-
-
-Install PDFtk
--------------
-We use PDFtk_ for joining single PDF pages together.
-::
-
-    apt install pdftk
-
-.. _PDFtk: https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
-
-
-
-Publish
-=======
-
-HTML
-----
-::
-
-    ssh www-data@examples.posterkit.net
-    cd /srv/www/organizations/posterkit/sources/posterkit-sandbox/
-
-    make upgrade
-
-PDF
----
-::
-
-    ssh www-data@examples.posterkit.net
-    cd /srv/www/organizations/posterkit/sources/posterkit-sandbox/
-
-    export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial/pdf/black
-    make pdf-all VARIANT=black
-
-    export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial/pdf/eco
-    make pdf-all VARIANT=eco
-
+.. todo: Add more turtles all the way down to web browser rendering engines or even below.

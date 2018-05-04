@@ -2,8 +2,9 @@
 # bumpversion
 # ===========
 
-$(eval venvpath     := .venv27)
+$(eval venvpath     := .venv)
 $(eval bumpversion  := $(venvpath)/bin/bumpversion)
+$(eval python       := $(venvpath)/bin/python)
 
 virtualenv:
 	@test -e $(venvpath)/bin/python || `command -v virtualenv` --python=`command -v python` --no-site-packages $(venvpath)
@@ -28,32 +29,32 @@ release: bumpversion push
 # upgrade
 # =======
 
-upgrade:
+upgrade: virtualenv
 	git stash save
 	git pull
 	git stash pop
 	yarn install
 	yarn run release
+	$(python) setup.py develop
 
 
 # ========
 # preprint
 # ========
 
-# Which posters to render to PDF
-LANGUAGES = fr en de ja eo ru zh it pl nb ca es pt sv
-
 # Render single PDF
-pdf-single:
+pdf-single: virtualenv
 	@echo
 	@echo ---------------------
 	@echo Rendering poster \"$(lang)\"
 	@echo ---------------------
-	./htdocs/examples/lqdn-gafam-campaign/makepdf.py $(lang) $(TARGET_DIR) $(VARIANT)
+	$(MAKE) upgrade
+	$(venvpath)/bin/gafam-info makepdf --language=$(LANGUAGE) --name=all --variant=$(VARIANT) $(TARGET_DIR)
 
 # Render all PDFs
-pdf-all:
-	$(foreach language,$(LANGUAGES),make pdf-single lang=$(language);)
+pdf-all: virtualenv
+	$(MAKE) upgrade
+	$(venvpath)/bin/gafam-info makepdf --language=all --name=all --variant=all $(TARGET_DIR)
 
 
 

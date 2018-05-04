@@ -19,6 +19,8 @@ in progress
 
 - Upgrade to webpack4
 - Improve auto layouter significantly
+- Improve PDF rendering subsystem significantly
+
 
 2018-02-08 0.4.0
 ----------------
