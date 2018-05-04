@@ -18,6 +18,7 @@ in progress
     - Add display format chooser (passepartout vs. print)
 
 - Upgrade to webpack4
+- Improve auto layouter significantly
 
 2018-02-08 0.4.0
 ----------------

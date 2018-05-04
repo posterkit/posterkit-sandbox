@@ -13,6 +13,15 @@ body {
     font-family: Futura, Arial;
 }
 
+.fit {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.no-kerning {
+    font-kerning: none;
+}
+
 #title-container {
     height: 7cm;
 }
@@ -37,9 +46,10 @@ body {
     /* width: 55%; */
 
     /* New default, will be reduced at runtime on demand */
-    width: 65%;
+    /* width: 65%; */
+    width: 85%;
 
-    line-height: 1.0;
+    line-height: 3.25em;
     font-weight: 900;
 }
 
