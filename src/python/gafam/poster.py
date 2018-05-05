@@ -108,8 +108,8 @@ def render_posters(info=None, path=None):
 
                 # Create summary images
                 format = 'jpg'
-                nup = '1x5'
-                for size in ['640x', '800x', '1024x']:
+                nup = '5x1'
+                for size in ['640x', '1280x', '2560x']:
 
                     # Create image
                     image = create_image(pdf_filepath, nup=nup, size=size, format=format)

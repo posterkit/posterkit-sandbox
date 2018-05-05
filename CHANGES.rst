@@ -17,6 +17,7 @@ general
 - Add "pdfsummary" subsystem
 - Improve PDF subsystem documentation re. installed fonts
 - Improve error reporting when accessing GitHub fails
+- Improve thumbnail image generation
 
 lqdn-gafam-campaign
 -------------------

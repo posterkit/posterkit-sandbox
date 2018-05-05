@@ -26,15 +26,26 @@ def create_image(pdf_file, nup='1', size='1024x', format='jpg'):
     tmp_nupped = tempfile.NamedTemporaryFile(suffix='.pdf', delete=DELETE_TEMPFILES)
     output_file = tmp_nupped.name
     # TODO: Add "--no-tidy" for debugging
-    command = "pdfnup --nup {nup} --vanilla --landscape=true --keepinfo --outfile '{output_file}' '{pdf_file}'".format(**locals())
+    #command = "pdfnup --nup {nup} --vanilla --landscape=true --keepinfo --outfile '{output_file}' '{pdf_file}'".format(**locals())
+    command = "pdfnup --papersize '{{396px,1400px}}' --nup {nup} --vanilla --keepinfo --outfile '{output_file}' '{pdf_file}'".format(**locals())
     logger.info('Running "pdfnup" command: {}'.format(command))
     os.system(command)
 
     input_file = tmp_nupped.name
     tmp_image = tempfile.NamedTemporaryFile(delete=DELETE_TEMPFILES)
     output_file = tmp_image.name
-    #command = "convert -units PixelsPerInch '{input_file}' -density 96 -trim +repage -resize {size} '{output_file}'".format(**locals())
-    command = "convert -units PixelsPerInch '{input_file}' -trim +repage -resize {size} '{format}:{output_file}'".format(**locals())
+
+    # Dumb trimming
+    repage_option = "+repage"
+
+    # Trimming with a Specific Color
+    # http://www.imagemagick.org/Usage/crop/#trim_color
+    #repage_option = "-set page '%[fx:page.width-2]x%[fx:page.height-2]+%[fx:page.x-1]+%[fx:page.y-1]'"
+    #repage_option = ""
+
+    #command = "convert -units PixelsPerInch '{input_file}' -density 300 -trim +repage -resize {size} '{output_file}'".format(**locals())
+    #command = "convert -units PixelsPerInch '{input_file}' -density 300 -trim {repage_option} -crop -10-10\! -resize {size} '{format}:{output_file}'".format(**locals())
+    command = "convert -units PixelsPerInch '{input_file}' -density 300 -filter Lanczos -resize {size} '{format}:{output_file}'".format(**locals())
     logger.info('Running "convert" command: {}'.format(command))
     os.system(command)
 
