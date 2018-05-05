@@ -12,3 +12,51 @@
     font-family: 'FuturaMaxiBold';
     src: url('https://ptrace.gafam.info/upstream/font/FuturaMaxiBold.ttf') format('truetype');
 }
+
+
+/* Webfont: Lato-Regular */
+/* http://www.latofonts.com/lato-free-fonts/ */
+@font-face {
+    font-family: 'LatoWeb';
+    src: url('https://ptrace.gafam.info/unofficial/font/Lato-Regular.eot'); /* IE9 Compat Modes */
+    src: url('https://ptrace.gafam.info/unofficial/font/Lato-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('https://ptrace.gafam.info/unofficial/font/Lato-Regular.woff2') format('woff2'), /* Modern Browsers */
+    url('https://ptrace.gafam.info/unofficial/font/Lato-Regular.woff') format('woff'), /* Modern Browsers */
+    url('https://ptrace.gafam.info/unofficial/font/Lato-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: Lato-Heavy */
+/* http://www.latofonts.com/lato-free-fonts/ */
+@font-face {
+    font-family: 'LatoWebHeavy';
+    src: url('https://ptrace.gafam.info/unofficial/font/Lato-Heavy.eot'); /* IE9 Compat Modes */
+    src: url('https://ptrace.gafam.info/unofficial/font/Lato-Heavy.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('https://ptrace.gafam.info/unofficial/font/Lato-Heavy.woff2') format('woff2'), /* Modern Browsers */
+    url('https://ptrace.gafam.info/unofficial/font/Lato-Heavy.woff') format('woff'), /* Modern Browsers */
+    url('https://ptrace.gafam.info/unofficial/font/Lato-Heavy.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+
+/* Webfont: Muli Regular */
+/* https://fonts.google.com/specimen/Muli */
+@font-face {
+    font-family: 'Muli';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Muli Regular'), local('Muli-Regular'), url(https://ptrace.gafam.info/upstream/font/Muli-Regular.woff2) format('woff2');
+}
+
+/* Webfont: Muli Black */
+/* https://fonts.google.com/specimen/Muli */
+@font-face {
+    font-family: 'Muli';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Muli Black'), local('Muli-Black'), url(https://ptrace.gafam.info/upstream/font/Muli-Black.woff2) format('woff2');
+}

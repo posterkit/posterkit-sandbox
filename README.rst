@@ -87,6 +87,12 @@ Enjoy:
 .. _i18next-xhr-backend: https://github.com/i18next/i18next-xhr-backend
 
 
+Licenses
+========
+- `Lato font family <http://www.latofonts.com/lato-free-fonts/>`__
+  available under the `SIL Open Font License 1.1 <http://scripts.sil.org/OFL>`__
+
+
 Credits
 =======
 This uses Fitty_ by `Rik Schennink`_, a library for snugly text resizing. Kudos!

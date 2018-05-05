@@ -42,12 +42,15 @@ function load_fonts() {
             new FontFaceObserver('Open Sans').load(),
             new FontFaceObserver('FuturaExtended').load(),
             new FontFaceObserver('FuturaMaxiBold').load(),
+            new FontFaceObserver('LatoWeb').load(),
+            new FontFaceObserver('LatoWebHeavy').load(),
+            //new FontFaceObserver('Muli').load(),
         ];
         Promise.all(fonts).then(function() {
-            console.log('Successful loaded fonts');
+            console.log('Loading fonts successful');
             resolve();
         }).catch(function(error) {
-            console.error('Error loading fonts:', error);
+            console.error('Loading fonts failed:', error);
             reject(error);
         });
     });
@@ -129,24 +132,35 @@ function fit_text_bounding_box(element) {
 
     console.info('Fitting bounding box to text content');
 
-    var font_size_height_ratio = 0.77;
-    var font_size_line_height_ratio = 0.95;
-
     //console.log('child:', element, $(element).text());
 
     var text = $(element).text();
-
+    var font_family = $(element).css('font-family');
     var font_size = parseFloat($(element).css('font-size').replace('px', ''));
-    //var line_height = parseFloat($(element).css('line-height').replace('px', ''));
-    var line_height = null;
-    //console.log('font_size:', font_size, 'line_height:', line_height);
+    //console.log('font_size:', font_size);
 
-    if (has_diacritics(text)) {
+    var font_size_height_ratio = 0.77;
+    var font_size_line_height_ratio = 0.95;
+    var with_diacritics = has_diacritics(text);
+
+    // Adjust if text contains a diacritic character
+    if (with_diacritics) {
         console.log('Found accents/diacritics in:', text);
         font_size_height_ratio = 1.10;
         font_size_line_height_ratio = 1.58;
     }
 
+    // Adjust for different character boxing of LatoWebHeavy
+    if (font_family == 'LatoWebHeavy') {
+        font_size_height_ratio *= 1.00;
+        font_size_line_height_ratio *= 0.8;
+        if (with_diacritics) {
+            font_size_height_ratio = 1.00;
+            font_size_line_height_ratio = 1.15;
+        }
+    }
+
+    // Compute new values for element height and line height
     var height_new = font_size * font_size_height_ratio;
     var line_height_new = font_size * font_size_line_height_ratio;
 

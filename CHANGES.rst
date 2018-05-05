@@ -30,6 +30,7 @@ lqdn-gafam-campaign
 - Add display format chooser (passepartout vs. print)
 - Improve chooser layout significantly. Unlock mobile use.
 - Improve HTML meta tags for Twitter & Co.
+- Add fonts from the Lato and Muli families and apply to Polish and Esperanto, resolves #1
 
 2018-02-08 0.4.0
 ================
