@@ -3,7 +3,7 @@
 import logging
 import tempfile
 from io import BytesIO
-from posterkit.util import find_decktape, run_command
+from posterkit.util import find_nodejs, find_decktape, run_command
 
 DRY_RUN = False
 
@@ -17,18 +17,18 @@ def makepdf(uri):
     #render_command_tpl = "{nodejs} {decktape} --no-sandbox --load-pause 1500 --slides 1 --size 793x1118 generic '{uri}' {outputfile}"
     #render_command_tpl = "{decktape} generic --no-sandbox --slides=1 --size=793x1118 --pause=250 --load-pause=250 '{uri}' '{outputfile}'"
     #render_command_tpl = "{decktape} generic --no-sandbox --slides=1 --size=793x1118 --load-pause=3000 '{uri}' '{outputfile}'"
-    render_command_tpl = "{decktape} generic --no-sandbox --slides=1 --size=793x1118 --load-pause=500 '{uri}' '{outputfile}'"
+    render_command_tpl = "{nodejs} {decktape} generic --no-sandbox --slides=1 --size=793x1118 --load-pause=500 '{uri}' '{outputfile}'"
 
-    #nodejs = find_nodejs()
-    #if nodejs is None:
-    #    raise KeyError('Could not find Node.js executable')
+    nodejs = find_nodejs()
+    if nodejs is None:
+        raise KeyError('Could not find Node.js executable')
 
     decktape = find_decktape()
     if decktape is None:
         raise NameError('Could not find "decktape" installation')
 
     render_command = render_command_tpl.format(
-        #nodejs=nodejs,
+        nodejs=nodejs,
         decktape=decktape,
         uri=uri,
         outputfile=tmpfile.name)
