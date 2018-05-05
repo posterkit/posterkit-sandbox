@@ -25,11 +25,11 @@ config.optimization.splitChunks = {
 config.optimization.minimizer = [
 
     // https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
+    /*
     new UglifyJsPlugin({
         sourceMap: true,
         cache: true,
         parallel: true,
-        /*
         uglifyOptions: {
             ie8: false,
             compress: {
@@ -68,8 +68,8 @@ config.optimization.minimizer = [
                 beautify: false,
             },
         },
-        */
     })
+*/
 
 ];
 
