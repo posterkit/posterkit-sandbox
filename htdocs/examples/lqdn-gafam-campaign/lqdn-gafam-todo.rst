@@ -6,36 +6,82 @@ lqdn-gafam-campaign example todo
 ******
 Prio 1
 ******
-- [o] Make display format chooser actually work
-- [o] Button to open poster directly without passepartout
-- [o] Rendering: Include variant to filename, Render as SVG, Link to PDF
-- [o] Variant header => left side
-- [o] Title / alt texts for links to GitHub, Weblate, Top, Buttons
-- [o] Improve autolayouter, also honoring diacritics
+- [x] Make display format chooser actually work
+- [x] Button to open poster directly without passepartout
+- [x] Rendering: Include variant to filename, Link to PDF
+- [x] Improve autolayouter, also honoring diacritics
+- [x] Make ``makepdf.py`` also work on Mac OS X
+- [x] Add all permutations of passepartout=true|false, variant=black|eco to chooser and pdf renderer
+- [x] Improve "makepdf" subsystem
+
+    - Anomaly between ``make pdf-*`` and ``makepdf.py``,
+    - Add dynamic inquiry to get rid of ``LANGUAGES`` definition in Makefile
+    - Overall polishing
+
+- [x] Adjust the Japanese and Chinese font sizes
+- [x] With "yarn run release", "92% chunk asset optimization UglifyJSPlugin" is dead slow!!!
+      Probable? reason: Large size of unicode module?
+      Mitigation: Disable UglifyJSPlugin.
+- [x] Add command to make overview .png of all five pages
+- [o] Care for font re. Polish translation: https://ptrace.gafam.info/unofficial/pdf/black/lqdn-gafam-poster-pl-black.pdf
+
+
+********
+Prio 1.5
+********
+- [o] Tune autolayouting. Currently bogus on redraw after resize etc.
+- [o] Der Button is scheps im Chrome und auf Android
 - [o] On mobile, the media box must not be left <-> right
+- [o] Slightly increase line-height in poster footer?
+- [o] Some poster footers are too large: 4 lines currently do not fit well, see e.g. nb,
+- [o] Variant header => left side
 - [o] Will poster.html also work on mobile with appropriate zooming?
-- [o] Improve anomaly between ``make pdf-*`` and ``makepdf.py``,
-      also add dynamic inquiry to get rid of ``LANGUAGES`` definition in Makefile
-- [o] Make ``makepdf.py`` also work on Mac OS X
+- [o] Title / alt texts for links to GitHub, Weblate, Top, Buttons
+- [o] On the chooser page, there is only Google ;{
+- [o] Move links to GitHub, Weblate, etc. _into_ the "language-variant-box"
+- [o] Add meta tags for Twitter & Co.
+- [o] Sanity checks and appropriate messages when running with invalid parameters to lang=, name=, passepartout=, etc.
+- [o] Preview thumbnails in png format instead of iframe with real rendering
+- [o] Implement variant "color"
+- [o] Control language sort order. Maybe put most-spoken western languages (English, Spanish) first?
+- [o] Body text font size too small for Apple @ Chinese
+- [o] lang=ja::
+
+    Page error: TypeError: Cannot read property 'name' of undefined
+
+
 
 ******
 Prio 2
 ******
-- [o] On the chooser page, there is only Google ;{
-- [o] Move links to GitHub, Weblate, etc. _into_ the "language-variant-box"
+- [o] Revisit https://css-tricks.com/methods-controlling-spacing-web-typography/ and use font-smoothing
 - [o] Introduce soft-scrolling
-- [o] Add meta tags for Twitter & Co.
-- [o] Tune autolayouting. Currently bogus on redraw after resize etc.
-- [o] Sanity checks and appropriate messages when running with invalid parameters to lang=, name=, passepartout=, etc.
 - [o] Revisit JS modules "i18n-iso-countries" and "locale-code"
-- [o] Preview thumbnails in png format instead of iframe
 - [o] Add description about the projects' origins to chooser.html
 - [o] Fix size of logo-lqdn-white.svg
-- [o] Add permutations of passepartout=true, economy=true, contrast=true to chooser and pdf renderer
-- [o] Care for font re. Polish translation
-- [o] Implement variant "color"
-- [o] Control language sort order. Maybe put most-spoken western languages (English, Spanish) first?
-- [o] Refer to http://localhost:9999/examples/lqdn-gafam-campaign/chooser.html
+- [o] Who is referring to http://localhost:9999/examples/lqdn-gafam-campaign/chooser.html on production?
+- [o] Investigate whether all five pages could be rendered by using decktape with its "multiple slide" option
+- [o] Render as SVG
+- [o] Add appropriate meta tags to PDF documents
+
+
+****
+Docs
+****
+
+About web fonts
+===============
+https://graphicdesign.stackexchange.com/questions/4035/what-does-the-size-of-the-font-translate-to-exactly/8964#8964
+
+With digital fonts, the "em height" of a font is a choice made by the font designer, and does not have to conform to this convention at all: a digital type designer can pick any foundation for their em size. However, fonts still tend to adhere, at least roughly, to the sort of convention described above. In old days when type consisted of metal blocks, the "em height" was the height of one of those blocks, which needed to be high enough not only for any character in that typeface but also for any ascenders, descenders, and accents.
+
+Now, many modern typefaces include accents on capital letters too (such as Ć) - these accents extend outside the traditional typographical ascender and thus these (and possibly other special characters) fall outside the top of the "em". For historical reasons we don't adjust the em size to allow these, we keep the em size and just have these extend out of it - any typographer using such accents will need to ensure there is space for them to extend into, though usually the line gap is adequate in body text.
+
+The line gap in body text is a space left between the descender of one line of text and the ascender of the line below it - that is, the "font size" does not include this line gap measurement. It can be influenced by the CSS field line-height, where 1.4 means that the line gap is 0.4 times the em height, and thus an entire line of body text will take up 1.4 times the em height including the line gap.
+
+
+How to mirror
+=============
 - [o] Add popup re. instructions for mirroring the generated PDF files::
 
     wget --mirror --level=2 --accept=pdf https://ptrace.gafam.info/unofficial/pdf/

@@ -4,19 +4,11 @@ PosterKit-O-Mat CHANGES
 
 
 in progress
------------
-- lqdn-gafam-campaign
+===========
 
-    - Add translations into Norwegian, Catalan and Spanish
-    - Add translations into Portuguese and Swedish
-    - Don't lower case language name for honoring labels like "nb_NO"
-    - Improve language/variant chooser page significantly
-    - Reflect renaming of language codes in poster layouter
-    - Adjust formatting for Portuguese
-    - Improve "variant" processing of PDF generator
-    - Fine-tune Portuguese layout
-    - Add display format chooser (passepartout vs. print)
-
+general
+-------
+- Improve "variant" processing of PDF generator
 - Upgrade to webpack4
 - Improve auto layouter significantly
 - Improve PDF rendering subsystem significantly
@@ -24,8 +16,20 @@ in progress
 - Don't classify characters with unknown unicode information as diacritics
 - Add "pdfsummary" subsystem
 
+lqdn-gafam-campaign
+-------------------
+- Add translations into Norwegian, Catalan and Spanish
+- Add translations into Portuguese and Swedish
+- Don't lower case language name for honoring labels like "nb_NO"
+- Improve language/variant chooser page significantly
+- Reflect renaming of language codes in poster layouter
+- Adjust formatting for Portuguese
+- Fine-tune Portuguese layout
+- Add display format chooser (passepartout vs. print)
+
+
 2018-02-08 0.4.0
-----------------
+================
 - Add economy display mode
 - lqdn-gafam-campaign example
 
@@ -35,8 +39,9 @@ in progress
     - Prepare PDF rendering for additional dimension "variant"
     - Add translation into Polish
 
+
 2018-01-30 0.3.0
-----------------
+================
 - lqdn-gafam-campaign example
 
     - Add wrapper for ad hoc PDF renderer
@@ -46,8 +51,9 @@ in progress
     - Minor Pareto adjustments to layout
     - Automate the PDF rendering and publishing
 
+
 2018-01-22 0.2.0
-----------------
+================
 - Fix asset paths re. deployment to examples.posterkit.net
 - lqdn-gafam-campaign example
 
@@ -57,8 +63,9 @@ in progress
 
 - Add RFA example
 
+
 2018-01-18 0.1.0
-----------------
+================
 - Improve the auto layouter
 - Add some examples
 - lqdn-gafam-campaign example
@@ -74,7 +81,7 @@ in progress
     - Add description text to chooser.html re. passepartout parameter and more
     - Add company logos as SVG images
 
-2018-01-15 0.0.0
-----------------
-- Get the proof of concept out of the door
 
+2018-01-15 0.0.0
+================
+- Get the proof of concept out of the door
