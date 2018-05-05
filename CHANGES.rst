@@ -26,6 +26,7 @@ lqdn-gafam-campaign
 - Adjust formatting for Portuguese
 - Fine-tune Portuguese layout
 - Add display format chooser (passepartout vs. print)
+- Improve chooser layout significantly. Unlock mobile use.
 
 
 2018-02-08 0.4.0

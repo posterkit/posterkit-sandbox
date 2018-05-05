@@ -37,11 +37,11 @@
 <script id="page" type="text/template" class="template">
 <section class="section">
     <div class="container is-fluid">
-        <h1 class="content is-spaced has-text-dark is-size-1 has-text-weight-bold" style="line-height: 1.0">
+        <h1 class="content is-spaced has-text-dark is-size-2 has-text-weight-bold" style="line-height: 1.0">
             The GAFAM poster campaign library
         </h1>
         <h2 class="is-size-4">
-            Translations of the <a href="https://gafam.info/">GAFAM poster campaign texts by La Quadrature du Net</a>.
+            Translations of the <a href="https://gafam.info/">GAFAM poster campaign by La Quadrature du Net</a>.
         </h2>
         <div class="content">
             <ul>
@@ -105,7 +105,7 @@
         <h2 class="content is-spaced has-text-dark is-size-3 has-text-weight-bold">
             Choose display format
         </h2>
-        <div id="display-format-chooser" class="tabs is-toggle is-large">
+        <div id="display-format-chooser" class="tabs is-toggle">
             <ul>
                 <li class="is-active" data-format="passepartout" data-target="#display-format-passepartout">
                     <a>
@@ -126,7 +126,7 @@
                 This layout frames all posters using a beautiful passepartout
                 and is optimized for displaying.
             </div>
-            <div id="display-format-print" class="is-display-none">
+            <div id="display-format-print" class="hide">
                 <p>
                 This layout comes without any bells and whistles and is optimized for printing.
                 </p>
@@ -152,67 +152,126 @@
             The library offers translations into <%= language_names.slice(0, -1).join(', ') %>
             and <%= language_names.slice(-1) %>,
             each with multiple variants (<%= variant_names.join(', ') %>).
-            Thanks to all the translators who contributed to this!
+            Thanks to all who contributed translations!
         </p>
         <div id="chooser-matrix"/>
     </div>
 </section>
 </script>
 
-<script id="theader" type="text/template" class="template">
-    <!--
-    <tr>
-        <th><abbr title="Variant">Variant</abbr></th>
-        <% _.forEach(names, function(name) { %>
-        <th><abbr title="<%= name %>"><%= name %></abbr></th>
-        <% }); %>
-    </tr>
-    -->
+
+<script id="language-entry" type="text/template" class="template">
+
+    <%
+    var ctx_msg = 'for language &quot;' + language.name + ' (' + language.code + ')&quot;';
+    %>
+
+    <a id="language-<%= language.code %>"/>
+    <div class="block language-entry">
+        <div class="level slim-header">
+            <div class="level-left">
+                <div class="level-item has-text-danger heading language-heading">
+                    <div class="icon is-large">
+                        <i class="fa fa-language fa-3x" aria-hidden="true"></i>
+                    </div>
+                    <h2 class="is-inline has-text-weight-bold">
+                        <div class="is-size-2">
+                            <%= language.name %>
+                        </div>
+                        <div class="is-size-4">
+                            <%= language.local %>
+                        </div>
+                    </h2>
+                </div>
+            </div>
+            <div class="level-right language-icons">
+                <div class="level-item">
+                    <a href="https://github.com/gafam/gafam-poster-translations/blob/master/po/<%= language.code %>.po"
+                       title="Translation file &quot;<%= language.code %>.po&quot; <%= ctx_msg %>"
+                       aria-label="github" target="_blank">
+                        <span class="icon is-large">
+                            <i class="fa fa-github fa-3x" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                    <a href="https://hosted.weblate.org/projects/gafam/translations/<%= language.code %>/"
+                       title="Online translation of &quot;<%= language.code %>.po&quot; <%= ctx_msg %>"
+                       aria-label="weblate" target="_blank">
+                        <img src="img/weblate-128.png" width="36"/>
+                    </a>
+                    <a href="#select-language" title="Back to top">
+                        <i class="fa fa-arrow-circle-o-up fa-3x" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <%
+        _.forEach(rows, function(row) {
+            print(row);
+        });
+        %>
+    </div>
+
 </script>
+
 
 <script id="language-variant" type="text/template" class="template">
 
+    <%
+    var ctx_msg = 'for language &quot;' + language.name + ' (' + language.code + ')&quot; and variant &quot;' + variant + '&quot;';
+    %>
+
     <div class="box language-variant-box">
-        <article class="media">
-            <div class="media-left">
-                <div class="item-box-preview-wrapper" style="border-defunct: 1px solid lightgray">
-                    <iframe class="item-box-preview-frame" src="poster.html?lang=<%= language.code %>&name=google&variant=<%= variant %>&passepartout=false"></iframe>
+        <article class="">
+            <div class="block">
+                <div class="title is-size-4">
+                    Variant "<strong><%= variant %></strong>"
+                </div>
+                <div class="subtitle">
+                    <% if (variant == 'black') { %>
+                    For saturated printing
+                    <% } else if (variant == 'eco') { %>
+                    For economic printing
+                    <% } %>
                 </div>
             </div>
-            <div class="media-content is-flex" style="align-items: stretch;">
-                <div class="content columns">
-                    <div class="column is-10 is-flex">
-                        <div>
-                            <div class="is-size-5">
-                                Variant "<strong><%= variant %></strong>"
-                            </div>
-                            <small>
-                            <% if (variant == 'black') { %>
-                                For saturated printing
-                            <% } else if (variant == 'eco') { %>
-                                For economic printing
-                            <% } %>
-                            </small>
-                        </div>
-                        <div class="buttons has-addons language-variant-buttons">
-                            <a class="button has-background-grey has-text-light poster-link-all" data-language="<%= language.code %>" data-variant="<%= variant %>">All</a>
-                            <% _.forEach(items, function(item) { %>
-                            <a class="button is-outlined poster-link-single" data-href="<%= item.uri %>" title="<%= item.title %>" target="_blank"><%= item.title %></a>
-                            <% }); %>
-                        </div>
-                    </div>
-                    <div class="column is-4 is-flex">
-                        <div class="is-size-5">
-                            Download
-                        </div>
-                        <div>
-                            <a class="button is-outlined2 is-large is-link" href="https://ptrace.gafam.info/unofficial/pdf/<%= variant %>/lqdn-gafam-poster-<%= language.code %>-<%= variant %>.pdf" target="_blank">
-                                <div class="icon">
-                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+            <div class="columns is-desktop">
+                <div class="column is-4">
+                    <a href="https://ptrace.gafam.info/unofficial/img/<%= variant %>/lqdn-gafam-poster-<%= language.code %>-<%= variant %>-1x5-1024x.jpg"
+                       title="Summary image <%= ctx_msg %>" target="_blank">
+                        <img class="summary-image" src="https://ptrace.gafam.info/unofficial/img/<%= variant %>/lqdn-gafam-poster-<%= language.code %>-<%= variant %>-1x5-640x.jpg"/>
+                    </a>
+                </div>
+                <div class="column is-8">
+                    <div class="media-content is-flex" style="align-items: stretch;">
+                        <div class="content columns is-desktop">
+                            <div class="column is-10 is-flex">
+                                <div class="is-size-5">
+                                    Single page
                                 </div>
-                                <br/>
-                                PDF
-                            </a>
+                                <div class="buttons has-addons language-variant-buttons">
+                                    <a class="button has-background-grey has-text-light poster-link-all" data-language="<%= language.code %>" data-variant="<%= variant %>">All</a>
+                                    <% _.forEach(items, function(item) { %>
+                                    <a class="button is-outlined poster-link-single" data-href="<%= item.uri %>" title="<%= item.title %>" target="_blank"><%= item.title %></a>
+                                    <% }); %>
+                                </div>
+                            </div>
+                            <div class="column is-2 is-flex">
+                                <div class="is-size-5">
+                                    Download
+                                </div>
+                                <div>
+                                    <a href="https://ptrace.gafam.info/unofficial/pdf/<%= variant %>/lqdn-gafam-poster-<%= language.code %>-<%= variant %>.pdf"
+                                       title="Download PDF document <%= ctx_msg %>"
+                                       class="button is-large is-link" target="_blank">
+                                        <div class="icon">
+                                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                        </div>
+                                        &nbsp;&nbsp;
+                                        PDF
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -238,41 +297,6 @@
     </div>
     -->
 
-</script>
-
-<script id="language-entry" type="text/template" class="template">
-
-    <div class="columns language-header">
-        <div class="column is-8">
-            <a id="language-<%= language.code %>"/>
-            <h2 class="is-size-3">
-                <%= language.name %>
-                &nbsp;
-                <span class="is-size-5">
-                    <%= language.local %>
-                </span>
-            </h2>
-        </div>
-        <div class="column is-4 has-text-right language-icons">
-            <a href="https://github.com/gafam/gafam-poster-translations/blob/master/po/<%= language.code %>.po" aria-label="github" target="_blank">
-                <span class="icon is-medium2">
-                    <i class="fa fa-github fa-2x" aria-hidden="true"></i>
-                </span>
-            </a>
-            <a href="https://hosted.weblate.org/projects/gafam/translations/<%= language.code %>/" aria-label="weblate" target="_blank">
-                <img src="img/weblate-128.png" width="26"/>
-            </a>
-            <a href="#select-language">
-                <i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i>
-            </a>
-        </div>
-    </div>
-
-    <%
-    _.forEach(rows, function(row) {
-    print(row);
-    });
-    %>
 </script>
 
 </body>
