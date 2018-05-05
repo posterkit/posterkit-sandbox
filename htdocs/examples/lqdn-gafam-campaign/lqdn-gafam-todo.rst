@@ -8,6 +8,7 @@ Prio 1
 ******
 - [x] There's a one-pixel-off bottom border, see https://ptrace.gafam.info/unofficial/img/black/lqdn-gafam-poster-fr-black-1x5-1024x.jpg
 - [x] Implement variant "color"
+- [o] With variant "color", the non-transparent images still display a white background
 
 
 ********

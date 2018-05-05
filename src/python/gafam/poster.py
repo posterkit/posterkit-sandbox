@@ -30,6 +30,7 @@ POSTER_NAMES = [
 POSTER_VARIANTS = [
     'black',
     'eco',
+    'color',
 ]
 
 # Path to GitHub API for listing the directory contents where the i18n json files are stored
