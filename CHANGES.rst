@@ -29,7 +29,7 @@ lqdn-gafam-campaign
 - Fine-tune Portuguese layout
 - Add display format chooser (passepartout vs. print)
 - Improve chooser layout significantly. Unlock mobile use.
-
+- Improve HTML meta tags for Twitter & Co.
 
 2018-02-08 0.4.0
 ================
