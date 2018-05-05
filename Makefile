@@ -42,8 +42,14 @@ upgrade: virtualenv
 # preprint
 # ========
 
+check-target-dir:
+	@if test "$(TARGET_DIR)" = ""; then \
+		echo "ERROR: Variable 'TARGET_DIR' not set"; \
+		exit 1; \
+	fi
+
 # Render single PDF
-pdf-single: virtualenv
+pdf-single: check-target-dir virtualenv
 	@echo
 	@echo ---------------------
 	@echo Rendering poster \"$(lang)\"
@@ -52,7 +58,7 @@ pdf-single: virtualenv
 	$(venvpath)/bin/gafam-info makepdf --language=$(LANGUAGE) --name=all --variant=$(VARIANT) $(TARGET_DIR)
 
 # Render all PDFs
-pdf-all: virtualenv
+pdf-all: check-target-dir virtualenv
 	$(MAKE) upgrade
 	$(venvpath)/bin/gafam-info makepdf --language=all --name=all --variant=all $(TARGET_DIR)
 
