@@ -47,7 +47,7 @@ PDF rendering
 ::
 
     # Define where PDF documents should be stored
-    export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial/pdf
+    export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial
 
     # Render all variants of French posters
     make pdf-single LANGUAGE=fr VARIANT=all

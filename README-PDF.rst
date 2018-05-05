@@ -61,15 +61,28 @@ PDFtk_ is used for joining single PDF pages together.
 
 
 Install pdfjam
-===============
+==============
 Pdfjam brings ``pdfnup``, which is used for rendering a 5-up overview image of a multipage PDF document.
-In turn, this requires a full installation of ``mactex``.
+
+    # Debian Linux
+    apt install pdfjam
+
+    # Mac OS X
+    # https://discourse.brew.sh/t/missing-formula-location/818/8
+    brew cask install mactex pdfjam
+    brew tap FLEWID-AB/pdfjam
+    brew install pdfjam
+
+
+Install ImageMagick
+===================
 ::
 
-    brew tap FLEWID-AB/pdfjam
-    brew install mactex pdfjam
+    # Debian Linux
+    apt install imagemagick
 
-See also: https://discourse.brew.sh/t/missing-formula-location/818/8
+    # Mac OS X
+    brew install imagemagick
 
 
 ****
@@ -131,7 +144,7 @@ PDF
     source .venv/bin/activate
 
     # Define where PDF documents should be stored
-    export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial/pdf
+    export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial
 
     # Render all posters (full matrix of permutations)
     gafam-info makepdf --language=all --name=all --variant=all $TARGET_DIR

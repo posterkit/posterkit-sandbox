@@ -148,3 +148,10 @@ def read_list(data, separator=u','):
     if len(result) == 1 and not result[0]:
         result = []
     return result
+
+
+def ensure_directory(directory):
+    # Ensure path exists
+    filedir = os.path.dirname(directory)
+    if not os.path.exists(filedir):
+        os.makedirs(filedir)

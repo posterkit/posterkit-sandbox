@@ -6,6 +6,7 @@ import tempfile
 from io import BytesIO
 from posterkit.makepdf import makepdf
 from posterkit.pdfnup import create_image
+from posterkit.util import ensure_directory
 
 logger = logging.getLogger(__name__)
 
@@ -15,7 +16,7 @@ URI_TEMPLATE = 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?l
 
 # Template for PDF output filename
 PDF_NAME_TEMPLATE   = 'pdf/{variant}/lqdn-gafam-poster-{language}-{variant}.pdf'
-IMAGE_NAME_TEMPLATE = 'image/{variant}/lqdn-gafam-poster-{language}-{variant}-{nup}-{size}.pdf'
+IMAGE_NAME_TEMPLATE = 'img/{variant}/lqdn-gafam-poster-{language}-{variant}-{nup}-{size}.{format}'
 
 # Which poster names are "one set"
 POSTER_NAMES = [
@@ -94,25 +95,36 @@ def render_posters(info=None, path=None):
             else:
 
                 # Compute output path
-                filename = PDF_NAME_TEMPLATE.format(**locals())
-                filepath = os.path.abspath(os.path.join(path, filename))
-                logging.info('PDF file path is {}'.format(filepath))
+                pdf_filename = PDF_NAME_TEMPLATE.format(**locals())
+                pdf_filepath = os.path.abspath(os.path.join(path, pdf_filename))
+                logging.info('PDF file path is {}'.format(pdf_filepath))
 
                 # Ensure path exists
-                filedir = os.path.dirname(filepath)
-                if not os.path.exists(filedir):
-                    os.makedirs(filedir)
+                ensure_directory(pdf_filepath)
 
                 # Save PDF
-                with file(filepath, 'wb') as f:
+                with file(pdf_filepath, 'wb') as f:
                     f.write(pdfstream.read())
 
                 # Create summary images
+                format = 'jpg'
                 nup = '1x5'
                 for size in ['640x', '800x', '1024x']:
-                    filename = IMAGE_NAME_TEMPLATE.format(**locals())
-                    filepath = os.path.abspath(os.path.join(path, filename))
-                    image = create_image(filepath, nup=nup, size=size, format='jpg')
+
+                    # Create image
+                    image = create_image(pdf_filepath, nup=nup, size=size, format=format)
+
+                    # Save image
+                    img_filename = IMAGE_NAME_TEMPLATE.format(**locals())
+                    img_filepath = os.path.abspath(os.path.join(path, img_filename))
+                    logger.info('Saving summary image to {}'.format(img_filepath))
+
+                    # Ensure path exists
+                    ensure_directory(img_filepath)
+
+                    # Save to filesystem
+                    with file(img_filepath, 'wb') as f:
+                        f.write(image.read())
 
 
 def join_pdf_files(filenames):
