@@ -181,6 +181,10 @@ function has_diacritics(text) {
 
     for (var character of text) {
         var unicode_info = get_unicode_info(character);
+        if (!unicode_info) {
+            console.warn('Unable to get unicode information for character:', character);
+            return false;
+        }
         //console.log('unicode info:', character, character.charCodeAt(0), unicode_info);
         for (var keyword of diacritics_keywords) {
             if (unicode_info.name.includes(keyword)) {
