@@ -24,11 +24,16 @@ Prio 1
       Mitigation: Disable UglifyJSPlugin.
 - [x] Add command to make overview .png of all five pages
 - [o] Care for font re. Polish translation: https://ptrace.gafam.info/unofficial/pdf/black/lqdn-gafam-poster-pl-black.pdf
+- [o] Use images from https://ptrace.gafam.info/unofficial/img/black/ on chooser
+- [o] uncaught exception: Error querying directory contents from GitHub repository
+- [o] Drop shadow image
+- [o] Header auf mobile
 
 
 ********
 Prio 1.5
 ********
+- [o] Fine-tune title margins. Can we use flexbox for vertical centering?
 - [o] Tune autolayouting. Currently bogus on redraw after resize etc.
 - [o] Der Button is scheps im Chrome und auf Android
 - [o] On mobile, the media box must not be left <-> right
@@ -45,6 +50,7 @@ Prio 1.5
 - [o] Implement variant "color"
 - [o] Control language sort order. Maybe put most-spoken western languages (English, Spanish) first?
 - [o] Body text font size too small for Apple @ Chinese
+- [o] There's a one-pixel-off bottom border, see https://ptrace.gafam.info/unofficial/img/black/lqdn-gafam-poster-fr-black-1x5-1024x.jpg
 - [o] lang=ja::
 
     Page error: TypeError: Cannot read property 'name' of undefined
