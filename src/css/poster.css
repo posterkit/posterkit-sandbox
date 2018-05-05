@@ -91,7 +91,7 @@ body {
     white-space: nowrap;
 
     font-size: x-large;
-    line-height: 1.1;
+    line-height: 1.15em;
 
     display: flex;
 }

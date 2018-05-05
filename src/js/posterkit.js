@@ -138,6 +138,7 @@ function fit_text_bounding_box(element) {
     var font_family = $(element).css('font-family');
     var font_size = parseFloat($(element).css('font-size').replace('px', ''));
     //console.log('font_size:', font_size);
+    //console.log('font_family:', font_family);
 
     var font_size_height_ratio = 0.77;
     var font_size_line_height_ratio = 0.95;
@@ -150,10 +151,16 @@ function fit_text_bounding_box(element) {
         font_size_line_height_ratio = 1.58;
     }
 
+    // Adjust for different character boxing of Segoe, etc.
+    if (_.includes(font_family, 'Segoe') || _.includes(font_family, '"Open Sans"')) {
+        font_size_height_ratio = 1.10;
+        font_size_line_height_ratio = 0.90;
+    }
+
     // Adjust for different character boxing of LatoWebHeavy
     if (font_family == 'LatoWebHeavy') {
-        font_size_height_ratio *= 1.00;
-        font_size_line_height_ratio *= 0.8;
+        font_size_height_ratio = 0.80;
+        font_size_line_height_ratio = 0.77;
         if (with_diacritics) {
             font_size_height_ratio = 1.00;
             font_size_line_height_ratio = 1.15;
@@ -247,9 +254,14 @@ function run_autolayout(layout_rules, language, poster_name) {
         }
     });
 
-    var refit_body_debounced = _.debounce(refit_body_size, 10, { 'maxWait': 500 });
+    $('#title-content .fit').on('fit', function() {
+        //console.log('#title-content .fit');
+        fit_text_bounding_box(this);
+    });
 
+    var refit_body_debounced = _.debounce(refit_body_size, 10, { 'maxWait': 500 });
     $('#body-content .fit').on('fit', function() {
+        //console.log('#body-content .fit');
         fit_text_bounding_box(this);
         refit_body_debounced();
     });
