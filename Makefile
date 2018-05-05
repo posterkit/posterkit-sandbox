@@ -54,12 +54,10 @@ pdf-single: check-target-dir virtualenv
 	@echo ---------------------
 	@echo Rendering poster \"$(lang)\"
 	@echo ---------------------
-	$(MAKE) upgrade
 	$(venvpath)/bin/gafam-info makepdf --language=$(LANGUAGE) --name=all --variant=$(VARIANT) $(TARGET_DIR)
 
 # Render all PDFs
 pdf-all: check-target-dir virtualenv
-	$(MAKE) upgrade
 	$(venvpath)/bin/gafam-info makepdf --language=all --name=all --variant=all $(TARGET_DIR)
 
 
