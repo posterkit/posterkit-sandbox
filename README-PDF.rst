@@ -20,7 +20,11 @@ Prerequisites::
 
     apt install build-essential libxss1 libgconf libgconf2-4 libasound2
 
-Use a recent Node.js::
+With recent Node.js::
+
+    yarn add decktape
+
+Install recent Node.js::
 
     apt install nodeenv
     nodeenv --node=9.4.0 /opt/nodejs-9.4.0
@@ -54,6 +58,18 @@ PDFtk_ is used for joining single PDF pages together.
     apt install pdftk
 
 .. _PDFtk: https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
+
+
+Install pdfjam
+===============
+Pdfjam brings ``pdfnup``, which is used for rendering a 5-up overview image of a multipage PDF document.
+In turn, this requires a full installation of ``mactex``.
+::
+
+    brew tap FLEWID-AB/pdfjam
+    brew install mactex pdfjam
+
+See also: https://discourse.brew.sh/t/missing-formula-location/818/8
 
 
 ****
