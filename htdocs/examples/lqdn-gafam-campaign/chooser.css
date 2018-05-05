@@ -28,6 +28,9 @@
     margin-right: 0.75rem;
 }
 
+.has-display-none {
+    display: none;
+}
 
 
 .slim-header:not(:last-child) {
