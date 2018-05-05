@@ -52,7 +52,7 @@ check-target-dir:
 pdf-single: check-target-dir virtualenv
 	@echo
 	@echo ---------------------
-	@echo Rendering poster \"$(lang)\"
+	@echo Rendering poster \"$(LANGUAGE)\"
 	@echo ---------------------
 	$(venvpath)/bin/gafam-info makepdf --language=$(LANGUAGE) --name=all --variant=$(VARIANT) $(TARGET_DIR)
 

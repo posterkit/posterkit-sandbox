@@ -4,6 +4,7 @@ import logging
 from docopt import docopt
 from posterkit import __version__
 from posterkit.makepdf import makepdf
+from posterkit.pdfnup import create_image
 from posterkit.util import boot_logging, normalize_options
 
 logger = logging.getLogger(__name__)
@@ -14,11 +15,17 @@ def run():
     """
     Usage:
         posterkit makepdf --url=<url>
+        posterkit pdfsummary --pdf=<pdf> --nup=1x5 [--size=640x] [--format=png]
         posterkit --help
 
-    Options:
-
+    Options for "makepdf":
         --url=<url>             Acquire HTML page from this URL
+
+    Options for "pdfsummary":
+        --pdf=<pdf>             Input PDF file to use for generating summary image.
+        --nup=<nup>             N-up directory how to layout the summary. [default: 1]
+        --size=<size>           Size of the generated image. [default: 1024x]
+        --format=<format>       Output image format. [default: jpg]
 
     Examples:
 
@@ -40,7 +47,12 @@ def run():
     options = normalize_options(options, encoding='utf-8')
 
     # Render PDF
-    stream = makepdf(options['url'])
+    if options['makepdf']:
+        stream = makepdf(options['url'])
 
-    # Write to STDOUT
-    print(stream.read())
+        # Write to STDOUT
+        print(stream.read())
+
+    elif options['pdfsummary']:
+        image = create_image(options['pdf'], nup=options['nup'], size=options['size'], format=options['format'])
+        print(image.read())

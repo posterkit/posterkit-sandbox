@@ -1,6 +1,6 @@
 {
     "name": "posterkit",
-    "description": "PosterKit has been created to support the lovely people of La Quadrature du Net and gafam.info in their endeavours.",
+    "description": "PosterKit has been created to support the lovely people of La Quadrature du Net and gafam.info in their endeavours",
     "version": "0.4.0",
     "license": "CC0-1.0",
     "author": {
@@ -48,5 +48,8 @@
         "webpack-cli": "^2.1.2",
         "webpack-dev-server": "^3.1.4",
         "webpack-notifier": "^1.6.0"
+    },
+    "optionalDependencies": {
+        "decktape": "^2.8.2"
     }
 }

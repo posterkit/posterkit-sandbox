@@ -22,6 +22,7 @@ in progress
 - Improve PDF rendering subsystem significantly
 - Use specific nodejs version for decktape
 - Don't classify characters with unknown unicode information as diacritics
+- Add "pdfsummary" subsystem
 
 2018-02-08 0.4.0
 ----------------

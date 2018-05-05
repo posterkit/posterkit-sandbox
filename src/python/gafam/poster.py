@@ -5,7 +5,7 @@ import logging
 import tempfile
 from io import BytesIO
 from posterkit.makepdf import makepdf
-
+from posterkit.pdfnup import create_image
 
 logger = logging.getLogger(__name__)
 
@@ -14,7 +14,8 @@ logger = logging.getLogger(__name__)
 URI_TEMPLATE = 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang={language}&name={name}&variant={variant}'
 
 # Template for PDF output filename
-PDF_NAME_TEMPLATE = '{variant}/lqdn-gafam-poster-{language}-{variant}.pdf'
+PDF_NAME_TEMPLATE   = 'pdf/{variant}/lqdn-gafam-poster-{language}-{variant}.pdf'
+IMAGE_NAME_TEMPLATE = 'image/{variant}/lqdn-gafam-poster-{language}-{variant}-{nup}-{size}.pdf'
 
 # Which poster names are "one set"
 POSTER_NAMES = [
@@ -105,6 +106,13 @@ def render_posters(info=None, path=None):
                 # Save PDF
                 with file(filepath, 'wb') as f:
                     f.write(pdfstream.read())
+
+                # Create summary images
+                nup = '1x5'
+                for size in ['640x', '800x', '1024x']:
+                    filename = IMAGE_NAME_TEMPLATE.format(**locals())
+                    filepath = os.path.abspath(os.path.join(path, filename))
+                    image = create_image(filepath, nup=nup, size=size, format='jpg')
 
 
 def join_pdf_files(filenames):
