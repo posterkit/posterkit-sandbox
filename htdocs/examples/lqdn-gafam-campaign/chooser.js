@@ -186,7 +186,13 @@ function get_languages() {
                 resolve(languages);
             })
             .catch(function(error) {
-                console.error('Error querying directory contents from GitHub repository "gafam/gafam-poster-translations":', error);
+                var reason = error;
+                if (error.responseText) {
+                    reason = error.responseText;
+                } else if (error.responseJSON) {
+                    reason = error.responseJSON;
+                }
+                console.error('Error querying directory contents from GitHub repository "gafam/gafam-poster-translations":', reason, error);
                 reject('Error querying directory contents from GitHub repository');
             });
     });

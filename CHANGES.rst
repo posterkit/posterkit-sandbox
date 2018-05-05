@@ -16,6 +16,7 @@ general
 - Don't classify characters with unknown unicode information as diacritics
 - Add "pdfsummary" subsystem
 - Improve PDF subsystem documentation re. installed fonts
+- Improve error reporting when accessing GitHub fails
 
 lqdn-gafam-campaign
 -------------------
