@@ -239,11 +239,29 @@ $(document).ready(function() {
     // Setup display options
     posterkit.setup_display(options);
 
+    // Color mode
+    var name_color_map = {
+        'google': '#d12b2b',
+        'apple': 'white',
+        'facebook': '#3889b9',
+        'amazon': 'yellow',
+        'microsoft': 'green',
+    }
+    if (options.variant == 'color') {
+        //var color = 'yellow';
+        var color = name_color_map[options.name];
+        $('page').css('background-color', color);
+        $('#title-container').css('color', color);
+        $('#footer-container').css('color', color);
+    }
+
+    // Load fonts
     posterkit.load_fonts().then(function() {
 
     }).catch(function(error) {
         console.log('Font error');
 
+    // then, bootstrap the application
     }).then(function() {
         posterkit.load_content(i18next_data_url, language).then(function(content) {
             console.log('Content has loaded');

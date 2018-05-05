@@ -25,7 +25,7 @@ var names = [
 var variants = [
     {code: 'black', label: 'Black'},
     {code: 'eco', label: 'Eco'},
-    //{code: 'color', label: 'Color'},
+    {code: 'color', label: 'Color'},
 ];
 
 $(document).ready(function() {
