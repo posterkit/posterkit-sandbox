@@ -6,6 +6,10 @@ PosterKit-O-Mat CHANGES
 in progress
 ===========
 
+
+2018-05-05 0.5.0
+================
+
 general
 -------
 - Improve "variant" processing of PDF generator
@@ -32,6 +36,7 @@ lqdn-gafam-campaign
 - Improve chooser layout significantly. Unlock mobile use.
 - Improve HTML meta tags for Twitter & Co.
 - Add fonts from the Lato and Muli families and apply to Polish and Esperanto, resolves #1
+
 
 2018-02-08 0.4.0
 ================
