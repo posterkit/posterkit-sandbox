@@ -6,6 +6,7 @@ PosterKit-O-Mat CHANGES
 in progress
 ===========
 - Activate variant "color" for PDF subsystem
+- Fix typo in url
 
 
 2018-05-05 0.5.0
