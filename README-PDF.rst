@@ -42,12 +42,16 @@ Install font packages
     # The basics
     apt install fonts-arphic-ukai fonts-arphic-uming
 
-    # You might want to play around installing them, but it will yield different outcomes for some languages.
-    # You have been warned.
-    #apt install fonts-beteckna fonts-uralic
+    # You might want to install more fonts, but this will eventually amend the outcome
+    # for some languages, you have been warned.
+    apt install fonts-beteckna fonts-uralic
 
-    # Looks differently
-    apt install fonts-arphic-uming fonts-arphic-ukai fonts-ipafont-mincho fonts-ipafont-gothic fonts-unfonts-core
+    # Also, yields different outcome.
+    apt install fonts-ipafont-mincho fonts-ipafont-gothic fonts-unfonts-core
+
+    # There are some fonts which - when installed - make the beautiful
+    # Chinese and Japanes fonts disappear, so you might well do:
+    apt remove fonts-droid fonts-lmodern
 
 
 Install PDFtk

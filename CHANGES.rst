@@ -15,6 +15,7 @@ general
 - Use specific nodejs version for decktape
 - Don't classify characters with unknown unicode information as diacritics
 - Add "pdfsummary" subsystem
+- Improve PDF subsystem documentation re. installed fonts
 
 lqdn-gafam-campaign
 -------------------
