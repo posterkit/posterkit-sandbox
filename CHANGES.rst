@@ -7,6 +7,7 @@ in progress
 ===========
 - Activate variant "color" for PDF subsystem
 - Fix typo in url
+- Properly set ``--papersize '{{297mm,1050mm}}'`` for pdfnup to fix single-pixel white line at top of summary images
 
 
 2018-05-05 0.5.0

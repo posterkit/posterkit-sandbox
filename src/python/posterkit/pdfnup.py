@@ -25,9 +25,10 @@ def create_image(pdf_file, nup='1', size='1024x', format='jpg'):
 
     tmp_nupped = tempfile.NamedTemporaryFile(suffix='.pdf', delete=DELETE_TEMPFILES)
     output_file = tmp_nupped.name
+
+    # Run "pdfnup" for tiled layout
     # TODO: Add "--no-tidy" for debugging
-    #command = "pdfnup --nup {nup} --vanilla --landscape=true --keepinfo --outfile '{output_file}' '{pdf_file}'".format(**locals())
-    command = "pdfnup --papersize '{{396px,1400px}}' --nup {nup} --vanilla --keepinfo --outfile '{output_file}' '{pdf_file}'".format(**locals())
+    command = "pdfnup --papersize '{{297mm,1050mm}}' --nup {nup} --vanilla --keepinfo --outfile '{output_file}' '{pdf_file}'".format(**locals())
     logger.info('Running "pdfnup" command: {}'.format(command))
     os.system(command)
 
@@ -36,7 +37,7 @@ def create_image(pdf_file, nup='1', size='1024x', format='jpg'):
     output_file = tmp_image.name
 
     # Dumb trimming
-    repage_option = "+repage"
+    #repage_option = "+repage"
 
     # Trimming with a Specific Color
     # http://www.imagemagick.org/Usage/crop/#trim_color
