@@ -7,10 +7,15 @@ lqdn-gafam-campaign example todo
 Prio 1
 ******
 - [x] There's a one-pixel-off bottom border, see https://ptrace.gafam.info/unofficial/img/black/lqdn-gafam-poster-fr-black-1x5-1024x.jpg
+- [o] Now, we have a single-pixel line at the top!!! See https://ptrace.gafam.info/unofficial/img/black/lqdn-gafam-poster-ca-black-5x1-1280x.jpg
 - [x] Implement variant "color"
-- [o] Now, we have a single-pixel line at the top!!!
-      https://ptrace.gafam.info/unofficial/img/black/lqdn-gafam-poster-ca-black-5x1-1280x.jpg
-- [o] With variant "color", the non-transparent images still display a white background
+- [o] With variant "color", the non-transparent images still display a white background. Improve this!
+- [o] Think about making "Print view" the default.
+  At least on mobile, it would probably be better to display the renderings without passepartout.
+- [o] Use English translation of colored summary image as og:image and twitter:image, at least in chooser.html
+- [o] The footprint of the full "unicode" package is around 10 MB! Would the diacritics detection be possible
+  with the much smaller package https://www.npmjs.com/package/readable-glyph-names?
+- [o] Add meaningful example for "fit_text_bounding_box"
 
 
 ********
@@ -23,7 +28,7 @@ Content-specific
 - [o] Some poster footers are too large: 4 lines currently do not fit well, see e.g. nb/apple,amazon
 - [o] Footer text too small for de/apple
 
-Generic
+General
 =======
 - [o] Will poster.html also work on mobile with appropriate zooming?
 - [o] Sanity checks and appropriate messages when running with invalid parameters to lang=, name=, passepartout=, etc.
@@ -33,6 +38,8 @@ Generic
 - [o] Shall we also generate high-res summary images?
 - [o] Multi-single-page open via "All" does not work in Chromium
 - [o] Re-enable "All" button when it works in Chrome again
+- [o] Maybe the chooser list grows too long and we need another kind of selector for exploring
+- [o] Improve the ``has_diacritics`` function to differentiate between characters with ascender vs. descender diacritics.
 
 
 ******
@@ -48,26 +55,12 @@ Prio 2
 - [o] Fix size of logo-lqdn-white.svg
 - [o] Who is referring to http://localhost:9999/examples/lqdn-gafam-campaign/chooser.html on production?
 - [o] Investigate whether all five pages could be rendered by using decktape with its "multiple slide" option
-- [o] lang=ja::
-
-    Page error: TypeError: Cannot read property 'name' of undefined
-
+- [o] With lang=ja: ``Page error: TypeError: Cannot read property 'name' of undefined``
 
 
 ****
 Docs
 ****
-
-About web fonts
-===============
-https://graphicdesign.stackexchange.com/questions/4035/what-does-the-size-of-the-font-translate-to-exactly/8964#8964
-
-With digital fonts, the "em height" of a font is a choice made by the font designer, and does not have to conform to this convention at all: a digital type designer can pick any foundation for their em size. However, fonts still tend to adhere, at least roughly, to the sort of convention described above. In old days when type consisted of metal blocks, the "em height" was the height of one of those blocks, which needed to be high enough not only for any character in that typeface but also for any ascenders, descenders, and accents.
-
-Now, many modern typefaces include accents on capital letters too (such as Ć) - these accents extend outside the traditional typographical ascender and thus these (and possibly other special characters) fall outside the top of the "em". For historical reasons we don't adjust the em size to allow these, we keep the em size and just have these extend out of it - any typographer using such accents will need to ensure there is space for them to extend into, though usually the line gap is adequate in body text.
-
-The line gap in body text is a space left between the descender of one line of text and the ascender of the line below it - that is, the "font size" does not include this line gap measurement. It can be influenced by the CSS field line-height, where 1.4 means that the line gap is 0.4 times the em height, and thus an entire line of body text will take up 1.4 times the em height including the line gap.
-
 
 How to mirror
 =============
@@ -101,8 +94,8 @@ Done
 
 - [x] Adjust the Japanese and Chinese font sizes
 - [x] With "yarn run release", "92% chunk asset optimization UglifyJSPlugin" is dead slow!!!
-      Probable? reason: Large size of unicode module?
-      Mitigation: Disable UglifyJSPlugin.
+  Probable? reason: Large size of unicode module?
+  Mitigation: Disable UglifyJSPlugin.
 - [x] Add command to make overview .png of all five pages
 - [x] Use images from https://ptrace.gafam.info/unofficial/img/black/ on chooser
 - [x] Drop shadow for summary-image
@@ -121,5 +114,5 @@ Done
 - [x] Add meta tags for Twitter & Co.
 - [x] Preview thumbnails in png format instead of iframe with real rendering
 - [x] Header: Fine-tune title margins. Can we use flexbox for vertical centering?
-      e.g. Make Google and Apple center in the same way
+  e.g. Make Google and Apple center in the same way
 - [x] Slightly adjust (increase) default line-height of footer text?

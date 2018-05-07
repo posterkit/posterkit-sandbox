@@ -2,6 +2,7 @@
 PosterKit-O-Mat TODO
 ####################
 
+
 Content
 =======
 - [o] Add "le-phraseur" example for obtaining dynamic content via query parameters
@@ -21,6 +22,7 @@ Printing
 - [o] "medium" and "light" versions for saving toner using grey colors or dithering
 - [o] Slightly reduce height / Honor printer page margins to make page fit on one physical page
 - [o] Wrapper API service to render PDFs for everyone
+
 
 HTML layout
 ===========
