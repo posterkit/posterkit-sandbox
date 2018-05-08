@@ -106,7 +106,7 @@ function fit_text(element, options) {
     fitty(element, options);
 }
 
-function fit_text_bounding_box(element) {
+function fit_text_bounding_box(element, language) {
 
     console.info('Fitting bounding box to text content');
 
@@ -124,7 +124,6 @@ function fit_text_bounding_box(element) {
 
     // Adjust if text contains a diacritic character
     if (with_diacritics) {
-        console.log('Found accents/diacritics in:', text);
         font_size_height_ratio = 1.10;
         font_size_line_height_ratio = 1.58;
     }
@@ -143,6 +142,12 @@ function fit_text_bounding_box(element) {
             font_size_height_ratio = 1.00;
             font_size_line_height_ratio = 1.15;
         }
+    }
+
+    // Adjust for Arabic variant of FuturaMaxiBold, Futura
+    if (language == 'ar') {
+        font_size_height_ratio = 1.10;
+        font_size_line_height_ratio = 1.00;
     }
 
     // Compute new values for element height and line height
@@ -197,6 +202,7 @@ function has_diacritics(text) {
         //console.log('unicode info:', character, character.charCodeAt(0), unicode_info);
         for (var keyword of diacritics_keywords) {
             if (unicode_info.name.toLowerCase().includes(keyword.toLowerCase())) {
+                console.log('Found accents/diacritics in "' + text + '" through keyword "' + keyword + '"');
                 return true;
             }
         }
@@ -261,13 +267,13 @@ function run_autolayout(layout_rules, language, poster_name) {
 
     $('#title-content .fit').on('fit', function() {
         //console.log('#title-content .fit');
-        fit_text_bounding_box(this);
+        fit_text_bounding_box(this, language);
     });
 
     var refit_body_debounced = _.debounce(refit_body_size, 10, { 'maxWait': 500 });
     $('#body-content .fit').on('fit', function() {
         //console.log('#body-content .fit');
-        fit_text_bounding_box(this);
+        fit_text_bounding_box(this, language);
         refit_body_debounced();
     });
 
@@ -403,6 +409,6 @@ exports.load_fonts = load_fonts;
 exports.load_content = load_content;
 exports.content_to_dom = content_to_dom;
 exports.fit_text = fit_text;
-exports.fit_text_bounding_box = fit_text_bounding_box;
+//exports.fit_text_bounding_box = fit_text_bounding_box;
 exports.run_autolayout = run_autolayout;
 exports.apply_mask_image = apply_mask_image;

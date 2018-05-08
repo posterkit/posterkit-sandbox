@@ -79,6 +79,36 @@ var layout_rules_override = [
 
 
     // ===============
+    //   Arabic (ar)
+    // ===============
+    {
+        predicate: function(language, poster_name) {
+            return language == 'ar';
+        },
+        refitting: false,
+        elements: [
+            {selector: '#title-content', css: {width: '12.0cm'}},
+        ]
+    },
+    {
+        predicate: function(language, poster_name) {
+            return language == 'ar' && (poster_name == 'apple');
+        },
+        elements: [
+            {selector: '#title-content', css: {width: '6.0cm'}},
+        ]
+    },
+    {
+        predicate: function(language, poster_name) {
+            return language == 'ar' && (poster_name == 'microsoft');
+        },
+        elements: [
+            {selector: '#title-content', css: {width: '16.0cm'}},
+        ]
+    },
+
+
+    // ===============
     //   Polish (pl)
     // ===============
     {

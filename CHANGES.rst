@@ -5,12 +5,19 @@ PosterKit-O-Mat CHANGES
 
 in progress
 ===========
+
+general
+-------
 - Activate variant "color" for PDF subsystem
 - Fix typo in url
 - Properly set ``--papersize '{{297mm,1050mm}}'`` for pdfnup to fix single-pixel white line at top of summary images
 - Use CSS image mask for coloring the title logo
 - Reduce total program weight from 13.0 MB to 2.9 MB by using lightweight
   unicode database from package ``readable-glyph-names`` for detecting diacritics
+
+lqdn-gafam-campaign
+-------------------
+- Enable RTL and adjust layout for translation into Arabic
 
 
 2018-05-05 0.5.0
