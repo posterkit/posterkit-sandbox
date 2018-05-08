@@ -1,7 +1,7 @@
 require('jquery');
 require('lodash');
 const fitty = require('fitty/dist/fitty.min.js');
-const unicode_category = require('general-category');
+const readable_glyph_names = require('readable-glyph-names');
 
 const i18next = require('i18next');
 const i18nextXHRBackend = require('i18next-xhr-backend');
@@ -156,9 +156,10 @@ function fit_text_bounding_box(element) {
 
 function has_diacritics(text) {
 
+    // Single chars not available in lightweight unicode database
     var diacritics = [
         // Russian
-        'Й',
+        //'Й',
     ];
 
     for (var character of diacritics) {
@@ -176,7 +177,16 @@ function has_diacritics(text) {
         'ACUTE',
         'GRAVE',
         'TILDE',
-    ]
+    ];
+
+    diacritics_keywords = diacritics_keywords.concat([
+        'dieresis',
+        'ring',
+        //'germandbls',  // Needs more/different tuning
+        'ishort',
+    ]);
+
+    //console.log('diacritics_keywords:', diacritics_keywords);
 
     for (var character of text) {
         var unicode_info = get_unicode_info(character);
@@ -186,7 +196,7 @@ function has_diacritics(text) {
         }
         //console.log('unicode info:', character, character.charCodeAt(0), unicode_info);
         for (var keyword of diacritics_keywords) {
-            if (unicode_info.name.includes(keyword)) {
+            if (unicode_info.name.toLowerCase().includes(keyword.toLowerCase())) {
                 return true;
             }
         }
@@ -196,11 +206,28 @@ function has_diacritics(text) {
 }
 
 function get_unicode_info(char) {
+
+    var charcode_dec = char.charCodeAt(0);
+    var charcode_hex = charcode_dec.toString(16).toUpperCase().padStart(4, '0');
+
+    // Use full unicode database
+    /*
+    //const unicode_category = require('general-category');
     var category = unicode_category(char);
     //console.log('category:', category);
     const unicode = require('unicode/category/' + category);
-    var info = unicode[char.charCodeAt(0)];
-    //console.log('unicode info:', char, info);
+    var info = unicode[charcode_dec];
+    console.log('unicode info:', char, info);
+    */
+
+    // Use leightweight unicode database
+    var glyph_name = readable_glyph_names[charcode_hex];
+    //console.log('glyph_name:', glyph_name);
+
+    // Debugging
+    //console.log('character:', char, charcode_dec, charcode_hex, glyph_name);
+
+    var info = {'name': glyph_name};
     return info;
 }
 
