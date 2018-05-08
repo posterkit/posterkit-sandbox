@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 
@@ -11,10 +13,10 @@ module.exports = {
             path.resolve('src', 'js', 'layout-basic'),
         ],
         'example-lqdn-gafam-chooser': [
-            path.resolve('htdocs', 'examples', 'lqdn-gafam-campaign/chooser.js'),
+            path.resolve('posters', 'lqdn-gafam-campaign', 'chooser.js'),
         ],
         'example-lqdn-gafam-poster': [
-            path.resolve('htdocs', 'examples', 'lqdn-gafam-campaign/poster.js'),
+            path.resolve('posters', 'lqdn-gafam-campaign', 'poster.js'),
         ],
     },
 
@@ -23,9 +25,9 @@ module.exports = {
     },
 
     output: {
-        path: path.resolve(__dirname, 'htdocs', 'examples', '_static', 'assets'),
+        path: path.resolve(__dirname, 'htdocs', '_static'),
         filename: '[name].bundle.js',
-        publicPath: '../_static/assets/',
+        publicPath: '../../_static/',
     },
 
     optimization: {
@@ -53,6 +55,12 @@ module.exports = {
                         options: '$',
                     },
                 ],
+            },
+            {
+                test: /\.html$/,
+                use: [
+                    'html-loader',
+                ]
             },
             {
                 test: /\.css$/,
@@ -97,6 +105,28 @@ module.exports = {
             '$': 'jquery',
             'jQuery': 'jquery',
         }),
+
+        // https://www.npmjs.com/package/html-webpack-plugin
+        // https://github.com/jantimon/html-webpack-plugin
+        new HtmlWebpackPlugin({
+            chunks: ['commons', 'example-lqdn-gafam-chooser'],
+            filename: '../examples/lqdn-gafam-campaign/chooser.html',
+            template: path.resolve('posters', 'lqdn-gafam-campaign', 'chooser.html'),
+            'inject': 'head',
+        }),
+        new HtmlWebpackPlugin({
+            chunks: ['commons', 'example-lqdn-gafam-poster'],
+            filename: '../examples/lqdn-gafam-campaign/poster.html',
+            template: path.resolve('posters', 'lqdn-gafam-campaign', 'poster.html'),
+            'inject': 'head',
+        }),
+
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve('posters', 'lqdn-gafam-campaign', 'img'),
+                to: '../examples/lqdn-gafam-campaign/img/',
+            },
+        ]),
 
     ],
 
