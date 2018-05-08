@@ -10,5 +10,8 @@ yarn.lock
 /tmp
 
 # Custom
-/htdocs/_static/*
-!/htdocs/_static/README.txt
+/htdocs/examples/_static/*
+!/htdocs/examples/_static/README.txt
+
+# Transitional
+/htdocs/examples/lqdn-gafam-campaign

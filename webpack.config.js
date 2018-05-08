@@ -25,9 +25,9 @@ module.exports = {
     },
 
     output: {
-        path: path.resolve(__dirname, 'htdocs', '_static'),
+        path: path.resolve(__dirname, 'htdocs', 'examples', '_static'),
         filename: '[name].bundle.js',
-        publicPath: '../../_static/',
+        //publicPath: '../_static/',
     },
 
     optimization: {
@@ -110,13 +110,13 @@ module.exports = {
         // https://github.com/jantimon/html-webpack-plugin
         new HtmlWebpackPlugin({
             chunks: ['commons', 'example-lqdn-gafam-chooser'],
-            filename: '../examples/lqdn-gafam-campaign/chooser.html',
+            filename: '../lqdn-gafam-campaign/chooser.html',
             template: path.resolve('posters', 'lqdn-gafam-campaign', 'chooser.html'),
             'inject': 'head',
         }),
         new HtmlWebpackPlugin({
             chunks: ['commons', 'example-lqdn-gafam-poster'],
-            filename: '../examples/lqdn-gafam-campaign/poster.html',
+            filename: '../lqdn-gafam-campaign/poster.html',
             template: path.resolve('posters', 'lqdn-gafam-campaign', 'poster.html'),
             'inject': 'head',
         }),
@@ -124,7 +124,7 @@ module.exports = {
         new CopyWebpackPlugin([
             {
                 from: path.resolve('posters', 'lqdn-gafam-campaign', 'img'),
-                to: '../examples/lqdn-gafam-campaign/img/',
+                to: '../lqdn-gafam-campaign/img/',
             },
         ]),
 
