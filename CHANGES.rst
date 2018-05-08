@@ -6,6 +6,7 @@ PosterKit-O-Mat CHANGES
 in progress
 ===========
 - Mangle webpack output layout again
+- Fix webpack publicPath
 
 
 2018-05-08 0.6.0

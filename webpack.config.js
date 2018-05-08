@@ -27,7 +27,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'htdocs', 'examples', '_static'),
         filename: '[name].bundle.js',
-        //publicPath: '../_static/',
+        publicPath: '../_static/',
     },
 
     optimization: {
