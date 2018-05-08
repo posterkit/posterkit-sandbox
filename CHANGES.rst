@@ -14,6 +14,7 @@ general
 - Use CSS image mask for coloring the title logo
 - Reduce total program weight from 13.0 MB to 2.9 MB by using lightweight
   unicode database from package ``readable-glyph-names`` for detecting diacritics
+- Make "Print view" the default
 
 lqdn-gafam-campaign
 -------------------

@@ -2,10 +2,6 @@
     min-height: 7.5rem;
 }
 
-.display-format-details {
-    min-height: 9rem;
-}
-
 .language-entry:not(:last-child) {
     margin-bottom: 4rem;
 }

@@ -124,29 +124,26 @@
         </h2>
         <div id="display-format-chooser" class="tabs is-toggle">
             <ul title="Display format: Either &quot;passepartout&quot; or &quot;print&quot;">
-                <li class="is-active" data-format="passepartout" data-target="#display-format-passepartout">
-                    <a>
-                        <span class="icon is-small"><i class="fa fa-image" aria-hidden="true"></i></span>
-                        <span>Passepartout</span>
-                    </a>
-                </li>
-                <li data-format="print" data-target="#display-format-print">
+                <li class="is-active" data-format="print" data-target="#display-format-print">
                     <a>
                         <span class="icon is-small"><i class="fa fa-print" aria-hidden="true"></i></span>
                         <span>Print view</span>
                     </a>
                 </li>
+                <li data-format="passepartout" data-target="#display-format-passepartout">
+                    <a>
+                        <span class="icon is-small"><i class="fa fa-image" aria-hidden="true"></i></span>
+                        <span>Passepartout</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="content display-format-details">
-            <div id="display-format-passepartout">
-                This layout frames all posters using a beautiful passepartout
-                and is optimized for displaying.
-            </div>
-            <div id="display-format-print" class="has-display-none">
+            <div id="display-format-print">
                 <p>
                 This layout comes without any bells and whistles and is optimized for printing.
                 </p>
+                <!--
                 <p>
                 Please also consider appropriate print job settings like
                 </p>
@@ -158,6 +155,13 @@
                         Margins: <code>None</code>
                     </li>
                 </ul>
+                -->
+            </div>
+            <div id="display-format-passepartout">
+                <p>
+                This layout frames all posters using a beautiful passepartout
+                and is optimized for displaying.
+                </p>
             </div>
         </div>
         <hr/>
