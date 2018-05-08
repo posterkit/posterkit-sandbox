@@ -20,6 +20,7 @@ lqdn-gafam-campaign
 -------------------
 - Enable RTL and adjust layout for translation into Arabic
 - Use English translation of *colored* summary image as og:image and twitter:image in chooser.html
+- Refactor location of sources for LQDN GAFAM campaign
 
 
 2018-05-05 0.5.0
