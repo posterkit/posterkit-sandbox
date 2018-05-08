@@ -258,7 +258,8 @@ function footer_logo(options, element, value) {
     // v2: Using SVG as mask image
     var logo_url = footer_logo_map['white'];
     $(element).css('mask-image', 'url(' + logo_url + ')');
-    $(element).css('mask-size', 'cover');
+    $(element).css('mask-size', 'contain');
+    $(element).css('mask-repeat', 'no-repeat');
 
     // Adjust colors for image masking
     var colors = get_colorscheme(options);
