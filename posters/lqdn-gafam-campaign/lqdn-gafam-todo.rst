@@ -6,16 +6,22 @@ lqdn-gafam-campaign example todo
 ******
 Prio 1
 ******
-- [x] There's a one-pixel-off bottom border, see https://ptrace.gafam.info/unofficial/img/black/lqdn-gafam-poster-fr-black-1x5-1024x.jpg
-- [o] Now, we have a single-pixel line at the top!!! See https://ptrace.gafam.info/unofficial/img/black/lqdn-gafam-poster-ca-black-5x1-1280x.jpg
-- [x] Implement variant "color"
-- [o] With variant "color", the non-transparent images still display a white background. Improve this!
-- [o] Think about making "Print view" the default.
+- [x] RTL für Arabisch
+- [x] Use English translation of colored summary image as og:image and twitter:image, at least in chooser.html
+- [x] Think about making "Print view" the default.
   At least on mobile, it would probably be better to display the renderings without passepartout.
-- [o] Use English translation of colored summary image as og:image and twitter:image, at least in chooser.html
-- [o] The footprint of the full "unicode" package is around 10 MB! Would the diacritics detection be possible
-  with the much smaller package https://www.npmjs.com/package/readable-glyph-names?
-- [o] Add meaningful example for "fit_text_bounding_box"
+- [o] The LQDN logo has white borders. Fix that in SVG.
+- [o] Improve intro text
+- [o] Subtitle for Variant "color"
+- [o] Remark regarding printing of colored posters. => DON'T!
+- [o] Care about other examples
+
+
+*********
+Prio 1.25
+*********
+- [o] Improve colors (name_color_map)
+- [o] Add meaningful example for "fit_text_bounding_box" and use screenshot images in doc/typesetting.rst
 
 
 ********
@@ -27,10 +33,17 @@ Content-specific
 - [o] Body text font size too small for Apple @ Chinese
 - [o] Some poster footers are too large: 4 lines currently do not fit well, see e.g. nb/apple,amazon
 - [o] Footer text too small for de/apple
+- [o] Care about glyphs with underlengths, see http://localhost:9999/examples/lqdn-gafam-campaign/poster.html?lang=pt&name=microsoft&variant=black&passepartout=true
+- [o] Improve "height kerning" on http://localhost:9999/examples/lqdn-gafam-campaign/poster.html?lang=es&name=amazon&variant=black&passepartout=true
+- [o] Do some diacritics get cut off? see e.g. http://localhost:9999/examples/lqdn-gafam-campaign/poster.html?lang=pt&name=apple&variant=black&passepartout=true
+- [o] How can we autolayout the header title content for narrow content like http://localhost:9999/examples/lqdn-gafam-campaign/poster.html?lang=ar&name=apple&variant=black&passepartout=true
 
 General
 =======
+- [o] Introduce memoization functions or improve code flow re. multiple calls to e.g. "has_diacritics"
 - [o] Will poster.html also work on mobile with appropriate zooming?
+- [o] 404 Page for unknown parameters
+- [o] Why is the summary image quality so poor?
 - [o] Sanity checks and appropriate messages when running with invalid parameters to lang=, name=, passepartout=, etc.
 - [o] uncaught exception: Error querying directory contents from GitHub repository
 - [o] Control language sort order. Maybe put most-spoken western languages (English, Spanish) first?
@@ -40,6 +53,10 @@ General
 - [o] Re-enable "All" button when it works in Chrome again
 - [o] Maybe the chooser list grows too long and we need another kind of selector for exploring
 - [o] Improve the ``has_diacritics`` function to differentiate between characters with ascender vs. descender diacritics.
+- [o] Use only black SVG variants, throw away the others
+- [o] Would it be cool to be able to click on the summary image and open single posters by image map links?
+- [o] Maybe display the single-page links below the summary image and color the buttons appropriately?
+- [o] Can we load fonts on demand only when required by the respective poster?
 
 
 ******
@@ -116,3 +133,9 @@ Done
 - [x] Header: Fine-tune title margins. Can we use flexbox for vertical centering?
   e.g. Make Google and Apple center in the same way
 - [x] Slightly adjust (increase) default line-height of footer text?
+- [x] There's a one-pixel-off bottom border, see https://ptrace.gafam.info/unofficial/img/black/lqdn-gafam-poster-fr-black-1x5-1024x.jpg
+- [x] Now, we have a single-pixel line at the top!!! See https://ptrace.gafam.info/unofficial/img/black/lqdn-gafam-poster-ca-black-5x1-1280x.jpg
+- [x] Implement variant "color"
+- [x] With variant "color", the non-transparent images still display a white background. Improve this!
+- [x] The footprint of the full "unicode" package is around 10 MB! Would the diacritics detection be possible
+  with the much smaller package https://www.npmjs.com/package/readable-glyph-names?
