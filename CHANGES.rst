@@ -6,6 +6,10 @@ PosterKit-O-Mat CHANGES
 in progress
 ===========
 
+
+2018-05-08 0.6.0
+================
+
 general
 -------
 - Activate variant "color" for PDF subsystem
