@@ -27,6 +27,7 @@ body {
 }
 #title-content {
     /* width: 72%; */
+    height: 5.5cm;
     width: 16.0cm;
 }
 
@@ -102,6 +103,7 @@ body {
 }
 #footer-content #organization-logo {
     width: 3.0cm;
+    height: 3.0cm;
 }
 
 /* https://stackoverflow.com/questions/15295697/make-an-image-to-fit-its-parent-dimensions/15295754#15295754 */

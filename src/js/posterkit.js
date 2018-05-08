@@ -13,28 +13,6 @@ const FontFaceObserver = require('fontfaceobserver');
 require('../css/pagesize.css');
 require('../css/poster.css');
 
-function setup_display(options) {
-
-    // Display in passepartout style
-    if (options.passepartout && options.passepartout.toLowerCase() == 'true') {
-        $('body').attr({class: 'passepartout'});
-    }
-
-    // Economy mode
-    if (options.variant == 'eco') {
-        $('body').children().css('color', '#252525');
-        $('.inverted').css('background', '#bbbbbb');
-        $('.inverted').css('color', '#252525');
-    }
-
-    // Grey mode
-    if (options.variant == 'grey') {
-        $('body').children().css('color', '#656565');
-        $('.inverted').css('background', '#656565');
-    }
-
-}
-
 function load_fonts() {
     console.info('Loading fonts');
     return new Promise(function(resolve, reject) {
@@ -324,10 +302,69 @@ function refit_body_size() {
 
 }
 
-exports.setup_display = setup_display;
+function apply_mask_image(element, url) {
+
+    // Set mask image on element and adjust its size appropriately
+    // Currently executed asynchronously without waiting for its outcome
+
+    image_get_size(url).then(function(image_size) {
+
+        console.log('Image size:', image_size);
+
+        //element.addClass('image-mask');
+        $(element).css('mask-image', 'url(' + url + ')');
+        $(element).css('mask-size', 'contain');
+        $(element).css('mask-repeat', 'no-repeat');
+        $(element).width(image_size.width + 'px');
+        $(element).height(image_size.height + 'px');
+
+        // Make element cover the full width of the container element,
+        // which is currently 16.0 cm for regular posters.
+        $(element).width('100%');
+
+        // Adjust element height while keeping aspect ratio
+        ratio = $(element).width() / image_size.width;
+        $(element).height($(element).height() * ratio + 'px');
+
+    });
+}
+
+function image_get_size(image_url) {
+
+    // Create offscreen image element
+    var image = $('<img/>');
+    image.css('position', 'absolute');
+    image.css('top', '-10000px');
+    $('body').append(image);
+
+    return new Promise(function(resolve, reject) {
+
+        image.on('load', function() {
+
+            // Use image size information
+            var size = {};
+            size.width = image.width();
+            size.height = image.height();
+
+            // Remove image element
+            image.remove();
+
+            resolve(size);
+
+        });
+
+        // Load image
+        image.attr('src', image_url);
+
+    });
+
+}
+
+
 exports.load_fonts = load_fonts;
 exports.load_content = load_content;
 exports.content_to_dom = content_to_dom;
 exports.fit_text = fit_text;
 exports.fit_text_bounding_box = fit_text_bounding_box;
 exports.run_autolayout = run_autolayout;
+exports.apply_mask_image = apply_mask_image;

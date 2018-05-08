@@ -28,6 +28,15 @@ var mapping = [
     {id: 'organization-logo',                       transform: footer_logo},
 ];
 
+// Color map for variant "color"
+var name_color_map = {
+    'google': '#d12b2b',
+    'apple': 'white',
+    'facebook': '#3889b9',
+    'amazon': 'yellow',
+    'microsoft': 'green',
+};
+
 // Which headlines to swap by its depicted representations
 var title_logo_map = {
     'white': {
@@ -162,18 +171,40 @@ var layout_rules_override = [
 function title_to_logo(options, element, value) {
 
     var logo_key = value.toLowerCase();
+
+    // 2018-05-08: Use only the white variant for applying as mask
     var logo_variant = 'white';
+    /*
     if (options.variant == 'eco') {
         logo_variant = 'dark';
     }
+    */
 
-    if (element.attr('id') == 'title-text' && title_logo_map[logo_variant] && title_logo_map[logo_variant][logo_key]) {
+    var has_title_image = element.attr('id') == 'title-text' && title_logo_map[logo_variant] && title_logo_map[logo_variant][logo_key];
+
+    if (has_title_image) {
+
+        console.log('Switching title to image');
+
         element.removeClass('fit');
 
+        // v1: Switching logos between variants
+        /*
         var logo_url = title_logo_map[logo_variant][logo_key];
         value = $('<img/>').attr('src', logo_url);
+        //element.append(value);
+        */
 
-        element.append(value);
+        // v2: Using SVG as mask image
+
+        // 1. Load SVG to determine its size
+        // 2. Set mask on existing <span> element and adjust its size appropriately
+        var logo_url = title_logo_map[logo_variant][logo_key];
+        posterkit.apply_mask_image(element, logo_url);
+
+        // Adjust colors for image masking
+        var colors = get_colorscheme(options);
+        colors && $('#title-container #title-text').css('background-color', colors.content_light);
 
     } else {
         return value;
@@ -181,15 +212,28 @@ function title_to_logo(options, element, value) {
 }
 
 function footer_logo(options, element, value) {
+
+    // v1: Switching logos between variants
+    /*
     var logo_variant = 'white';
     if (options.variant == 'eco') {
         logo_variant = 'dark';
     }
-
     if (footer_logo_map[logo_variant]) {
         var logo_url = footer_logo_map[logo_variant];
         element.attr('src', logo_url);
     }
+    */
+
+    // v2: Using SVG as mask image
+    var logo_url = footer_logo_map['white'];
+    $(element).css('mask-image', 'url(' + logo_url + ')');
+    $(element).css('mask-size', 'cover');
+
+    // Adjust colors for image masking
+    var colors = get_colorscheme(options);
+    colors && $('#footer-container #organization-logo').css('background-color', colors.content_light);
+
 }
 
 function nl2span_fit(options, element, value) {
@@ -215,9 +259,86 @@ function nl2br(options, element, value) {
 }
 
 
+
 // ----
 // Main
 // ----
+function setup_display(options) {
+
+    console.log('Setting up display');
+
+    // Display in passepartout style
+    if (options.passepartout && options.passepartout.toLowerCase() == 'true') {
+        $('body').attr({class: 'passepartout'});
+    }
+
+}
+
+function get_colorscheme(options) {
+
+    var colors = {};
+
+    // Saturated variant
+    if (options.variant == 'black') {
+        colors.content_light = 'white';
+        colors.background = 'white';
+
+    // Economy variant
+    } else if (options.variant == 'eco') {
+        colors.content_light = '#252525';
+        colors.background = '#bbbbbb';
+
+    // Grey variant
+    } else if (options.variant == 'grey') {
+        colors.content_light = '#656565';
+        colors.background = '#656565';
+
+    // Colored variant
+    } else if (options.variant == 'color') {
+        colors.content_light = name_color_map[options.name];
+        colors.background = name_color_map[options.name];
+
+    }
+
+    return !_.isEmpty(colors) && colors;
+
+}
+
+function setup_colors(options) {
+
+    console.log('Setting up colors');
+
+    var colors = get_colorscheme(options);
+
+    // Saturated variant
+    if (options.variant == 'black') {
+
+    // Economy variant
+    } else if (options.variant == 'eco') {
+        $('body').children().css('color', colors.content_light);
+        $('.inverted').css('background', colors.background);
+        $('.inverted').css('color', colors.content_light);
+
+    // Grey variant
+    } else if (options.variant == 'grey') {
+        $('body').children().css('color', colors.content_light);
+        $('.inverted').css('background', colors.background);
+
+    // Colored variant
+    } else if (options.variant == 'color') {
+        $('page').css('background-color', colors.background);
+        $('#title-container').css('color', colors.content_light);
+        $('#footer-container').css('color', colors.content_light);
+
+    // Default: Saturated
+    } else {
+        options.variant = 'black';
+        setup_colors(options);
+    }
+
+}
+
+
 $(document).ready(function() {
 
     console.log('Loading poster.js');
@@ -236,24 +357,11 @@ $(document).ready(function() {
     var poster_name = (options.name || 'google').toLowerCase();
 
 
-    // Setup display options
-    posterkit.setup_display(options);
+    // Setup display
+    setup_display(options);
 
-    // Color mode
-    var name_color_map = {
-        'google': '#d12b2b',
-        'apple': 'white',
-        'facebook': '#3889b9',
-        'amazon': 'yellow',
-        'microsoft': 'green',
-    }
-    if (options.variant == 'color') {
-        //var color = 'yellow';
-        var color = name_color_map[options.name];
-        $('page').css('background-color', color);
-        $('#title-container').css('color', color);
-        $('#footer-container').css('color', color);
-    }
+    // Setup colors
+    setup_colors(options);
 
     // Load fonts
     posterkit.load_fonts().then(function() {
