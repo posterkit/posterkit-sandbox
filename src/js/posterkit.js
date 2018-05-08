@@ -247,6 +247,8 @@ function run_autolayout(layout_rules, language, poster_name) {
     // Resize all texts with class="fit" to fit their parent containers
     fit_text('.fit');
 
+    console.info('Happy CSS3, happy Flexbox!');
+
 }
 
 
@@ -359,6 +361,15 @@ function image_get_size(image_url) {
     });
 
 }
+
+
+// Force redraw on an element (jQuery)
+// https://coderwall.com/p/ahazha/force-redraw-on-an-element-jquery
+$.fn.redraw = function(){
+    $(this).each(function(){
+        var redraw = this.offsetHeight;
+    });
+};
 
 
 exports.load_fonts = load_fonts;

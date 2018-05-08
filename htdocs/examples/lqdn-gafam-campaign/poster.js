@@ -20,7 +20,7 @@ require('version.js');
 var i18next_data_url = 'https://raw.githubusercontent.com/gafam/gafam-poster-translations/master/json/{{lng}}.json';
 
 // How to map JSON data to DOM
-var mapping = [
+var dom_content_map = [
     {id: 'title-text',          field: 'title',     transform: title_to_logo},
     {id: 'body-content',        field: 'body',      transform: nl2span_fit},
     {id: 'footer-text',         field: 'footer',    transform: nl2br},
@@ -49,7 +49,7 @@ var title_logo_map = {
         'facebook': './img/logo-facebook-dark.svg',
         'amazon': './img/logo-amazon-dark.svg',
     },
-}
+};
 
 var footer_logo_map = {
     'white': './img/logo-lqdn-white.svg',
@@ -353,6 +353,9 @@ $(document).ready(function() {
 
     // Read parameters using reasonable defaults
     // TODO: Refactor defaults out of here
+    // TODO: Provide resonable default texts (Lorem ipsum?),
+    // display a "404 Not found" poster and provide a link
+    // back to the chooser page.
     var language = (options.lang || 'fr');
     var poster_name = (options.name || 'google').toLowerCase();
 
@@ -367,25 +370,16 @@ $(document).ready(function() {
     posterkit.load_fonts().then(function() {
 
     }).catch(function(error) {
-        console.log('Font error');
+        console.error('Loading fonts failed:', error);
 
     // then, bootstrap the application
     }).then(function() {
         posterkit.load_content(i18next_data_url, language).then(function(content) {
-            console.log('Content has loaded');
-            posterkit.content_to_dom(mapping, poster_name, content, options);
+            console.log('Loading content successful');
+            posterkit.content_to_dom(dom_content_map, poster_name, content, options);
             posterkit.run_autolayout(layout_rules_override, language, poster_name);
         });
 
     });
 
 });
-
-
-// Force redraw on an element (jQuery)
-// https://coderwall.com/p/ahazha/force-redraw-on-an-element-jquery
-$.fn.redraw = function(){
-    $(this).each(function(){
-        var redraw = this.offsetHeight;
-    });
-};
