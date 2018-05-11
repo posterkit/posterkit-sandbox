@@ -121,6 +121,7 @@ module.exports = {
             'inject': 'head',
         }),
 
+        // https://github.com/webpack-contrib/copy-webpack-plugin
         new CopyWebpackPlugin([
             {
                 from: path.resolve('posters', 'lqdn-gafam-campaign', 'img'),

@@ -7,12 +7,15 @@ from posterkit.util import find_nodejs, find_decktape, run_command
 
 DRY_RUN = False
 
+# Use False for debugging to keep all temporary files
+DELETE_TEMPFILES = True
+
 logger = logging.getLogger(__name__)
 
 
 def makepdf(uri):
 
-    tmpfile = tempfile.NamedTemporaryFile(delete=True)
+    tmpfile = tempfile.NamedTemporaryFile(delete=DELETE_TEMPFILES)
 
     #render_command_tpl = "{nodejs} {decktape} --no-sandbox --load-pause 1500 --slides 1 --size 793x1118 generic '{uri}' {outputfile}"
     #render_command_tpl = "{decktape} generic --no-sandbox --slides=1 --size=793x1118 --pause=250 --load-pause=250 '{uri}' '{outputfile}'"

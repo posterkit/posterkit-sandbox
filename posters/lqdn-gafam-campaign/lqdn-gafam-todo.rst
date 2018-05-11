@@ -6,22 +6,35 @@ lqdn-gafam-campaign example todo
 ******
 Prio 1
 ******
-- [x] RTL für Arabisch
+- [x] RTL for the translation into Arabic
 - [x] Use English translation of colored summary image as og:image and twitter:image, at least in chooser.html
 - [x] Think about making "Print view" the default.
   At least on mobile, it would probably be better to display the renderings without passepartout.
-- [o] The LQDN logo has white borders. Fix that in SVG.
+- [o] Use dynamic SVG coloring for variant "color"
 - [o] Improve intro text
-- [o] Subtitle for Variant "color"
+- [o] Subtitle for variant "color"
 - [o] Remark regarding printing of colored posters. => DON'T!
-- [o] Care about other examples
+- [o] Make the other PosterKit examples work again
+- [o] Improve Arabic font
+
+    - https://ptrace.gafam.info/unofficial/img/color/lqdn-gafam-poster-ar-color-5x1-1280x.jpg
+    - https://ptrace.gafam.info/unofficial/pdf/color/lqdn-gafam-poster-ar-color.pdf
+
+- [o] Add translation into the Occitan language
+- [o] Build high-resolution n-up 5x1 resource for displaying on large screens
+- [o] Add translation into Occitan
+- [o] The Arabic font used when rendering on Mac OS X looks way more beautiful than on Linux.
+  How to improve that short- or medium-term?
+- [o] Add ``posterkit --keep-files`` for keeping temporary files
 
 
 *********
 Prio 1.25
 *********
+- [o] Rename "summary image" to "thumbnail image"
 - [o] Improve colors (name_color_map)
 - [o] Add meaningful example for "fit_text_bounding_box" and use screenshot images in doc/typesetting.rst
+- [o] Why is the summary image quality so poor?
 
 
 ********
@@ -43,7 +56,6 @@ General
 - [o] Introduce memoization functions or improve code flow re. multiple calls to e.g. "has_diacritics"
 - [o] Will poster.html also work on mobile with appropriate zooming?
 - [o] 404 Page for unknown parameters
-- [o] Why is the summary image quality so poor?
 - [o] Sanity checks and appropriate messages when running with invalid parameters to lang=, name=, passepartout=, etc.
 - [o] uncaught exception: Error querying directory contents from GitHub repository
 - [o] Control language sort order. Maybe put most-spoken western languages (English, Spanish) first?
@@ -57,6 +69,12 @@ General
 - [o] Would it be cool to be able to click on the summary image and open single posters by image map links?
 - [o] Maybe display the single-page links below the summary image and color the buttons appropriately?
 - [o] Can we load fonts on demand only when required by the respective poster?
+
+CSS image masks
+===============
+- [o] Why don't the PDF documents display correctly? See https://github.com/astefanutti/decktape/issues/149
+- [o] The LQDN logo has a white outline, recognizable on the colored PDFs. Fix that in SVG.
+  Or is it related to the CSS mask composition?
 
 
 ******
@@ -73,6 +91,9 @@ Prio 2
 - [o] Who is referring to http://localhost:9999/examples/lqdn-gafam-campaign/chooser.html on production?
 - [o] Investigate whether all five pages could be rendered by using decktape with its "multiple slide" option
 - [o] With lang=ja: ``Page error: TypeError: Cannot read property 'name' of undefined``
+
+
+
 
 
 ****

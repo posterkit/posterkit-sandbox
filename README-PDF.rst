@@ -53,6 +53,12 @@ Install font packages
     # Chinese and Japanes fonts disappear, so you might well do:
     apt remove fonts-droid fonts-lmodern
 
+Also, have a look at:
+
+    - fonts-mikachan
+    - font-hosny-amiri
+    - fonts-sil-scheherazade
+
 
 Install PDFtk
 =============
