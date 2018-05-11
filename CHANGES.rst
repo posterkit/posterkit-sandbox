@@ -7,6 +7,8 @@ in progress
 ===========
 - Mangle webpack output layout again
 - Fix webpack publicPath
+- Disable CSS image mask again, see https://github.com/posterkit/posterkit-sandbox/issues/2#issuecomment-388431859
+  Can be enabled at runtime by appending ``&cssmask=true`` to query string.
 
 
 2018-05-08 0.6.0

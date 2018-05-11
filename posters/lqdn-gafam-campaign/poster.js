@@ -204,11 +204,11 @@ function title_to_logo(options, element, value) {
 
     // 2018-05-08: Use only the white variant for applying as mask
     var logo_variant = 'white';
-    /*
+
+    // TODO: Refactor to color scheme mapping
     if (options.variant == 'eco') {
         logo_variant = 'dark';
     }
-    */
 
     var has_title_image = element.attr('id') == 'title-text' && title_logo_map[logo_variant] && title_logo_map[logo_variant][logo_key];
 
@@ -219,22 +219,24 @@ function title_to_logo(options, element, value) {
         element.removeClass('fit');
 
         // v1: Switching logos between variants
-        /*
-        var logo_url = title_logo_map[logo_variant][logo_key];
-        value = $('<img/>').attr('src', logo_url);
-        //element.append(value);
-        */
+        if (!options.cssmask) {
+            var logo_url = title_logo_map[logo_variant][logo_key];
+            value = $('<img/>').attr('src', logo_url).addClass('image-fit');
+            element.parent().append(value);
 
         // v2: Using SVG as mask image
+        } else {
+            // 1. Load SVG to determine its size
+            // 2. Set mask on existing <span> element and adjust its size appropriately
+            var logo_url = title_logo_map[logo_variant][logo_key];
+            posterkit.apply_mask_image(element, logo_url);
 
-        // 1. Load SVG to determine its size
-        // 2. Set mask on existing <span> element and adjust its size appropriately
-        var logo_url = title_logo_map[logo_variant][logo_key];
-        posterkit.apply_mask_image(element, logo_url);
+            // Adjust colors for image masking
+            var colors = get_colorscheme(options);
+            colors && $('#title-container #title-text').css('background-color', colors.content_light);
 
-        // Adjust colors for image masking
-        var colors = get_colorscheme(options);
-        colors && $('#title-container #title-text').css('background-color', colors.content_light);
+        }
+
 
     } else {
         return value;
@@ -244,26 +246,28 @@ function title_to_logo(options, element, value) {
 function footer_logo(options, element, value) {
 
     // v1: Switching logos between variants
-    /*
-    var logo_variant = 'white';
-    if (options.variant == 'eco') {
-        logo_variant = 'dark';
-    }
-    if (footer_logo_map[logo_variant]) {
-        var logo_url = footer_logo_map[logo_variant];
-        element.attr('src', logo_url);
-    }
-    */
+    if (!options.cssmask) {
+        var logo_variant = 'white';
+        if (options.variant == 'eco') {
+            logo_variant = 'dark';
+        }
+        if (footer_logo_map[logo_variant]) {
+            var logo_url = footer_logo_map[logo_variant];
+            element.attr('src', logo_url);
+        }
 
     // v2: Using SVG as mask image
-    var logo_url = footer_logo_map['white'];
-    $(element).css('mask-image', 'url(' + logo_url + ')');
-    $(element).css('mask-size', 'contain');
-    $(element).css('mask-repeat', 'no-repeat');
+    } else {
+        var logo_url = footer_logo_map['white'];
+        $(element).css('mask-image', 'url(' + logo_url + ')');
+        $(element).css('mask-size', 'contain');
+        $(element).css('mask-repeat', 'no-repeat');
 
-    // Adjust colors for image masking
-    var colors = get_colorscheme(options);
-    colors && $('#footer-container #organization-logo').css('background-color', colors.content_light);
+        // Adjust colors for image masking
+        var colors = get_colorscheme(options);
+        colors && $('#footer-container #organization-logo').css('background-color', colors.content_light);
+
+    }
 
 }
 
