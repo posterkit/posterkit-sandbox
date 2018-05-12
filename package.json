@@ -52,6 +52,6 @@
         "webpack-notifier": "^1.6.0"
     },
     "optionalDependencies": {
-        "decktape": "^2.8.2"
+        "decktape": "https://github.com/posterkit/decktape#networkidle2"
     }
 }

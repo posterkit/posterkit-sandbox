@@ -12,6 +12,7 @@ in progress
 - Use runtime SVG coloring for variant "color", hopefully resolves #2
 - Optimize thumbnail image size by converting to 8-bit PNG image
 - Update url to high resolution thumbnail image
+- Use decktape fork to make page loading work with data uri resources
 
 
 2018-05-08 0.6.0
