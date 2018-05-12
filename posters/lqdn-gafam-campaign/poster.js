@@ -205,7 +205,8 @@ function title_to_logo(options, element, value) {
     // 2018-05-08: Use only the white variant for applying as mask
     var logo_variant = 'white';
 
-    // TODO: Refactor to color scheme mapping
+    // Switch logos between variants
+    // TODO: Refactor to more generic color scheme mapping
     if (options.variant == 'eco') {
         logo_variant = 'dark';
     }
@@ -218,17 +219,28 @@ function title_to_logo(options, element, value) {
 
         element.removeClass('fit');
 
-        // v1: Switching logos between variants
+        // Lookup logo URL
+        var logo_url = title_logo_map[logo_variant][logo_key];
+
+        // v1: Use logo as regular HTML image element
         if (!options.cssmask) {
-            var logo_url = title_logo_map[logo_variant][logo_key];
-            value = $('<img/>').attr('src', logo_url).addClass('image-fit');
+
+            // v1.1: Let browser load image from URL
+            //value = $('<img/>').attr('src', logo_url).addClass('image-fit');
+
+            // v1.2: Load image from URL actively to be able to manipulate SVG images
+            value = $('<img/>').addClass('image-fit');
+
+            // Integrate image element to HTML DOM
             element.parent().append(value);
 
-        // v2: Using SVG as mask image
+            // Load image actively, optionally adjusting fill color of SVG images
+            load_image(options, value, logo_url);
+
+        // v2: Use SVG logo as mask image
         } else {
             // 1. Load SVG to determine its size
             // 2. Set mask on existing <span> element and adjust its size appropriately
-            var logo_url = title_logo_map[logo_variant][logo_key];
             posterkit.apply_mask_image(element, logo_url);
 
             // Adjust colors for image masking
@@ -253,7 +265,13 @@ function footer_logo(options, element, value) {
         }
         if (footer_logo_map[logo_variant]) {
             var logo_url = footer_logo_map[logo_variant];
-            element.attr('src', logo_url);
+
+            // v1: Let browser load image from URL
+            // element.attr('src', logo_url);
+
+            // v2: Load image actively, optionally adjusting fill color of SVG images
+            load_image(options, element, logo_url);
+
         }
 
     // v2: Using SVG as mask image
@@ -295,9 +313,9 @@ function nl2br(options, element, value) {
 
 
 
-// ----
-// Main
-// ----
+// -----------------
+// Utility functions
+// -----------------
 function setup_display(options) {
 
     console.log('Setting up display');
@@ -373,7 +391,35 @@ function setup_colors(options) {
 
 }
 
+function load_image(options, element, url) {
+    console.log('Loading image', url);
+    posterkit.fetch_resource(url).then(function(result) {
 
+        // Get image data
+        var payload = result.data;
+        //console.log('payload:', payload);
+
+        // When variant "color" was requested and we are using an SVG image,
+        // adjust its fill color to the background color
+        if (options.variant == 'color' && result.content_type == 'image/svg+xml') {
+            var colors = get_colorscheme(options);
+            payload = posterkit.svg_set_fill_color(payload, colors.background);
+            //console.log('svg-image:', payload);
+        }
+
+        // Set image data to element
+        posterkit.to_data_url_by_data(payload, result.content_type).then(function(payload) {
+            element.attr('src', payload);
+        });
+    }).catch(function(error) {
+        console.error('Loading image from url ' + url + ' failed:', error.message, error.xhr);
+    });
+}
+
+
+// ----
+// Main
+// ----
 $(document).ready(function() {
 
     console.log('Loading poster.js');

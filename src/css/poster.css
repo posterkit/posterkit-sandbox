@@ -108,7 +108,11 @@ body {
 
 /* https://stackoverflow.com/questions/15295697/make-an-image-to-fit-its-parent-dimensions/15295754#15295754 */
 .image-fit {
+    /*
+    min-width: 80%;
     max-width: 100%;
+    */
+    width: 100%;
     overflow: hidden;
 }
 

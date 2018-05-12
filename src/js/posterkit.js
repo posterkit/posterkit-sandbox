@@ -366,6 +366,8 @@ function apply_mask_image(element, url) {
 
 function image_get_size(image_url) {
 
+    console.log('Getting image size for', image_url);
+
     // Create offscreen image element
     var image = $('<img/>');
     image.css('position', 'absolute');
@@ -395,6 +397,77 @@ function image_get_size(image_url) {
 
 }
 
+function image_load_vanilla(url, target) {
+    // https://stackoverflow.com/questions/10863658/load-image-with-jquery-and-append-it-to-the-dom/10863680#10863680
+    $('<img src="'+ url +'">').load(function() {
+        //$(this).width(width).height(height).appendTo(target);
+        $(this).appendTo(target);
+    });
+}
+
+function to_data_url_by_url(url) {
+    return new Promise(function(resolve, reject) {
+        // https://stackoverflow.com/questions/22172604/convert-image-url-to-base64/43015238#43015238
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+            //console.log('xhr:', xhr);
+            var reader = new FileReader();
+            reader.onload = function() {
+                resolve(reader.result);
+            }
+            reader.onerror = function() {
+                reject(reader.result);
+            }
+            reader.readAsDataURL(xhr.response);
+        };
+        xhr.open('GET', url);
+        xhr.responseType = 'blob';
+        xhr.send();
+    });
+}
+
+function to_data_url_by_data(data, type) {
+    return new Promise(function(resolve, reject) {
+        // https://stackoverflow.com/questions/34414581/filereader-readasdataurl-returns-a-to-short-base64-string
+        // http://usefulangle.com/post/15/previewing-images-with-jquery-data-uri-vs-object-url
+        var blob = new Blob([data], { type: type});
+        var reader = new FileReader();
+        reader.onload = function() {
+            resolve(reader.result);
+        }
+        reader.onerror = function() {
+            reject(reader.result);
+        }
+        reader.readAsDataURL(blob);
+    });
+}
+
+function fetch_resource(url) {
+    return new Promise(function(resolve, reject) {
+        $.get(url).then(function(payload, status, xhr) {
+            var result = {
+                url: url,
+                data: xhr.responseText,
+                content_type: xhr.getResponseHeader('Content-Type'),
+            };
+            resolve(result);
+        }).catch(function(xhr, status, message) {
+            reject({xhr: xhr, status: status, message: message});
+        });
+    });
+}
+
+function svg_set_fill_color(xml, color) {
+    // Replace all fill attributes with given value
+    // <path fill="white"
+    // <path style="visibility:visible;fill:white;fill-opacity:1"
+    // <g fill="#252525"
+    xml = xml
+        .replace(/fill=".+?"/g, 'fill="' + color + '"')
+        .replace(/fill:.+?;/g, 'fill:' + color + ';')
+    ;
+    return xml
+}
 
 // Force redraw on an element (jQuery)
 // https://coderwall.com/p/ahazha/force-redraw-on-an-element-jquery
@@ -412,3 +485,7 @@ exports.fit_text = fit_text;
 //exports.fit_text_bounding_box = fit_text_bounding_box;
 exports.run_autolayout = run_autolayout;
 exports.apply_mask_image = apply_mask_image;
+exports.to_data_url_by_url = to_data_url_by_url;
+exports.to_data_url_by_data = to_data_url_by_data;
+exports.fetch_resource = fetch_resource;
+exports.svg_set_fill_color = svg_set_fill_color;
