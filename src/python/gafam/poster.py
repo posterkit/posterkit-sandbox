@@ -16,7 +16,7 @@ URI_TEMPLATE = 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?l
 
 # Template for PDF output filename
 PDF_NAME_TEMPLATE   = 'pdf/{variant}/lqdn-gafam-poster-{language}-{variant}.pdf'
-IMAGE_NAME_TEMPLATE = 'img/{variant}/lqdn-gafam-poster-{language}-{variant}-{nup}-{size}.{format}'
+IMAGE_NAME_TEMPLATE = 'img/{variant}/lqdn-gafam-poster-{language}-{variant}-{nup}-{size}.{suffix}'
 
 # Which poster names are "one set"
 POSTER_NAMES = [
@@ -108,9 +108,13 @@ def render_posters(info=None, path=None):
                     f.write(pdfstream.read())
 
                 # Create summary images
-                format = 'jpg'
+                format = 'png8'
+                suffix = 'png'
                 nup = '5x1'
-                for size in ['640x', '1280x', '2560x']:
+                #sizes = ['640x', '1280x', '1920x', '2560x']
+                sizes = ['1280x', '2560x']
+
+                for size in sizes:
 
                     # Create image
                     image = create_image(pdf_filepath, nup=nup, size=size, format=format)

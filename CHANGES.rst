@@ -10,6 +10,7 @@ in progress
 - Disable CSS image mask again, see https://github.com/posterkit/posterkit-sandbox/issues/2#issuecomment-388431859
   Can be enabled at runtime by appending ``&cssmask=true`` to query string
 - Use runtime SVG coloring for variant "color", hopefully resolves #2
+- Optimize thumbnail image size by converting to 8-bit PNG image
 
 
 2018-05-08 0.6.0
