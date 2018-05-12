@@ -11,6 +11,7 @@ in progress
   Can be enabled at runtime by appending ``&cssmask=true`` to query string
 - Use runtime SVG coloring for variant "color", hopefully resolves #2
 - Optimize thumbnail image size by converting to 8-bit PNG image
+- Update url to high resolution thumbnail image
 
 
 2018-05-08 0.6.0
