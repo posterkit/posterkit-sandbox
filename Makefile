@@ -54,11 +54,11 @@ pdf-single: check-target-dir virtualenv
 	@echo ---------------------
 	@echo Rendering poster \"$(LANGUAGE)\"
 	@echo ---------------------
-	$(venvpath)/bin/gafam-info makepdf --language=$(LANGUAGE) --name=all --variant=$(VARIANT) $(TARGET_DIR)
+	$(venvpath)/bin/gafam-info pdf --language=$(LANGUAGE) --name=all --variant=$(VARIANT) $(TARGET_DIR)
 
 # Render all PDFs
 pdf-all: check-target-dir virtualenv
-	$(venvpath)/bin/gafam-info makepdf --language=all --name=all --variant=all $(TARGET_DIR)
+	$(venvpath)/bin/gafam-info pdf --language=all --name=all --variant=all $(TARGET_DIR)
 
 
 

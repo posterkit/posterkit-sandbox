@@ -157,7 +157,7 @@ PDF
     export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial
 
     # Render all posters (full matrix of permutations)
-    gafam-info makepdf --language=all --name=all --variant=all $TARGET_DIR
+    gafam-info pdf --language=all --name=all --variant=all $TARGET_DIR
 
     # Render posters for selected language only
-    gafam-info makepdf --language=fr --name=all --variant=all $TARGET_DIR
+    gafam-info pdf --language=fr --name=all --variant=all $TARGET_DIR

@@ -3,7 +3,7 @@
 import logging
 from docopt import docopt
 from posterkit import __version__
-from posterkit.makepdf import makepdf
+from posterkit.pdf import pdf
 from posterkit.pdfnup import create_image
 from posterkit.util import boot_logging, normalize_options
 
@@ -14,14 +14,14 @@ APP_NAME = 'posterkit'
 def run():
     """
     Usage:
-        posterkit makepdf --url=<url>
-        posterkit pdfsummary --pdf=<pdf> --nup=1x5 [--size=640x] [--format=png]
+        posterkit pdf --url=<url>
+        posterkit thumbnail --pdf=<pdf> --nup=1x5 [--size=640x] [--format=png]
         posterkit --help
 
-    Options for "makepdf":
+    Options for "pdf":
         --url=<url>             Acquire HTML page from this URL
 
-    Options for "pdfsummary":
+    Options for "thumbnail":
         --pdf=<pdf>             Input PDF file to use for generating thumbnail image.
         --nup=<nup>             N-up directory how to layout the thumbnail. [default: 1]
         --size=<size>           Size of the generated image. [default: 1024x]
@@ -30,7 +30,7 @@ def run():
     Examples:
 
         # Render single-page PDF document and output to STDOUT
-        posterkit makepdf --url=https://examples.posterkit.net/rfa-endlich-normale-menschen/poster.html
+        posterkit pdf --url=https://examples.posterkit.net/rfa-endlich-normale-menschen/poster.html
 
     """
 
@@ -47,12 +47,12 @@ def run():
     options = normalize_options(options, encoding='utf-8')
 
     # Render PDF
-    if options['makepdf']:
-        stream = makepdf(options['url'])
+    if options['pdf']:
+        stream = pdf(options['url'])
 
         # Write to STDOUT
         print(stream.read())
 
-    elif options['pdfsummary']:
+    elif options['thumbnail']:
         image = create_image(options['pdf'], nup=options['nup'], size=options['size'], format=options['format'])
         print(image.read())

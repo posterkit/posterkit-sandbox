@@ -15,7 +15,7 @@ APP_NAME = 'posterkit'
 def run():
     """
     Usage:
-        gafam-info makepdf [options] [<path>]
+        gafam-info pdf [options] [<path>]
         gafam-info --help
 
     Options:
@@ -32,16 +32,16 @@ def run():
     Examples:
 
         # Render single-page PDF document and output to STDOUT
-        gafam-info makepdf --language=fr --name=google --variant=black -
+        gafam-info pdf --language=fr --name=google --variant=black -
 
         # Render multi-page PDF documents for multiple languages and variants and store to output path
-        gafam-info makepdf --language=fr,en,de --name=google,apple,facebook,amazon,microsoft --variant=black,eco /srv/www/posterkit
+        gafam-info pdf --language=fr,en,de --name=google,apple,facebook,amazon,microsoft --variant=black,eco /srv/www/posterkit
 
         # Render multi-page PDF documents for French language in all variants and store to output path
-        gafam-info makepdf --language=fr --name=all --variant=all /srv/www/posterkit
+        gafam-info pdf --language=fr --name=all --variant=all /srv/www/posterkit
 
         # Render multi-page PDF documents for all languages and variants and store to output path
-        gafam-info makepdf --language=all --name=all --variant=all /srv/www/posterkit
+        gafam-info pdf --language=all --name=all --variant=all /srv/www/posterkit
 
     """
 
@@ -58,7 +58,7 @@ def run():
     options = normalize_options(options, encoding='utf-8')
 
     # Render all selected PDF documents
-    if options['makepdf']:
+    if options['pdf']:
         path = options['path']
         rendering_info = get_rendering_info(options)
         check_options(rendering_info)
