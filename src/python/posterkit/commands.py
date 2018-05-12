@@ -22,8 +22,8 @@ def run():
         --url=<url>             Acquire HTML page from this URL
 
     Options for "pdfsummary":
-        --pdf=<pdf>             Input PDF file to use for generating summary image.
-        --nup=<nup>             N-up directory how to layout the summary. [default: 1]
+        --pdf=<pdf>             Input PDF file to use for generating thumbnail image.
+        --nup=<nup>             N-up directory how to layout the thumbnail. [default: 1]
         --size=<size>           Size of the generated image. [default: 1024x]
         --format=<format>       Output image format. [default: jpg]
 

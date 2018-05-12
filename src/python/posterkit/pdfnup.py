@@ -21,7 +21,7 @@ DELETE_TEMPFILES = True
 
 def create_image(pdf_file, nup='1', size='1024x', format='jpg'):
 
-    logger.info('Creating summary image for {}'.format(pdf_file))
+    logger.info('Creating thumbnail image for {}'.format(pdf_file))
 
     tmp_nupped = tempfile.NamedTemporaryFile(suffix='.pdf', delete=DELETE_TEMPFILES)
     output_file = tmp_nupped.name

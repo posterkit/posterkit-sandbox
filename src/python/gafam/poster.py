@@ -107,7 +107,7 @@ def render_posters(info=None, path=None):
                 with file(pdf_filepath, 'wb') as f:
                     f.write(pdfstream.read())
 
-                # Create summary images
+                # Create thumbnail images
                 format = 'png8'
                 suffix = 'png'
                 nup = '5x1'
@@ -122,7 +122,7 @@ def render_posters(info=None, path=None):
                     # Save image
                     img_filename = IMAGE_NAME_TEMPLATE.format(**locals())
                     img_filepath = os.path.abspath(os.path.join(path, img_filename))
-                    logger.info('Saving summary image to {}'.format(img_filepath))
+                    logger.info('Saving thumbnail image to {}'.format(img_filepath))
 
                     # Ensure path exists
                     ensure_directory(img_filepath)
