@@ -6,21 +6,6 @@ lqdn-gafam-campaign example todo
 ******
 Prio 1
 ******
-- [x] RTL for the translation into Arabic
-- [x] Use English translation of colored thumbnail image as og:image and twitter:image, at least in chooser.html
-- [x] Think about making "Print view" the default.
-  At least on mobile, it would probably be better to display the renderings without passepartout.
-- [x] Use dynamic SVG coloring for variant "color"
-- [x] DeckTape patch re. ``page.goto(options.url, { waitUntil: 'networkidle2', timeout: 60000 })``
-  See also https://github.com/GoogleChrome/puppeteer/issues/728#issuecomment-351432657
-- [x] Footer text height is not aligned with logo
-- [x] LQDN logo not displayed in Chrome
-- [o] Add translation into the Occitan language
-
-
-*********
-Prio 1.13
-*********
 - [o] Improve intro text on chooser.html
 - [o] Add subtitle for variant "color". E.g. "For displaying on screens"
 - [o] Remark regarding printing of colored posters. => DON'T!
@@ -28,11 +13,7 @@ Prio 1.13
 - [o] Update README.rst
 - [o] Build and publish distribution package
 - [o] Remove things like id="organization-logo"
-- [o] Test how image loading works with regular/transparent PNG/JPEG/GIF images
-- [o] The current Promise-based architecture is nice, but what if some
-  promises could not be fulfilled due to not being able to load resources, etc.?
-- [o] Maybe use "i18nextBrowserLanguageDetector" in chooser.html or as general default for poster.html?
-- [o] How to make the chooser link to local resources (image, pdf)?
+- [o] Add disclaimer re. Internet Explorer / Edge
 
 
 *********
@@ -71,6 +52,8 @@ Prio 1.25
         - poster.html?lang=nb&name=apple&variant=eco
         - poster.html?lang=nb&name=amazon&variant=eco
 
+- [o] Test how image loading works with regular/transparent PNG/JPEG/GIF images
+- [o] How to make the chooser link to local resources (image, pdf)?
 
 
 ********
@@ -107,6 +90,9 @@ General
 - [o] Maybe display the single-page links below the thumbnail image and color the buttons appropriately?
 - [o] Can we load fonts on demand only when required by the respective poster?
 - [o] Refactor code to be more OO
+- [o] The current Promise-based architecture is nice, but what if some
+  promises could not be fulfilled due to not being able to load resources, etc.?
+- [o] Maybe use "i18nextBrowserLanguageDetector" in chooser.html or as general default for poster.html?
 
 CSS image masks
 ===============
@@ -199,3 +185,17 @@ Done
 - [x] With variant "color", the non-transparent images still display a white background. Improve this!
 - [x] The footprint of the full "unicode" package is around 10 MB! Would the diacritics detection be possible
   with the much smaller package https://www.npmjs.com/package/readable-glyph-names?
+- [x] RTL for the translation into Arabic
+- [x] Use English translation of colored thumbnail image as og:image and twitter:image, at least in chooser.html
+- [x] Think about making "Print view" the default.
+  At least on mobile, it would probably be better to display the renderings without passepartout.
+- [x] Use dynamic SVG coloring for variant "color"
+- [x] DeckTape patch re. ``page.goto(options.url, { waitUntil: 'networkidle2', timeout: 60000 })``
+  See also https://github.com/GoogleChrome/puppeteer/issues/728#issuecomment-351432657
+- [x] Footer text height is not aligned with logo
+- [x] LQDN logo not displayed in Chrome
+- [x] Add translation into the Occitan language
+- [x] Improve diacritics support for Occitan "ÇÒ QUE" with ascenders *and* descenders at lang=oc&name=facebook
+- [x] Use brighter green tone for M$ poster
+- [x] Does navigating to https://library.gafam.info/#language-oc not work because anchor has not materialized yet
+  when hitting the page? How to defer the navigation action until the DOM has loaded?
