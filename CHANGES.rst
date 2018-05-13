@@ -6,6 +6,12 @@ PosterKit-O-Mat CHANGES
 in progress
 ===========
 
+
+2018-05-13 0.7.0
+================
+
+The "Pareto and Murphy riding the Yak" release.
+
 general
 -------
 - Mangle webpack output layout again
