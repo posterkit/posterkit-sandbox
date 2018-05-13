@@ -6,9 +6,6 @@ lqdn-gafam-campaign example todo
 ******
 Prio 1
 ******
-- [o] Improve intro text on chooser.html
-- [o] Add subtitle for variant "color". E.g. "For displaying on screens"
-- [o] Remark regarding printing of colored posters. => DON'T!
 - [o] Make the other PosterKit examples work again
 - [o] Update README.rst
 - [o] Build and publish distribution package
@@ -19,22 +16,7 @@ Prio 1
 *********
 Prio 1.25
 *********
-- [o] Improve colors (name_color_map)
-- [o] Improve Arabic font
-
-    - https://ptrace.gafam.info/unofficial/img/color/lqdn-gafam-poster-ar-color-5x1-1280x.jpg
-    - https://ptrace.gafam.info/unofficial/pdf/color/lqdn-gafam-poster-ar-color.pdf
-
-- [o] Build high-resolution n-up 5x1 resource for displaying on large screens
-- [o] The Arabic font used when rendering on Mac OS X looks way more beautiful than on Linux.
-  How to improve that short- or medium-term?
-- [o] Add ``posterkit --keep-files`` for keeping temporary files
-- [o] Docs: Write about parameters "cssmask=true" and "image-loader={classic,dataurl,dom}"
-
-- [o] Add meaningful example for "fit_text_bounding_box" and use screenshot images in doc/typesetting.rst
-- [o] Why is the thumbnail image quality so poor?
-- [o] Should "run_autolayout" be deferred until "load_image_classic" signals the images have loaded successfully?
-  Remark: All things "load_image" should be run from "load_content", actually.
+- [o] Render as SVG
 - [o] Tune specific posters
 
     - Fall back to English: poster.html?lang=ar&name=apple&variant=eco ff.
@@ -52,8 +34,23 @@ Prio 1.25
         - poster.html?lang=nb&name=apple&variant=eco
         - poster.html?lang=nb&name=amazon&variant=eco
 
+- [o] Render current set of documents
+
+- [o] Add layout like https://gafam.laquadrature.net/wp-content/uploads/sites/9/2018/05/affiches.png ?
+- [o] Build high-resolution n-up 5x1 resource for displaying on large screens
+  How to improve that short- or medium-term?
+- [o] Add ``posterkit --keep-files`` for keeping temporary files
+- [o] Docs: Write about parameters "cssmask=true" and "image-loader={classic,dataurl,dom}"
+
+- [o] Add meaningful example for "fit_text_bounding_box" and use screenshot images in doc/typesetting.rst
+- [o] Should "run_autolayout" be deferred until "load_image_classic" signals the images have loaded successfully?
+  Remark: All things "load_image" should be run from "load_content", actually.
+
 - [o] Test how image loading works with regular/transparent PNG/JPEG/GIF images
 - [o] How to make the chooser link to local resources (image, pdf)?
+- [o] Investigate further why the Arabic font used when rendering on Mac OS X looks way more beautiful than on Linux.
+- [o] Add dynamic anchors for jumping to e.g. #facts-and-figures
+- [o] Make "Facts and figures" section collapsible?
 
 
 ********
@@ -93,6 +90,8 @@ General
 - [o] The current Promise-based architecture is nice, but what if some
   promises could not be fulfilled due to not being able to load resources, etc.?
 - [o] Maybe use "i18nextBrowserLanguageDetector" in chooser.html or as general default for poster.html?
+- [o] Reuse background images from https://gafam.laquadrature.net/#poster
+
 
 CSS image masks
 ===============
@@ -104,7 +103,6 @@ CSS image masks
 ******
 Prio 2
 ******
-- [o] Render as SVG
 - [o] Add appropriate meta tags to PDF documents
 - [o] Add printing subsystem to add job metadata and additional information on the back side of the document with duplex printers
 - [o] Revisit https://css-tricks.com/methods-controlling-spacing-web-typography/ and use font-smoothing
@@ -199,3 +197,11 @@ Done
 - [x] Use brighter green tone for M$ poster
 - [x] Does navigating to https://library.gafam.info/#language-oc not work because anchor has not materialized yet
   when hitting the page? How to defer the navigation action until the DOM has loaded?
+- [/] Why is the thumbnail image quality so poor?
+- [x] Use proper colors from https://gafam.laquadrature.net/#affiches
+- [x] Render current set of documents
+- [x] The Arabic font used when rendering on Mac OS X looks way more beautiful than on Linux. Improve this!
+  => Just upload Arabic documents from Mac OS X in the meanwhile ;].
+- [x] Improve intro text on chooser.html
+- [x] Add subtitle for variant "color". E.g. "For displaying on screens"
+- [x] Add remark regarding printing of colored posters. => DON'T!
