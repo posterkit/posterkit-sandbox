@@ -70,3 +70,11 @@ webserver:
 
 open-chooser:
 	open http://localhost:9999/examples/lqdn-gafam-campaign/chooser.html
+
+
+# ======
+# tweaks
+# ======
+upload-improved-resources:
+	# Publish/overwrite Arabic resources as they look more beautiful when rendered on Mac OS X
+	cd tmp/out; find ./*/*/*-ar-* -iname '*' -print0 | tar --null --files-from=/dev/stdin -cvf - | ssh www-data@ptrace.gafam.info tar -xvf - -C /srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial; cd -

@@ -9,6 +9,7 @@ in progress
 lqdn-gafam-campaign
 -------------------
 - Use background colors from original posters
+- Publish/overwrite Arabic resources as they look more beautiful when rendered on Mac OS X
 
 
 2018-05-13 0.7.0
