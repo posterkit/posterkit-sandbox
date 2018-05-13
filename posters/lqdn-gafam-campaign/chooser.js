@@ -28,13 +28,23 @@ var variants = [
     {code: 'color', label: 'Color'},
 ];
 
+
 $(document).ready(function() {
     console.info('Loading chooser.js');
     get_languages()
         .then(function(languages) {
             //console.log('languages:', languages);0
+
+            // Build page and setup UI mechanics
             render_page(languages);
             setup_mechanics();
+
+            // If link hash found in URL and page is at top, jump to corresponding anchor
+            var section_name = window.location.hash.replace('#', '');
+            var page_at_top = $(window.document).scrollTop() == 0;
+            if (section_name && page_at_top) {
+                jump_to_anchor(section_name);
+            }
         });
 });
 
@@ -216,4 +226,10 @@ function language_info_by_code(language_code) {
             return language;
         }
     }
+}
+
+// https://stackoverflow.com/questions/8579643/how-to-scroll-up-or-down-the-page-to-an-anchor-using-jquery/8579673#8579673
+function jump_to_anchor(aid) {
+    var aTag = $("a[name='"+ aid +"']");
+    $('html,body').animate({scrollTop: aTag.offset().top}, 0);
 }
