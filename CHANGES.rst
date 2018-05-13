@@ -6,6 +6,10 @@ PosterKit-O-Mat CHANGES
 in progress
 ===========
 
+lqdn-gafam-campaign
+-------------------
+- Use background colors from original posters
+
 
 2018-05-13 0.7.0
 ================

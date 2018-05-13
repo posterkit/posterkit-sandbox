@@ -33,11 +33,19 @@ var dom_content_map = [
 
 // Color map for variant "color"
 var name_color_map = {
+    /*
     'google': '#d12b2b',
     'apple': 'white',
     'facebook': '#3889b9',
     'amazon': 'yellow',
     'microsoft': '#58db58',
+    */
+    'google': 'rgb(237, 28, 36, 1)',
+    'apple': 'white',
+    'facebook': 'rgb(122, 174, 223, 1)',
+    'amazon': 'rgb(250, 166, 26, 1)',
+    'microsoft': 'rgb(118, 177, 67, 1)',
+
 };
 
 // Which headlines to swap by its depicted representations
