@@ -74,12 +74,12 @@ body {
 }
 
 #footer-right {
-    height: 100%;
+    height2: 100%;
 }
 
 #footer-left {
     max-width: 75%;
-    height: 100%;
+    height2: 100%;
 
     display: flex;
     flex-direction: column;
@@ -101,7 +101,7 @@ body {
     font-weight: 900;
     font-size: xx-large;
 }
-#footer-content #organization-logo {
+#footer-content #organization-logo2 {
     width: 3.0cm;
     height: 3.0cm;
 }
@@ -113,6 +113,7 @@ body {
     max-width: 100%;
     */
     width: 100%;
+    /* height: 100%; */
     overflow: hidden;
 }
 

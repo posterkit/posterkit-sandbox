@@ -1,15 +1,18 @@
-// ---------
+// -------------
+// Bootstrapping
+// -------------
+
 // CSS style
-// ---------
 require('./fonts.css');
 
-// --------------
-// Module imports
-// --------------
+// Libraries
 require('lodash');
-const posterkit = require('posterkit.js');
 require('purl/purl');
+
+// Application
 require('version.js');
+const rigveda = require('rigveda');
+const posterkit = require('posterkit');
 
 
 // -------------
@@ -21,11 +24,11 @@ var i18next_data_url = 'https://raw.githubusercontent.com/gafam/gafam-poster-tra
 
 // How to map JSON data to DOM
 var dom_content_map = [
-    {id: 'title-text',          field: 'title',     transform: title_to_logo},
+    {id: 'title-content',       field: 'title',     transform: title_content},
     {id: 'body-content',        field: 'body',      transform: nl2span_fit},
     {id: 'footer-text',         field: 'footer',    transform: nl2br},
     {id: 'organization-name',                       value: 'laquadrature.net'},
-    {id: 'organization-logo',                       transform: footer_logo},
+    {id: 'footer-right',                            transform: footer_logo},
 ];
 
 // Color map for variant "color"
@@ -198,20 +201,18 @@ var layout_rules_override = [
 // ------------------------
 // Transformation functions
 // ------------------------
-function title_to_logo(options, element, value) {
+function title_content(options, element, value) {
 
     var logo_key = value.toLowerCase();
 
-    // 2018-05-08: Use only the white variant for applying as mask
-    var logo_variant = 'white';
-
     // Switch logos between variants
     // TODO: Refactor to more generic color scheme mapping
+    var logo_variant = 'white';
     if (options.variant == 'eco') {
         logo_variant = 'dark';
     }
 
-    var has_title_image = element.attr('id') == 'title-text' && title_logo_map[logo_variant] && title_logo_map[logo_variant][logo_key];
+    var has_title_image = element.attr('id') == 'title-content' && title_logo_map[logo_variant] && title_logo_map[logo_variant][logo_key];
 
     if (has_title_image) {
 
@@ -227,42 +228,53 @@ function title_to_logo(options, element, value) {
 
             // v1.1: Let browser load image from URL
             //value = $('<img/>').attr('src', logo_url).addClass('image-fit');
+            //container = $('<img/>').addClass('image-fit');
 
-            // v1.2: Load image from URL actively to be able to manipulate SVG images
-            value = $('<img/>').addClass('image-fit');
+            // v1.2: Load image actively, optionally adjusting fill color of SVG images
+            load_image(options, logo_url).then(function(image) {
 
-            // Integrate image element to HTML DOM
-            element.parent().append(value);
+                // Integrate image element into HTML DOM
+                prepare_image(options, image);
+                element.append(image);
 
-            // Load image actively, optionally adjusting fill color of SVG images
-            load_image(options, value, logo_url);
+            });
 
         // v2: Use SVG logo as mask image
         } else {
+
+            var container = $('<img/>').addClass('image-fit');
+
             // 1. Load SVG to determine its size
             // 2. Set mask on existing <span> element and adjust its size appropriately
-            posterkit.apply_mask_image(element, logo_url);
+            var resource = new rigveda.ImageResource(logo_url);
+            resource.apply_as_mask(container);
 
             // Adjust colors for image masking
             var colors = get_colorscheme(options);
-            colors && $('#title-container #title-text').css('background-color', colors.content_light);
+            colors && $(container).css('background-color', colors.content_light);
 
+            element.append(container);
         }
 
 
     } else {
-        return value;
+        var container = $('<span id="title-text"/>').addClass('fit');
+        container.html(value);
+        element.append(container);
     }
+
 }
 
 function footer_logo(options, element, value) {
 
-    // v1: Switching logos between variants
+    // Switch logos between variants
+    var logo_variant = 'white';
+    if (options.variant == 'eco') {
+        logo_variant = 'dark';
+    }
+
+    // v1: Use logo as regular HTML image element
     if (!options.cssmask) {
-        var logo_variant = 'white';
-        if (options.variant == 'eco') {
-            logo_variant = 'dark';
-        }
         if (footer_logo_map[logo_variant]) {
             var logo_url = footer_logo_map[logo_variant];
 
@@ -270,21 +282,32 @@ function footer_logo(options, element, value) {
             // element.attr('src', logo_url);
 
             // v2: Load image actively, optionally adjusting fill color of SVG images
-            load_image(options, element, logo_url);
+            load_image(options, logo_url).then(function(image) {
+
+                // Integrate image element into HTML DOM
+                prepare_image(options, image);
+                image.css('height', '100%');
+                element.append(image);
+
+            });
 
         }
 
-    // v2: Using SVG as mask image
+    // v2: Use SVG logo as mask image
     } else {
+
+        var container = $('<img id="organization-logo"/>').addClass('image-fit');
+
         var logo_url = footer_logo_map['white'];
-        $(element).css('mask-image', 'url(' + logo_url + ')');
-        $(element).css('mask-size', 'contain');
-        $(element).css('mask-repeat', 'no-repeat');
+        $(container).css('mask-image', 'url(' + logo_url + ')');
+        $(container).css('mask-size', 'contain');
+        $(container).css('mask-repeat', 'no-repeat');
 
         // Adjust colors for image masking
         var colors = get_colorscheme(options);
-        colors && $('#footer-container #organization-logo').css('background-color', colors.content_light);
+        colors && $(container).css('background-color', colors.content_light);
 
+        element.append(container);
     }
 
 }
@@ -309,6 +332,20 @@ function nl2span_fit(options, element, value) {
 
 function nl2br(options, element, value) {
     return value.replace(/\n/g, '<br/>');
+}
+
+function prepare_image(options, image) {
+
+    // Make the element fit its container
+    image.addClass('image-fit');
+
+    // When variant "color" was requested and we are using an SVG image,
+    // adjust its fill color to the background color
+    if (options.variant == 'color') {
+        var colors = get_colorscheme(options);
+        image.svg_fill(colors.background);
+    }
+
 }
 
 
@@ -391,30 +428,41 @@ function setup_colors(options) {
 
 }
 
-function load_image(options, element, url) {
-    console.log('Loading image', url);
-    posterkit.fetch_resource(url).then(function(result) {
+function load_image(options, url) {
 
-        // Get image data
-        var payload = result.data;
-        //console.log('payload:', payload);
+    var resource = new rigveda.ImageResource(url);
+    var image_loader = options['image-loader'];
 
-        // When variant "color" was requested and we are using an SVG image,
-        // adjust its fill color to the background color
-        if (options.variant == 'color' && result.content_type == 'image/svg+xml') {
-            var colors = get_colorscheme(options);
-            payload = posterkit.svg_set_fill_color(payload, colors.background);
-            //console.log('svg-image:', payload);
-        }
+    // Browser loader
+    if (image_loader == 'classic') {
+        return resource.load_classic();
 
-        // Set image data to element
-        posterkit.to_data_url_by_data(payload, result.content_type).then(function(payload) {
-            element.attr('src', payload);
-        });
-    }).catch(function(error) {
-        console.error('Loading image from url ' + url + ' failed:', error.message, error.xhr);
-    });
+    // "data" URL loader
+    } else if (image_loader == 'dataurl') {
+
+        var svg_fill_content_filter = function (payload) {
+            // When variant "color" was requested and we are using an SVG image,
+            // adjust its fill color to the background color
+            // response.content_type == 'image/svg+xml'
+            if (options.variant == 'color') {
+                var colors = get_colorscheme(options);
+                payload = posterkit.svg_set_fill_color(payload, colors.background);
+                //console.log('svg-image:', payload);
+            }
+            return payload;
+        };
+
+        return resource.load_dataurl(svg_fill_content_filter);
+
+    } else {
+        var msg = 'Unknown image-loader: ' + image_loader;
+        var error = new Error(msg);
+        return Promise.reject(error);
+
+    }
 }
+
+
 
 
 // ----
@@ -422,7 +470,7 @@ function load_image(options, element, url) {
 // ----
 $(document).ready(function() {
 
-    console.log('Loading poster.js');
+    posterkit.welcome();
 
     // Propagate version
     $('#version').html(__version__);
@@ -432,14 +480,38 @@ $(document).ready(function() {
     var url = $.url(uri);
     var options = url.param();
 
-    // Read parameters using reasonable defaults
-    // TODO: Refactor defaults out of here
-    // TODO: Provide resonable default texts (Lorem ipsum?),
-    // display a "404 Not found" poster and provide a link
-    // back to the chooser page.
-    var language = (options.lang || 'fr');
-    var poster_name = (options.name || 'google').toLowerCase();
+    console.log('Request', uri);
+    console.log('Running', rigveda.get_current_script());
+    console.log('Received options: ', JSON.stringify(options));
 
+    // Apply reasonable defaults
+
+    // Engine control
+    _.defaults(options, {
+
+        // Choose image loader, one of "classic", "dataurl"
+        'image-loader': 'classic',
+
+    });
+
+    // Poster control: Lowercase all parameters
+    _.mapValues(['lang', 'name', 'variant'], function(varname) {
+        options[varname] = options[varname] && options[varname].toLowerCase();
+    });
+
+    console.log('Effective options:', JSON.stringify(options));
+
+
+    // TODO: Sanity checks against missing or invalid parameters
+    // TODO: Provide reasonable default texts (Lorem ipsum?)
+    // TODO: Display a "404 Not found" poster and provide a link back to the chooser page
+
+    // Read parameters
+    var language = options.lang;
+    var poster_name = options.name;
+
+
+    console.info('Starting PosterKit renderer');
 
     // Setup display
     setup_display(options);

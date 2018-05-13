@@ -42,6 +42,7 @@
         "jquery": "^3.2.1",
         "langs": "^2.0.0",
         "lodash": "^4.17.4",
+        "prime": "^0.5.0",
         "purl": "https://github.com/allmarkedup/purl",
         "readable-glyph-names": "^1.0.0",
         "style-loader": "^0.19.0",

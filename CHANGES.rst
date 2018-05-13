@@ -16,6 +16,7 @@ general
 - Optimize thumbnail image size by converting to 8-bit PNG image
 - Update url to high resolution thumbnail image
 - Use decktape fork to make page loading work with data uri resources
+- Refactor lowlevel parts of ``posterkit.js`` into ``rigveda.js``
 
 lqdn-gafam-campaign
 -------------------

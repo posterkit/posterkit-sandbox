@@ -1,63 +1,36 @@
+// -*- coding: utf-8 -*-
+// (c) 2018 The PosterKit developers <developers@posterkit.org>
 require('jquery');
 require('lodash');
 const fitty = require('fitty/dist/fitty.min.js');
-const readable_glyph_names = require('readable-glyph-names');
 
-const i18next = require('i18next');
-const i18nextXHRBackend = require('i18next-xhr-backend');
-const i18nextBrowserLanguageDetector = require('i18next-browser-languagedetector');
-
-const FontFaceObserver = require('fontfaceobserver');
-
-
+const rigveda = require('rigveda');
+const Typesetting = rigveda.Typesetting.prototype;
 require('../css/pagesize.css');
 require('../css/poster.css');
+require('version.js');
+
+
+function welcome() {
+    console.info('Welcome to PosterKit version ' + __version__);
+}
 
 function load_fonts() {
-    console.info('Loading fonts');
-    return new Promise(function(resolve, reject) {
-        var fonts = [
-            new FontFaceObserver('Open Sans').load(),
-            new FontFaceObserver('FuturaExtended').load(),
-            new FontFaceObserver('FuturaMaxiBold').load(),
-            new FontFaceObserver('LatoWeb').load(),
-            new FontFaceObserver('LatoWebHeavy').load(),
-            //new FontFaceObserver('Muli').load(),
-        ];
-        Promise.all(fonts).then(function() {
-            console.log('Loading fonts successful');
-            resolve();
-        }).catch(function(error) {
-            console.error('Loading fonts failed:', error);
-            reject(error);
-        });
-    });
+
+    //return Promise.resolve();
+    //return Promise.reject('ERROR SIMULATION');
+
+    return Typesetting.load_fonts([
+        'Open Sans',
+        'FuturaExtended', 'FuturaMaxiBold',
+        'LatoWeb', 'LatoWebHeavy',
+        //'Muli',
+    ]);
 }
 
 function load_content(i18next_data_url, language) {
-    console.info('Loading content');
-    return new Promise(function(resolve, reject) {
-        // Apply text from translation file
-        i18next
-            .use(i18nextXHRBackend)
-            //.use(i18nextBrowserLanguageDetector)
-            .init({
-                lng: language,
-                fallbackLng: language,
-                //debug: true,
-                backend: {
-                    loadPath: i18next_data_url,
-                    crossDomain: true
-                }
-            }, function(err, t) {
-                //console.log('err:', err, t);
-                if (err !== undefined) {
-                    reject(err);
-                } else {
-                    resolve(t);
-                }
-            });
-    });
+    var resource = new rigveda.InternationalizedResource(i18next_data_url);
+    return resource.fetch(language);
 }
 
 function content_to_dom(mapping, poster_name, get_content, options) {
@@ -100,141 +73,11 @@ function content_to_dom(mapping, poster_name, get_content, options) {
 
 }
 
+
 function fit_text(element, options) {
     options = options || {};
     console.info('Fitting text to container width');
     fitty(element, options);
-}
-
-function fit_text_bounding_box(element, language) {
-
-    console.info('Fitting bounding box to text content');
-
-    //console.log('child:', element, $(element).text());
-
-    var text = $(element).text();
-    var font_family = $(element).css('font-family');
-    var font_size = parseFloat($(element).css('font-size').replace('px', ''));
-    //console.log('font_size:', font_size);
-    //console.log('font_family:', font_family);
-
-    var font_size_height_ratio = 0.77;
-    var font_size_line_height_ratio = 0.95;
-    var with_diacritics = has_diacritics(text);
-
-    // Adjust if text contains a diacritic character
-    if (with_diacritics) {
-        font_size_height_ratio = 1.10;
-        font_size_line_height_ratio = 1.58;
-    }
-
-    // Adjust for different character boxing of Segoe, etc.
-    if (_.includes(font_family, 'Segoe') || _.includes(font_family, '"Open Sans"')) {
-        font_size_height_ratio = 1.10;
-        font_size_line_height_ratio = 0.90;
-    }
-
-    // Adjust for different character boxing of LatoWebHeavy
-    if (font_family == 'LatoWebHeavy') {
-        font_size_height_ratio = 0.80;
-        font_size_line_height_ratio = 0.77;
-        if (with_diacritics) {
-            font_size_height_ratio = 1.00;
-            font_size_line_height_ratio = 1.15;
-        }
-    }
-
-    // Adjust for Arabic variant of FuturaMaxiBold, Futura
-    if (language == 'ar') {
-        font_size_height_ratio = 1.10;
-        font_size_line_height_ratio = 1.00;
-    }
-
-    // Compute new values for element height and line height
-    var height_new = font_size * font_size_height_ratio;
-    var line_height_new = font_size * font_size_line_height_ratio;
-
-    $(element).css('height', height_new);
-    $(element).css('line-height', line_height_new + 'px');
-
-}
-
-function has_diacritics(text) {
-
-    // Single chars not available in lightweight unicode database
-    var diacritics = [
-        // Russian
-        //'Й',
-    ];
-
-    for (var character of diacritics) {
-        if (text.includes(character)) {
-            return true;
-        }
-    }
-
-    //console.log(unicode);
-
-    var diacritics_keywords = [
-        'ABOVE',
-        'DIAERESIS',
-        'CIRCUMFLEX',
-        'ACUTE',
-        'GRAVE',
-        'TILDE',
-    ];
-
-    diacritics_keywords = diacritics_keywords.concat([
-        'dieresis',
-        'ring',
-        //'germandbls',  // Needs more/different tuning
-        'ishort',
-    ]);
-
-    //console.log('diacritics_keywords:', diacritics_keywords);
-
-    for (var character of text) {
-        var unicode_info = get_unicode_info(character);
-        if (!unicode_info) {
-            console.warn('Unable to get unicode information for character:', character);
-            return false;
-        }
-        //console.log('unicode info:', character, character.charCodeAt(0), unicode_info);
-        for (var keyword of diacritics_keywords) {
-            if (unicode_info.name.toLowerCase().includes(keyword.toLowerCase())) {
-                console.log('Found accents/diacritics in "' + text + '" through keyword "' + keyword + '"');
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
-
-function get_unicode_info(char) {
-
-    var charcode_dec = char.charCodeAt(0);
-    var charcode_hex = charcode_dec.toString(16).toUpperCase().padStart(4, '0');
-
-    // Use full unicode database
-    /*
-    //const unicode_category = require('general-category');
-    var category = unicode_category(char);
-    //console.log('category:', category);
-    const unicode = require('unicode/category/' + category);
-    var info = unicode[charcode_dec];
-    console.log('unicode info:', char, info);
-    */
-
-    // Use leightweight unicode database
-    var glyph_name = readable_glyph_names[charcode_hex];
-    //console.log('glyph_name:', glyph_name);
-
-    // Debugging
-    //console.log('character:', char, charcode_dec, charcode_hex, glyph_name);
-
-    var info = {'name': glyph_name};
-    return info;
 }
 
 
@@ -244,8 +87,8 @@ function run_autolayout(layout_rules, language, poster_name) {
 
     // Apply custom layout settings
     var refitting_allowed = true;
-    layout_rules.forEach(function (layout_rule) {
-        if (layout_rule.predicate && layout_rule.predicate(language, poster_name.toLowerCase())) {
+    layout_rules.forEach(function(layout_rule) {
+        if (layout_rule.predicate && layout_rule.predicate(language, poster_name)) {
             var settings = layout_rule;
             if (settings) {
                 if (settings.refitting != undefined) {
@@ -267,13 +110,14 @@ function run_autolayout(layout_rules, language, poster_name) {
 
     $('#title-content .fit').on('fit', function() {
         //console.log('#title-content .fit');
-        fit_text_bounding_box(this, language);
+        Typesetting.fit_text_bounding_box(this, language);
     });
 
     var refit_body_debounced = _.debounce(refit_body_size, 10, { 'maxWait': 500 });
     $('#body-content .fit').on('fit', function() {
         //console.log('#body-content .fit');
-        fit_text_bounding_box(this, language);
+        //console.log(rigveda);
+        Typesetting.fit_text_bounding_box(this, language);
         refit_body_debounced();
     });
 
@@ -337,125 +181,6 @@ function refit_body_size() {
 
 }
 
-function apply_mask_image(element, url) {
-
-    // Set mask image on element and adjust its size appropriately
-    // Currently executed asynchronously without waiting for its outcome
-
-    image_get_size(url).then(function(image_size) {
-
-        console.log('Image size:', image_size);
-
-        //element.addClass('image-mask');
-        $(element).css('mask-image', 'url(' + url + ')');
-        $(element).css('mask-size', 'contain');
-        $(element).css('mask-repeat', 'no-repeat');
-        $(element).width(image_size.width + 'px');
-        $(element).height(image_size.height + 'px');
-
-        // Make element cover the full width of the container element,
-        // which is currently 16.0 cm for regular posters.
-        $(element).width('100%');
-
-        // Adjust element height while keeping aspect ratio
-        ratio = $(element).width() / image_size.width;
-        $(element).height($(element).height() * ratio + 'px');
-
-    });
-}
-
-function image_get_size(image_url) {
-
-    console.log('Getting image size for', image_url);
-
-    // Create offscreen image element
-    var image = $('<img/>');
-    image.css('position', 'absolute');
-    image.css('top', '-10000px');
-    $('body').append(image);
-
-    return new Promise(function(resolve, reject) {
-
-        image.on('load', function() {
-
-            // Use image size information
-            var size = {};
-            size.width = image.width();
-            size.height = image.height();
-
-            // Remove image element
-            image.remove();
-
-            resolve(size);
-
-        });
-
-        // Load image
-        image.attr('src', image_url);
-
-    });
-
-}
-
-function image_load_vanilla(url, target) {
-    // https://stackoverflow.com/questions/10863658/load-image-with-jquery-and-append-it-to-the-dom/10863680#10863680
-    $('<img src="'+ url +'">').load(function() {
-        //$(this).width(width).height(height).appendTo(target);
-        $(this).appendTo(target);
-    });
-}
-
-function to_data_url_by_url(url) {
-    return new Promise(function(resolve, reject) {
-        // https://stackoverflow.com/questions/22172604/convert-image-url-to-base64/43015238#43015238
-        var xhr = new XMLHttpRequest();
-        xhr.onload = function() {
-            //console.log('xhr:', xhr);
-            var reader = new FileReader();
-            reader.onload = function() {
-                resolve(reader.result);
-            }
-            reader.onerror = function() {
-                reject(reader.result);
-            }
-            reader.readAsDataURL(xhr.response);
-        };
-        xhr.open('GET', url);
-        xhr.responseType = 'blob';
-        xhr.send();
-    });
-}
-
-function to_data_url_by_data(data, type) {
-    return new Promise(function(resolve, reject) {
-        // https://stackoverflow.com/questions/34414581/filereader-readasdataurl-returns-a-to-short-base64-string
-        // http://usefulangle.com/post/15/previewing-images-with-jquery-data-uri-vs-object-url
-        var blob = new Blob([data], { type: type});
-        var reader = new FileReader();
-        reader.onload = function() {
-            resolve(reader.result);
-        }
-        reader.onerror = function() {
-            reject(reader.result);
-        }
-        reader.readAsDataURL(blob);
-    });
-}
-
-function fetch_resource(url) {
-    return new Promise(function(resolve, reject) {
-        $.get(url).then(function(payload, status, xhr) {
-            var result = {
-                url: url,
-                data: xhr.responseText,
-                content_type: xhr.getResponseHeader('Content-Type'),
-            };
-            resolve(result);
-        }).catch(function(xhr, status, message) {
-            reject({xhr: xhr, status: status, message: message});
-        });
-    });
-}
 
 function svg_set_fill_color(xml, color) {
     // Replace all fill attributes with given value
@@ -469,23 +194,12 @@ function svg_set_fill_color(xml, color) {
     return xml
 }
 
-// Force redraw on an element (jQuery)
-// https://coderwall.com/p/ahazha/force-redraw-on-an-element-jquery
-$.fn.redraw = function(){
-    $(this).each(function(){
-        var redraw = this.offsetHeight;
-    });
-};
 
 
+exports.welcome = welcome;
 exports.load_fonts = load_fonts;
 exports.load_content = load_content;
 exports.content_to_dom = content_to_dom;
 exports.fit_text = fit_text;
-//exports.fit_text_bounding_box = fit_text_bounding_box;
 exports.run_autolayout = run_autolayout;
-exports.apply_mask_image = apply_mask_image;
-exports.to_data_url_by_url = to_data_url_by_url;
-exports.to_data_url_by_data = to_data_url_by_data;
-exports.fetch_resource = fetch_resource;
 exports.svg_set_fill_color = svg_set_fill_color;
