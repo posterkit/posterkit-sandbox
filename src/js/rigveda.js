@@ -61,9 +61,12 @@ var Typesetting = prime({
         var with_diacritics = this.has_diacritics(text);
 
         // Adjust if text contains a diacritic character
-        if (with_diacritics) {
+        if (with_diacritics.any) {
             font_size_height_ratio = 1.10;
             font_size_line_height_ratio = 1.58;
+        }
+        if (with_diacritics.ascender && with_diacritics.descender) {
+            font_size_height_ratio = 1.35;
         }
 
         // Adjust for different character boxing of Segoe, etc.
@@ -76,7 +79,7 @@ var Typesetting = prime({
         if (font_family == 'LatoWebHeavy') {
             font_size_height_ratio = 0.80;
             font_size_line_height_ratio = 0.77;
-            if (with_diacritics) {
+            if (with_diacritics.any) {
                 font_size_height_ratio = 1.00;
                 font_size_line_height_ratio = 1.15;
             }
@@ -98,7 +101,9 @@ var Typesetting = prime({
     },
 
     has_diacritics: function(text) {
+
         // Single chars not available in lightweight unicode database
+        /*
         var diacritics = [
             // Russian
             //'Й',
@@ -109,43 +114,64 @@ var Typesetting = prime({
                 return true;
             }
         }
+        */
 
         //console.log(unicode);
+        var diacritics_keywords = {
+            ascender: [
 
-        var diacritics_keywords = [
-            'ABOVE',
-            'DIAERESIS',
-            'CIRCUMFLEX',
-            'ACUTE',
-            'GRAVE',
-            'TILDE',
-        ];
+                'ABOVE',
+                'DIAERESIS',
+                'CIRCUMFLEX',
+                'ACUTE',
+                'GRAVE',
+                'TILDE',
 
-        diacritics_keywords = diacritics_keywords.concat([
-            'dieresis',
-            'ring',
-            //'germandbls',  // Needs more/different tuning
-            'ishort',
-        ]);
+                'dieresis',
+                'ring',
+                //'germandbls',  // Needs more/different tuning
+                'ishort',
+            ],
+            descender: [
+                'cedilla',
+            ],
+        };
 
         //console.log('diacritics_keywords:', diacritics_keywords);
 
+        var response = {
+            any: false,
+            ascender: false,
+            descender: false,
+        };
         for (var character of text) {
+
             var unicode_info = this.get_unicode_info(character);
+            console.log('unicode_info:', unicode_info);
+
             if (!unicode_info) {
                 console.warn('Unable to get unicode information for character:', character);
-                return false;
+                continue;
             }
             //console.log('unicode info:', character, character.charCodeAt(0), unicode_info);
-            for (var keyword of diacritics_keywords) {
-                if (unicode_info.name.toLowerCase().includes(keyword.toLowerCase())) {
-                    console.log('Found accents/diacritics in "' + text + '" through keyword "' + keyword + '"');
-                    return true;
+
+            for (var kind of ['ascender', 'descender']) {
+                for (var keyword of diacritics_keywords[kind]) {
+                    if (unicode_info.name.toLowerCase().includes(keyword.toLowerCase())) {
+                        console.log(
+                            'Found "' + kind + '" diacritic for unicode name "' + unicode_info.name + '" ' +
+                            'in "' + text + '" through keyword "' + keyword + '"');
+                        response[kind] = true;
+                    }
                 }
             }
         }
 
-        return false;
+        if (response.ascender || response.descender) {
+            response.any = true;
+        }
+
+        return response;
     },
 
     get_unicode_info: function(char) {
