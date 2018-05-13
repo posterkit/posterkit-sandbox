@@ -5,6 +5,9 @@ PosterKit-O-Mat CHANGES
 
 in progress
 ===========
+
+general
+-------
 - Mangle webpack output layout again
 - Fix webpack publicPath
 - Disable CSS image mask again, see https://github.com/posterkit/posterkit-sandbox/issues/2#issuecomment-388431859
@@ -13,6 +16,10 @@ in progress
 - Optimize thumbnail image size by converting to 8-bit PNG image
 - Update url to high resolution thumbnail image
 - Use decktape fork to make page loading work with data uri resources
+
+lqdn-gafam-campaign
+-------------------
+- Fix SVG images re. width x height vs. viewBox
 
 
 2018-05-08 0.6.0
