@@ -37,7 +37,7 @@ var name_color_map = {
     'apple': 'white',
     'facebook': '#3889b9',
     'amazon': 'yellow',
-    'microsoft': 'green',
+    'microsoft': '#58db58',
 };
 
 // Which headlines to swap by its depicted representations

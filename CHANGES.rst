@@ -23,6 +23,7 @@ lqdn-gafam-campaign
 -------------------
 - Fix SVG images re. width x height vs. viewBox
 - Adjust bounding-box fitting for texts containing ascenders *and* descenders, e.g. "ÇÒ QUE" from Occitan
+- Use brighter green tone for M$ poster
 
 
 2018-05-08 0.6.0
