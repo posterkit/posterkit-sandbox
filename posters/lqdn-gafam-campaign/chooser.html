@@ -43,19 +43,92 @@
         <h1 class="content is-spaced has-text-dark is-size-2 has-text-weight-bold" style="line-height: 1.0">
             The GAFAM poster campaign library
         </h1>
-        <h2 class="is-size-4">
-            Translations of the <a href="https://gafam.info/">GAFAM poster campaign by La Quadrature du Net</a>.
+        <div class="column is-7-desktop is-8-tablet is-10-mobile is-paddingless">
+            <img class="content thumbnail-image" style="width: 50em" src="https://ptrace.gafam.info/unofficial/img/color/lqdn-gafam-poster-en-color-5x1-2560x.png"/>
+            <h2 class="is-size-4">
+                This page hosts the translations and corresponding resources of the
+                <a href="https://gafam.info/">GAFAM poster campaign</a> texts
+                from the
+                <a href="https://gafam.laquadrature.net/">group action against GAFAM</a>
+                by
+                <a href="https://laquadrature.net/">La Quadrature du Net</a>.
+            </h2>
+        </div>
+    </div>
+</section>
+
+<section id="facts-and-figures" class="section">
+    <div class="container is-fluid">
+
+        <h2 class="content is-spaced has-text-dark is-size-3 has-text-weight-bold">
+            Facts and figures
         </h2>
-        <div class="content">
+
+        <div class="content is-size-5">
+
+            <h5>
+                Guidelines
+            </h5>
             <ul>
                 <li>
-                    The files are also available as <a href="https://ptrace.gafam.info/unofficial/pdf/">PDF documents</a>.
+                    If you are in a hurry, you might want to go straight to the final
+                    <a href="https://ptrace.gafam.info/unofficial/pdf/">PDF documents</a>.
                     <!--
                     we encourage <a class="modal-button" data-target="#howto-mirror" aria-haspopup="true">mirroring them</a>.
                     -->
                 </li>
                 <li>
-                    All resources and the derived output is CC0-licensed and has been rendered using <a href="https://github.com/posterkit/posterkit-sandbox">PosterKit</a>.
+                    <div class="notification is-warning column is-8-desktop is-8-tablet is-10-mobile">
+                        <h4 class="is-inline">Note</h4>
+                        <p>
+                            <b>Please do not print the "color" variant of the posters.</b>
+                            <br/>
+                            Instead, choose one of the "black" or "eco" variants and print it on <b>colored paper</b>.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+
+            <h5>
+                Audience
+            </h5>
+            <ul>
+                <li>
+                    Campaigners. The published resources are ready for printing.
+                    This quickly lets you get started to spread the word.
+                </li>
+                <li>
+                    Translators. We have been able to collect translations into 16 languages,
+                    but we are just getting started.
+                    <br/>
+                    If you feel you can contribute a translation into yet another language,
+                    don't hesitate!
+                </li>
+            </ul>
+
+            <h5>
+                Details
+            </h5>
+            <ul>
+                <li>
+                    All resources and the derived outputs are
+                    <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>-licensed (Public Domain).
+                </li>
+                <li>
+                    The HTML layout, the PDF documents and the thumbnail images are composed and rendered
+                    using <a href="https://github.com/posterkit/posterkit-sandbox">PosterKit</a>.
+                </li>
+                <li>
+                    The translation files are hosted in the repository
+                    <a href="https://github.com/gafam/gafam-poster-translations">gafam-poster-translations</a> on GitHub.
+                    Pull requests are welcome!
+                    <br/>
+                    Using <a href="https://hosted.weblate.org/projects/gafam/translations/">GAFAM on Weblate</a>,
+                    the translations can also be edited online.
+                </li>
+                <li>
+                    If you have further questions or feedback, you can contact us at
+                    <a class="button" href='mailt&#111;&#58;%68%&#54;&#53;&#37;6Cl&#111;&#64;&#103;&#97;%6&#54;%61m&#46;&#37;69&#110;fo'>hello&#64;ga&#102;am&#46;info</a>
                 </li>
             </ul>
         </div>
@@ -158,19 +231,21 @@
 
     </div>
 </section>
-<section class="section">
+<section id="select-language" class="section">
     <div class="container is-fluid">
 
-        <h2 class="content is-spaced has-text-dark is-size-3 has-text-weight-bold" id="select-language">
+        <h2 class="content is-spaced has-text-dark is-size-3 has-text-weight-bold">
             Choose language and variant
         </h2>
         <p class="content is-spaced">
             The library offers translations into <%= language_names.slice(0, -1).join(', ') %>
             and <%= language_names.slice(-1) %>,
             each with multiple variants (<%= variant_names.join(', ') %>).
-            Thanks to all who contributed translations!
+            Thanks to all contributors!
         </p>
+        <hr/>
         <div id="chooser-matrix"/>
+
     </div>
 </section>
 </script>
@@ -248,6 +323,8 @@
                     For saturated printing
                     <% } else if (variant == 'eco') { %>
                     For economic printing
+                    <% } else if (variant == 'color') { %>
+                    For displaying on screens
                     <% } %>
                 </div>
             </div>
