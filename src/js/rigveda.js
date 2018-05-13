@@ -403,6 +403,42 @@ var ImageResource = prime({
 
     },
 
+    load_dom: function() {
+
+        if (!_(this.url).endsWith('.svg')) {
+            return this.load_classic();
+        }
+
+        console.log('Loading image', this.url, 'using XHR request as SVG DOM element');
+        var _this = this;
+        return new Promise(function(resolve, reject) {
+            _this.fetch().then(function(response) {
+
+                //console.log('content:', response.content);
+
+                // v1: Serialize the SVG DOM to its XML representation
+                // If you're using jQuery, the callback data it gives you is already formatted into an SVG document,
+                // so you need to force it back into a string before appending it to the div and ultimately the page.
+                // https://css-tricks.com/ajaxing-svg-sprite/
+                //var svg_html = new XMLSerializer().serializeToString(response.content.documentElement);
+
+                // v2: Directly reuse the SVG DOM XMLDocument object instance
+                var svg_dom = response.content.documentElement;
+                //console.log('svg_dom:', svg_dom);
+
+                // Find the HTML DOM element of the SVG DOM just injected
+                var svg_element = $(svg_dom);
+
+                console.log('Image', _this.url, 'loaded');
+                resolve(svg_element);
+
+            }).catch(function(error) {
+                console.error('Loading image from url ' + _this.url + ' failed:', error.message, error.xhr);
+                reject(error);
+            });
+        });
+
+    },
 
 });
 

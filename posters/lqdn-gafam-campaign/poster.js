@@ -454,6 +454,10 @@ function load_image(options, url) {
 
         return resource.load_dataurl(svg_fill_content_filter);
 
+    // SVG DOM loader
+    } else if (image_loader == 'dom') {
+        return resource.load_dom();
+
     } else {
         var msg = 'Unknown image-loader: ' + image_loader;
         var error = new Error(msg);
@@ -489,8 +493,8 @@ $(document).ready(function() {
     // Engine control
     _.defaults(options, {
 
-        // Choose image loader, one of "classic", "dataurl"
-        'image-loader': 'classic',
+        // Choose image loader, one of "classic", "dataurl", "dom"
+        'image-loader': 'dom',
 
     });
 

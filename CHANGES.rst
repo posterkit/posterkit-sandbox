@@ -17,6 +17,7 @@ general
 - Update url to high resolution thumbnail image
 - Use decktape fork to make page loading work with data uri resources
 - Refactor lowlevel parts of ``posterkit.js`` into ``rigveda.js``
+- Add new default image-loader="dom" which styles the SVG using CSS. Improves #2, thanks Piotr!
 
 lqdn-gafam-campaign
 -------------------
