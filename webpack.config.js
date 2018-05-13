@@ -112,13 +112,13 @@ module.exports = {
             chunks: ['commons', 'example-lqdn-gafam-chooser'],
             filename: '../lqdn-gafam-campaign/chooser.html',
             template: path.resolve('posters', 'lqdn-gafam-campaign', 'chooser.html'),
-            'inject': 'head',
+            inject: 'head',
         }),
         new HtmlWebpackPlugin({
             chunks: ['commons', 'example-lqdn-gafam-poster'],
             filename: '../lqdn-gafam-campaign/poster.html',
             template: path.resolve('posters', 'lqdn-gafam-campaign', 'poster.html'),
-            'inject': 'head',
+            inject: 'head',
         }),
 
         // https://github.com/webpack-contrib/copy-webpack-plugin

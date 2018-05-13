@@ -124,7 +124,7 @@ function run_autolayout(layout_rules, language, poster_name) {
     // Resize all texts with class="fit" to fit their parent containers
     fit_text('.fit');
 
-    console.info('Happy CSS3, happy Flexbox!');
+    console.info('Autolayout finished. Happy hippie CSS3, Flexbox and Fitty!');
 
 }
 

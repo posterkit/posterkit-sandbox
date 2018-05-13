@@ -186,8 +186,10 @@ var Resource = prime({
         var _this = this;
         return new Promise(function(resolve, reject) {
 
-            // FIXME: Prevent caching!? Maybe append webpack application hash.
-            //_this.url += '?t=42';
+            console.log('Resource.fetch', _this.url);
+
+            // FIXME: Bust resource cache. Can we append the webpack application hash?
+            _this.url += '?c=42';
 
             $.get(_this.url).then(function(content, status, xhr) {
                 //console.log('content:', content);
