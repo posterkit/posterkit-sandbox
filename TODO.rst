@@ -2,6 +2,7 @@
 PosterKit-O-Mat TODO
 ####################
 
+- [o] Make a poster for PosterKit itself ;]
 
 Content
 =======

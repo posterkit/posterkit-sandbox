@@ -95,6 +95,20 @@ Install ImageMagick
     brew install imagemagick
 
 
+Install pngquant
+================
+
+.. note:: Todo: Add to postprocessing chain?
+
+::
+
+    # Debian Linux
+    apt install pngquant
+
+    # Mac OS X
+    brew install pngquant
+
+
 ****
 Test
 ****

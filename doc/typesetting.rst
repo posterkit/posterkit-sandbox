@@ -10,6 +10,9 @@ This section tries to shed some light onto typesetting_ in general, but especial
 how it works in contemporary browsers and how PosterKit tries to cope with the quirks attached.
 Here be dragons.
 
+It is all about the goal to enable browsers to render arbitrary text content in a robust manner
+by being able to confidently apply different autolayout mechanisms.
+
 
 ************
 Introduction

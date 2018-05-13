@@ -7,34 +7,70 @@ lqdn-gafam-campaign example todo
 Prio 1
 ******
 - [x] RTL for the translation into Arabic
-- [x] Use English translation of colored summary image as og:image and twitter:image, at least in chooser.html
+- [x] Use English translation of colored thumbnail image as og:image and twitter:image, at least in chooser.html
 - [x] Think about making "Print view" the default.
   At least on mobile, it would probably be better to display the renderings without passepartout.
-- [o] Use dynamic SVG coloring for variant "color"
-- [o] Improve intro text
-- [o] Subtitle for variant "color"
+- [x] Use dynamic SVG coloring for variant "color"
+- [x] DeckTape patch re. ``page.goto(options.url, { waitUntil: 'networkidle2', timeout: 60000 })``
+  See also https://github.com/GoogleChrome/puppeteer/issues/728#issuecomment-351432657
+- [x] Footer text height is not aligned with logo
+- [x] LQDN logo not displayed in Chrome
+- [o] Add translation into the Occitan language
+
+
+*********
+Prio 1.13
+*********
+- [o] Improve intro text on chooser.html
+- [o] Add subtitle for variant "color". E.g. "For displaying on screens"
 - [o] Remark regarding printing of colored posters. => DON'T!
 - [o] Make the other PosterKit examples work again
-- [o] Improve Arabic font
-
-    - https://ptrace.gafam.info/unofficial/img/color/lqdn-gafam-poster-ar-color-5x1-1280x.jpg
-    - https://ptrace.gafam.info/unofficial/pdf/color/lqdn-gafam-poster-ar-color.pdf
-
-- [o] Add translation into the Occitan language
-- [o] Build high-resolution n-up 5x1 resource for displaying on large screens
-- [o] Add translation into Occitan
-- [o] The Arabic font used when rendering on Mac OS X looks way more beautiful than on Linux.
-  How to improve that short- or medium-term?
-- [o] Add ``posterkit --keep-files`` for keeping temporary files
+- [o] Update README.rst
+- [o] Build and publish distribution package
+- [o] Remove things like id="organization-logo"
+- [o] Test how image loading works with regular/transparent PNG/JPEG/GIF images
+- [o] The current Promise-based architecture is nice, but what if some
+  promises could not be fulfilled due to not being able to load resources, etc.?
+- [o] Maybe use "i18nextBrowserLanguageDetector" in chooser.html or as general default for poster.html?
+- [o] How to make the chooser link to local resources (image, pdf)?
 
 
 *********
 Prio 1.25
 *********
-- [o] Rename "summary image" to "thumbnail image"
 - [o] Improve colors (name_color_map)
+- [o] Improve Arabic font
+
+    - https://ptrace.gafam.info/unofficial/img/color/lqdn-gafam-poster-ar-color-5x1-1280x.jpg
+    - https://ptrace.gafam.info/unofficial/pdf/color/lqdn-gafam-poster-ar-color.pdf
+
+- [o] Build high-resolution n-up 5x1 resource for displaying on large screens
+- [o] The Arabic font used when rendering on Mac OS X looks way more beautiful than on Linux.
+  How to improve that short- or medium-term?
+- [o] Add ``posterkit --keep-files`` for keeping temporary files
+- [o] Docs: Write about parameters "cssmask=true" and "image-loader={classic,dataurl,dom}"
+
 - [o] Add meaningful example for "fit_text_bounding_box" and use screenshot images in doc/typesetting.rst
-- [o] Why is the summary image quality so poor?
+- [o] Why is the thumbnail image quality so poor?
+- [o] Should "run_autolayout" be deferred until "load_image_classic" signals the images have loaded successfully?
+  Remark: All things "load_image" should be run from "load_content", actually.
+- [o] Tune specific posters
+
+    - Fall back to English: poster.html?lang=ar&name=apple&variant=eco ff.
+
+    - Small text in footer:
+
+        - poster.html?lang=de&name=apple&variant=eco
+        - poster.html?lang=eo&name=apple&variant=eco
+        - poster.html?lang=ja&name=google&variant=color ff.
+        - poster.html?lang=pl&name=apple&variant=black
+        - poster.html?lang=pl&name=amazon&variant=black
+
+    - Too much text in footer?
+
+        - poster.html?lang=nb&name=apple&variant=eco
+        - poster.html?lang=nb&name=amazon&variant=eco
+
 
 
 ********
@@ -50,6 +86,7 @@ Content-specific
 - [o] Improve "height kerning" on http://localhost:9999/examples/lqdn-gafam-campaign/poster.html?lang=es&name=amazon&variant=black&passepartout=true
 - [o] Do some diacritics get cut off? see e.g. http://localhost:9999/examples/lqdn-gafam-campaign/poster.html?lang=pt&name=apple&variant=black&passepartout=true
 - [o] How can we autolayout the header title content for narrow content like http://localhost:9999/examples/lqdn-gafam-campaign/poster.html?lang=ar&name=apple&variant=black&passepartout=true
+- [o] Make the facebook logo appear larger
 
 General
 =======
@@ -59,16 +96,17 @@ General
 - [o] Sanity checks and appropriate messages when running with invalid parameters to lang=, name=, passepartout=, etc.
 - [o] uncaught exception: Error querying directory contents from GitHub repository
 - [o] Control language sort order. Maybe put most-spoken western languages (English, Spanish) first?
-- [o] Can the quality of the thumbnail summary images be improved to make the text actually readable?
-- [o] Shall we also generate high-res summary images?
+- [o] Can the quality of the thumbnail thumbnail images be improved to make the text actually readable?
+- [o] Shall we also generate high-res thumbnail images?
 - [o] Multi-single-page open via "All" does not work in Chromium
 - [o] Re-enable "All" button when it works in Chrome again
 - [o] Maybe the chooser list grows too long and we need another kind of selector for exploring
 - [o] Improve the ``has_diacritics`` function to differentiate between characters with ascender vs. descender diacritics.
 - [o] Use only black SVG variants, throw away the others
-- [o] Would it be cool to be able to click on the summary image and open single posters by image map links?
-- [o] Maybe display the single-page links below the summary image and color the buttons appropriately?
+- [o] Would it be cool to be able to click on the thumbnail image and open single posters by image map links?
+- [o] Maybe display the single-page links below the thumbnail image and color the buttons appropriately?
 - [o] Can we load fonts on demand only when required by the respective poster?
+- [o] Refactor code to be more OO
 
 CSS image masks
 ===============
@@ -91,7 +129,8 @@ Prio 2
 - [o] Who is referring to http://localhost:9999/examples/lqdn-gafam-campaign/chooser.html on production?
 - [o] Investigate whether all five pages could be rendered by using decktape with its "multiple slide" option
 - [o] With lang=ja: ``Page error: TypeError: Cannot read property 'name' of undefined``
-
+- [o] Can images be further optimized using pngquant or similar?
+  https://stackoverflow.com/questions/14031965/convert-32-bit-png-to-8-bit-png-with-imagemagick-by-preserving-semi-transparent/14032098#14032098
 
 
 
@@ -136,7 +175,7 @@ Done
   Mitigation: Disable UglifyJSPlugin.
 - [x] Add command to make overview .png of all five pages
 - [x] Use images from https://ptrace.gafam.info/unofficial/img/black/ on chooser
-- [x] Drop shadow for summary-image
+- [x] Drop shadow for thumbnail-image
 - [x] language-entry Header auf mobile
 - [x] Breiten der display format chooser Buttons auf mobile
 - [x] Add link titles
