@@ -6,11 +6,17 @@ lqdn-gafam-campaign example todo
 ******
 Prio 1
 ******
+- [x] Create 10x8 mosaic
+- [o] Update gafam.info
 - [o] Make the other PosterKit examples work again
 - [o] Update README.rst
 - [o] Build and publish distribution package
 - [o] Remove things like id="organization-logo"
 - [o] Add disclaimer re. Internet Explorer / Edge
+- [o] Are the upstream black posters really black?
+  See https://ptrace.gafam.info/upstream/pdf/lqdn-gafam-poster-de.pdf
+- [o] The anchors still don't work when visiting the page the first time
+- [o] Check what "pngquant --posterize" would yield
 
 
 *********
@@ -49,8 +55,12 @@ Prio 1.25
 - [o] Test how image loading works with regular/transparent PNG/JPEG/GIF images
 - [o] How to make the chooser link to local resources (image, pdf)?
 - [o] Investigate further why the Arabic font used when rendering on Mac OS X looks way more beautiful than on Linux.
+  Remark: Therefore, the font quality of Japanese and Chinese translations is way better on Linux, though!
 - [o] Add dynamic anchors for jumping to e.g. #facts-and-figures
 - [o] Make "Facts and figures" section collapsible?
+- [o] Apple logo should be more narrow?
+- [o] Trivia: If the mosaic would be printed, it would cover a size of 105,01 × 475,2 cm.
+  Yes, that's almost 5 meters in height.
 
 
 ********
