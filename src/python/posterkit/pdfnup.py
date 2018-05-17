@@ -10,8 +10,8 @@ convert -units PixelsPerInch lqdn-gafam-poster-de-nup.pdf -density 72 -trim +rep
 import os
 import logging
 import tempfile
-
 from io import BytesIO
+from posterkit.util import to_list
 
 logger = logging.getLogger(__name__)
 
@@ -19,16 +19,22 @@ logger = logging.getLogger(__name__)
 DELETE_TEMPFILES = True
 
 
-def create_image(pdf_file, nup='1', size='1024x', format='jpg'):
+def create_image(pdf_files, papersize='297mm,210mm', nup='1', size='1024x', format='jpg'):
 
-    logger.info('Creating thumbnail image for {}'.format(pdf_file))
+    pdf_files = to_list(pdf_files)
+    logger.info('Creating thumbnail image for {}'.format(pdf_files))
 
     tmp_nupped = tempfile.NamedTemporaryFile(suffix='.pdf', delete=DELETE_TEMPFILES)
     output_file = tmp_nupped.name
 
     # Run "pdfnup" for tiled layout
     # TODO: Add "--no-tidy" for debugging
-    command = "pdfnup --papersize '{{297mm,1050mm}}' --nup {nup} --vanilla --keepinfo --outfile '{output_file}' '{pdf_file}'".format(**locals())
+    # TODO: Maybe add/amend --pdf{title,author,subject,keywords}
+
+    # Compute list of input files as string
+    pdf_files_string = ' '.join(map(lambda item: "'{}'".format(item), pdf_files))
+
+    command = "pdfnup --papersize '{{{papersize}}}' --nup {nup} --vanilla --keepinfo --outfile '{output_file}' {pdf_files_string}".format(**locals())
     logger.info('Running "pdfnup" command: {}'.format(command))
     os.system(command)
 
@@ -46,7 +52,12 @@ def create_image(pdf_file, nup='1', size='1024x', format='jpg'):
 
     #command = "convert -units PixelsPerInch '{input_file}' -density 300 -trim +repage -resize {size} '{output_file}'".format(**locals())
     #command = "convert -units PixelsPerInch '{input_file}' -density 300 -trim {repage_option} -crop -10-10\! -resize {size} '{format}:{output_file}'".format(**locals())
-    command = "convert -units PixelsPerInch '{input_file}' -density 300 -filter Lanczos -resize {size} '{format}:{output_file}'".format(**locals())
+
+    size_option = ''
+    if size is not None:
+        size_option = '-filter Lanczos -resize {size}'.format(size=size)
+
+    command = "convert -units PixelsPerInch '{input_file}' -density 300 {size_option} '{format}:{output_file}'".format(**locals())
     logger.info('Running "convert" command: {}'.format(command))
     os.system(command)
 

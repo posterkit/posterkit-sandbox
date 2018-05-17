@@ -11,6 +11,7 @@ lqdn-gafam-campaign
 - Use background colors from original posters
 - Publish/overwrite Arabic resources as they look more beautiful when rendered on Mac OS X
 - Improve introductional text on chooser page
+- Create 10x8 mosaic from all languages
 
 
 2018-05-13 0.7.0

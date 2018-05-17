@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 # (c) 2018 The PosterKit developers <developers@posterkit.org>
+import os
 import logging
 import requests
+from glob import glob
 from docopt import docopt, DocoptExit
 from posterkit import __version__
 from posterkit.util import boot_logging, normalize_options, read_list
-from gafam.poster import render_posters, POSTER_NAMES, POSTER_VARIANTS, POSTER_TRANSLATIONS_URI
+from gafam.poster import render_posters, render_mosaic, POSTER_NAMES, POSTER_VARIANTS, POSTER_TRANSLATIONS_URI
 
 logger = logging.getLogger(__name__)
 
@@ -16,6 +18,7 @@ def run():
     """
     Usage:
         gafam-info pdf [options] [<path>]
+        gafam-info mosaic [options] [<path>]
         gafam-info --help
 
     Options:
@@ -62,7 +65,17 @@ def run():
         path = options['path']
         rendering_info = get_rendering_info(options)
         check_options(rendering_info)
-        render_posters(info=rendering_info, path=path)
+        files = render_posters(info=rendering_info, path=path)
+        render_mosaic(path=path, files=files, variant='color')
+
+    elif options['mosaic']:
+        if not options['variant']:
+            raise DocoptExit('Error: No variant selected, use "--variant={black,eco,color}"')
+
+        path = options['path']
+        pdf_files = glob(os.path.join(path, 'pdf', '**', 'lqdn-gafam-poster-*.pdf'))
+        #print 'pdf_files:', pdf_files
+        render_mosaic(path=path, files=pdf_files, variant='color')
 
 
 def check_options(options):

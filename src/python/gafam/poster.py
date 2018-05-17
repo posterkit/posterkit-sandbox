@@ -15,8 +15,9 @@ logger = logging.getLogger(__name__)
 URI_TEMPLATE = 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang={language}&name={name}&variant={variant}'
 
 # Template for PDF output filename
-PDF_NAME_TEMPLATE   = 'pdf/{variant}/lqdn-gafam-poster-{language}-{variant}.pdf'
-IMAGE_NAME_TEMPLATE = 'img/{variant}/lqdn-gafam-poster-{language}-{variant}-{nup}-{size}.{suffix}'
+PDF_NAME_TEMPLATE       = 'pdf/{variant}/lqdn-gafam-poster-{language}-{variant}.pdf'
+THUMBNAIL_NAME_TEMPLATE = 'img/{variant}/lqdn-gafam-poster-{language}-{variant}-{nup}-{size}.{suffix}'
+MOSAIC_NAME_TEMPLATE    = 'img/mosaic/lqdn-gafam-poster-mosaic-{variant}-{nup}-{size}.{suffix}'
 
 # Which poster names are "one set"
 POSTER_NAMES = [
@@ -49,7 +50,10 @@ def render_posters(info=None, path=None):
     # TODO: What about reasonable defaults?
     #variant = variant or 'default'
 
-    # Generate single-page PDF files
+    # Aggregate all PDF files
+    pdf_files = []
+
+    # Generate multi-page PDF files
     for language in info['language']:
 
         logger.info('* Rendering PDF posters for language={language}'.format(**locals()))
@@ -58,6 +62,7 @@ def render_posters(info=None, path=None):
 
             logger.info('** Rendering PDF posters for variant={variant}'.format(**locals()))
 
+            # Generate single-page PDF files
             # Render N pages
             outputfiles = []
             for name in info['name']:
@@ -107,6 +112,9 @@ def render_posters(info=None, path=None):
                 with file(pdf_filepath, 'wb') as f:
                     f.write(pdfstream.read())
 
+                # Remember PDF path
+                pdf_files.append(pdf_filepath)
+
                 # Create thumbnail images
                 format = 'png8'
                 suffix = 'png'
@@ -116,20 +124,69 @@ def render_posters(info=None, path=None):
 
                 for size in sizes:
 
-                    # Create image
-                    image = create_image(pdf_filepath, nup=nup, size=size, format=format)
+                    # Render PNG image from multi-page PDF document
+                    image = create_image(pdf_filepath, papersize='297mm,1050mm', nup=nup, size=size, format=format)
+
+                    # Compute filename
+                    img_filename = THUMBNAIL_NAME_TEMPLATE.format(**locals())
+                    img_filepath = os.path.abspath(os.path.join(path, img_filename))
 
                     # Save image
-                    img_filename = IMAGE_NAME_TEMPLATE.format(**locals())
-                    img_filepath = os.path.abspath(os.path.join(path, img_filename))
-                    logger.info('Saving thumbnail image to {}'.format(img_filepath))
+                    filepath = save_file(image, path, img_filename)
+                    logger.info('Saved thumbnail image to {}'.format(filepath))
 
-                    # Ensure path exists
-                    ensure_directory(img_filepath)
+    return pdf_files
 
-                    # Save to filesystem
-                    with file(img_filepath, 'wb') as f:
-                        f.write(image.read())
+
+def render_mosaic(path=None, files=None, variant=None):
+
+    logger.info('Rendering mosaic image')
+    #logger.info('The options are {}'.format(info))
+    logger.info('The output path is {}'.format(path))
+
+    # Build mosaic image of all colored PDF documents
+    pdf_selected = []
+    for pdf_file in files:
+        if variant in pdf_file:
+            pdf_selected.append(pdf_file)
+
+    # Default: 297mm,210mm
+
+    # Make up a 5x16 matrix with appropriate dimensions
+    #nup = '5x16'
+    #papersize='4752mm,1050mm'
+
+    # Make up a 10x8 matrix with appropriate dimensions
+    nup = '10x8'
+    papersize='2376mm,2100mm'
+
+    # Render PNG image from multiple multi-page PDF documents
+    format = 'png8'
+    image = create_image(pdf_selected, papersize=papersize, nup=nup, size=None, format=format)
+
+    # Compute filename
+    size = 'full'
+    suffix = 'png'
+    img_filename = MOSAIC_NAME_TEMPLATE.format(**locals())
+
+    # Save image
+    filepath = save_file(image, path, img_filename)
+    logger.info('Saved mosaic image to {}'.format(filepath))
+
+
+def save_file(buffer, path, filename):
+
+    # Compute full path
+    img_filepath = os.path.abspath(os.path.join(path, filename))
+
+    # Ensure path exists
+    ensure_directory(img_filepath)
+
+    # Save to filesystem
+    with file(img_filepath, 'wb') as f:
+        f.write(buffer.read())
+
+    return img_filepath
 
 
 def join_pdf_files(filenames):
