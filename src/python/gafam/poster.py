@@ -13,8 +13,8 @@ logger = logging.getLogger(__name__)
 
 
 # Template for resource URI
-#URI_TEMPLATE = 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang={language}&name={name}&variant={variant}'
-URI_TEMPLATE = 'http://localhost:9999/examples/lqdn-gafam-campaign/poster.html?lang={language}&name={name}&variant={variant}'
+URI_TEMPLATE = 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang={language}&name={name}&variant={variant}'
+#URI_TEMPLATE = 'http://localhost:9999/examples/lqdn-gafam-campaign/poster.html?lang={language}&name={name}&variant={variant}'
 
 # Templates for output files
 PDF_NAME_TEMPLATE       = 'pdf/{variant}/lqdn-gafam-poster-{language}-{variant}.pdf'
