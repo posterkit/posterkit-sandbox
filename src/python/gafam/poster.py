@@ -4,6 +4,7 @@ import os
 import logging
 import tempfile
 from io import BytesIO
+from collections import OrderedDict
 from posterkit.makepdf import makepdf
 from posterkit.pdfnup import create_image
 from posterkit.util import ensure_directory
@@ -12,10 +13,12 @@ logger = logging.getLogger(__name__)
 
 
 # Template for resource URI
-URI_TEMPLATE = 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang={language}&name={name}&variant={variant}'
+#URI_TEMPLATE = 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang={language}&name={name}&variant={variant}'
+URI_TEMPLATE = 'http://localhost:9999/examples/lqdn-gafam-campaign/poster.html?lang={language}&name={name}&variant={variant}'
 
-# Template for PDF output filename
+# Templates for output files
 PDF_NAME_TEMPLATE       = 'pdf/{variant}/lqdn-gafam-poster-{language}-{variant}.pdf'
+SVG_NAME_TEMPLATE       = 'svg/{variant}/lqdn-gafam-poster-{language}-{variant}/lqdn-gafam-poster-{language}-{variant}-{number:0>2}-{name}.svg'
 THUMBNAIL_NAME_TEMPLATE = 'img/{variant}/lqdn-gafam-poster-{language}-{variant}-{nup}-{size}.{suffix}'
 MOSAIC_NAME_TEMPLATE    = 'img/mosaic/lqdn-gafam-poster-mosaic-{variant}-{nup}-{size}.{suffix}'
 
@@ -65,6 +68,7 @@ def render_posters(info=None, path=None):
             # Generate single-page PDF files
             # Render N pages
             outputfiles = []
+            outputmap = OrderedDict()
             for name in info['name']:
 
                 logger.info('*** Rendering PDF poster with language={language}, variant={variant}, name={name}'.format(**locals()))
@@ -88,6 +92,7 @@ def render_posters(info=None, path=None):
 
                 # Bookkeeping
                 outputfiles.append(tmpfile)
+                outputmap[name] = tmpfile
 
             # Join N pages into single document
             outputfilenames = [item.name for item in outputfiles]
@@ -99,6 +104,8 @@ def render_posters(info=None, path=None):
 
             # Save to filesystem
             else:
+
+                # A. Save PDF
 
                 # Compute output path
                 pdf_filename = PDF_NAME_TEMPLATE.format(**locals())
@@ -115,7 +122,8 @@ def render_posters(info=None, path=None):
                 # Remember PDF path
                 pdf_files.append(pdf_filepath)
 
-                # Create thumbnail images
+
+                # B. Create thumbnail images
                 format = 'png8'
                 suffix = 'png'
                 nup = '5x1'
@@ -134,6 +142,29 @@ def render_posters(info=None, path=None):
                     # Save image
                     filepath = save_file(image, path, img_filename)
                     logger.info('Saved thumbnail image to {}'.format(filepath))
+
+
+                # C. Convert to single-page SVG image
+
+                number = 1
+                for name, pdfpage_file in outputmap.items():
+
+                    # Compute output path
+                    svg_filename = SVG_NAME_TEMPLATE.format(**locals())
+                    svg_filepath = os.path.abspath(os.path.join(path, svg_filename))
+                    logging.info('SVG file path is {}'.format(svg_filepath))
+
+                    # Ensure path exists
+                    ensure_directory(svg_filepath)
+
+                    # Convert PDF to SVG
+                    command = "pdf2svg '{inputfile}' '{outputfile}'".format(inputfile=pdfpage_file.name, outputfile=svg_filepath)
+                    #print('command:', command)
+                    os.system(command)
+
+                    # Continue with next page
+                    number += 1
+
 
     return pdf_files
 

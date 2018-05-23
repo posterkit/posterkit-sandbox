@@ -23,7 +23,7 @@ Prio 1
 *********
 Prio 1.25
 *********
-- [o] Render as SVG
+- [x] Render as SVG
 - [o] Tune specific posters
 
     - Fall back to English: poster.html?lang=ar&name=apple&variant=eco ff.
