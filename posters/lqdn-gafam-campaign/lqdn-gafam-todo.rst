@@ -17,6 +17,7 @@ Prio 1
   See https://ptrace.gafam.info/upstream/pdf/lqdn-gafam-poster-de.pdf
 - [o] The anchors still don't work when visiting the page the first time
 - [o] Check what "pngquant --posterize" would yield
+- [o] Alternative wording on https://pbs.twimg.com/media/DVHII5JW0AUeScL.jpg:large
 
 
 *********
@@ -59,8 +60,10 @@ Prio 1.25
 - [o] Add dynamic anchors for jumping to e.g. #facts-and-figures
 - [o] Make "Facts and figures" section collapsible?
 - [o] Apple logo should be more narrow?
-- [o] Trivia: If the mosaic would be printed, it would cover a size of 105,01 × 475,2 cm.
+- [o] Trivia: If the 5x16 mosaic would be printed, it would cover a size of 105,01 × 475,2 cm.
   Yes, that's almost 5 meters in height.
+- [o] Trivia: If the 10x8 mosaic would be printed, it would cover a size of 237 x 210 cm
+  Yes, that's almost 5 square meters in height.
 
 
 ********
