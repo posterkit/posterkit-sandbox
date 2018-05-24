@@ -25,6 +25,7 @@ function load_fonts() {
         'FuturaExtended', 'FuturaMaxiBold',
         'LatoWeb', 'LatoWebHeavy',
         //'Muli',
+        'Amiri',
     ]);
 }
 

@@ -60,6 +60,8 @@ var Typesetting = prime({
         var font_size_line_height_ratio = 0.95;
         var with_diacritics = this.has_diacritics(text);
 
+        $(element).data('diacritics', JSON.stringify(with_diacritics));
+
         // Adjust if text contains a diacritic character
         if (with_diacritics.any) {
             font_size_height_ratio = 1.10;
@@ -91,6 +93,24 @@ var Typesetting = prime({
             font_size_line_height_ratio = 1.00;
         }
 
+        // Adjust for Arabic variant of Amiri Font
+        if (language == 'ar' && _.includes(font_family, 'Amiri')) {
+            font_size_height_ratio = 1.10;
+            font_size_line_height_ratio = 0.90;
+            if (with_diacritics.ascender) {
+                font_size_height_ratio = 1.30;
+                font_size_line_height_ratio = 1.58;
+            }
+            if (with_diacritics.descender) {
+                font_size_height_ratio = 1.60;
+                font_size_line_height_ratio = 1.20;
+            }
+            if (with_diacritics.all) {
+                font_size_height_ratio = 1.55;
+                font_size_line_height_ratio = 1.58;
+            }
+        }
+
         // Compute new values for element height and line height
         var height_new = font_size * font_size_height_ratio;
         var line_height_new = font_size * font_size_line_height_ratio;
@@ -103,18 +123,34 @@ var Typesetting = prime({
     has_diacritics: function(text) {
 
         // Single chars not available in lightweight unicode database
-        /*
-        var diacritics = [
+        var diacritics_fixed = {
             // Russian
-            //'Й',
-        ];
+            //'Й': { any: true, ascender: true, descender: false },
+            // Arabic
+            "آ": { any: true, ascender: true, descender: false },
+            "جُ": { any: true, ascender: true, descender: false },
+            "م": { any: true, ascender: false, descender: true },
+            "دِ": { any: true, ascender: false, descender: true },
+            "تِ": { any: true, ascender: false, descender: true },
+        };
 
-        for (var character of diacritics) {
+        var response = {
+            all: false,
+            any: false,
+            ascender: false,
+            descender: false,
+        };
+        _(diacritics_fixed).each(function(rule, character) {
             if (text.includes(character)) {
-                return true;
+                console.log('Character "' + character + '" has ascenders or descenders:', rule);
+                //console.log('rule:', rule);
+
+                var truthies = _.pickBy(rule, function(value, key) {
+                    return value === true;
+                });
+                response = _.extend(response, truthies);
             }
-        }
-        */
+        });
 
         //console.log(unicode);
         var diacritics_keywords = {
@@ -139,11 +175,6 @@ var Typesetting = prime({
 
         //console.log('diacritics_keywords:', diacritics_keywords);
 
-        var response = {
-            any: false,
-            ascender: false,
-            descender: false,
-        };
         for (var character of text) {
 
             var unicode_info = this.get_unicode_info(character);
@@ -158,9 +189,6 @@ var Typesetting = prime({
             for (var kind of ['ascender', 'descender']) {
                 for (var keyword of diacritics_keywords[kind]) {
                     if (unicode_info.name.toLowerCase().includes(keyword.toLowerCase())) {
-                        console.log(
-                            'Found "' + kind + '" diacritic for unicode name "' + unicode_info.name + '" ' +
-                            'in "' + text + '" through keyword "' + keyword + '"');
                         response[kind] = true;
                     }
                 }
@@ -169,6 +197,15 @@ var Typesetting = prime({
 
         if (response.ascender || response.descender) {
             response.any = true;
+        }
+        if (response.ascender && response.descender) {
+            response.all = true;
+        }
+
+        if (response.any) {
+            console.log(
+                'Found diacritic for unicode name "' + unicode_info.name + '" ' +
+                'in "' + text + '":', response); // + '" through keyword "' + keyword + '"');
         }
 
         return response;

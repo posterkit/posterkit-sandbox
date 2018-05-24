@@ -13,6 +13,7 @@ lqdn-gafam-campaign
 - Improve introductional text on chooser page
 - Create 10x8 mosaic from all languages
 - Add SVG rendering
+- Use Amiri font for the Arabic language
 
 
 2018-05-13 0.7.0

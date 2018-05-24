@@ -98,7 +98,18 @@ var layout_rules_override = [
         },
         refitting: false,
         elements: [
-            {selector: '#title-content', css: {width: '12.0cm'}},
+            {selector: '#title-text', css: {'font-family': 'Amiri, serif'}},
+            {selector: '#body-content', css: {'font-family': 'Amiri, serif'}},
+            {selector: '#footer-text', css: {'font-family': 'Amiri, serif'}},
+        ]
+    },
+    {
+        predicate: function(language, poster_name) {
+            return language == 'ar';
+        },
+        refitting: false,
+        elements: [
+            {selector: '#title-content', css: {width: '10.0cm'}},
         ]
     },
     {
@@ -106,7 +117,15 @@ var layout_rules_override = [
             return language == 'ar' && (poster_name == 'apple');
         },
         elements: [
-            {selector: '#title-content', css: {width: '6.0cm'}},
+            {selector: '#title-content', css: {width: '4.0cm'}},
+        ]
+    },
+    {
+        predicate: function(language, poster_name) {
+            return language == 'ar' && (poster_name == 'amazon');
+        },
+        elements: [
+            {selector: '#title-content', css: {width: '9.0cm'}},
         ]
     },
     {
@@ -114,7 +133,7 @@ var layout_rules_override = [
             return language == 'ar' && (poster_name == 'microsoft');
         },
         elements: [
-            {selector: '#title-content', css: {width: '16.0cm'}},
+            {selector: '#title-content', css: {width: '14.0cm'}},
         ]
     },
 
