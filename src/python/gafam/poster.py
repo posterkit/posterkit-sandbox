@@ -159,7 +159,7 @@ def render_posters(info=None, path=None):
 
                     # Convert PDF to SVG
                     command = "pdf2svg '{inputfile}' '{outputfile}'".format(inputfile=pdfpage_file.name, outputfile=svg_filepath)
-                    #print('command:', command)
+                    logger.info(u'The PDF to SVG conversion command is: {}'.format(command))
                     os.system(command)
 
                     # Continue with next page
