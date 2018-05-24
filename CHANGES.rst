@@ -16,6 +16,7 @@ lqdn-gafam-campaign
 - Use Amiri font for the Arabic language
 - Fix rendering mosaic image for arbitrary number of translations
 - Improve/stabilize naming of mosaic image file
+- Immprove HTML meta image
 
 
 2018-05-13 0.7.0
