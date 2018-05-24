@@ -109,6 +109,19 @@ Install pngquant
     brew install pngquant
 
 
+Install pdf2svg
+===============
+
+::
+
+    # Debian Linux
+    apt install pdf2svg
+
+    # Mac OS X
+    brew install pdf2svg
+
+
+
 ****
 Test
 ****
