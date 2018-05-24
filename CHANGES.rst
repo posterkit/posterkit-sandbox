@@ -15,6 +15,7 @@ lqdn-gafam-campaign
 - Add SVG rendering
 - Use Amiri font for the Arabic language
 - Fix rendering mosaic image for arbitrary number of translations
+- Improve/stabilize naming of mosaic image file
 
 
 2018-05-13 0.7.0

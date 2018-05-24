@@ -20,7 +20,7 @@ URI_TEMPLATE = 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?l
 PDF_NAME_TEMPLATE       = 'pdf/{variant}/lqdn-gafam-poster-{language}-{variant}.pdf'
 SVG_NAME_TEMPLATE       = 'svg/{variant}/lqdn-gafam-poster-{language}-{variant}/lqdn-gafam-poster-{language}-{variant}-{number:0>2}-{name}.svg'
 THUMBNAIL_NAME_TEMPLATE = 'img/{variant}/lqdn-gafam-poster-{language}-{variant}-{nup}-{size}.{suffix}'
-MOSAIC_NAME_TEMPLATE    = 'img/mosaic/lqdn-gafam-poster-mosaic-{variant}-{nup}-{size}.{suffix}'
+MOSAIC_NAME_TEMPLATE    = 'img/mosaic/lqdn-gafam-poster-mosaic-{variant}-{direction}.{suffix}'
 
 # Which poster names are "one set"
 POSTER_NAMES = [
@@ -209,7 +209,7 @@ def render_mosaic(path=None, files=None, variant=None):
     image = create_image(pdf_selected, papersize=papersize, nup=nup, size=None, format=format)
 
     # Compute filename
-    size = 'full'
+    direction = 'horizontal'
     suffix = 'png'
     img_filename = MOSAIC_NAME_TEMPLATE.format(**locals())
 
