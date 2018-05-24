@@ -185,11 +185,24 @@ def render_mosaic(path=None, files=None, variant=None):
 
     # Make up a 5x16 matrix with appropriate dimensions
     #nup = '5x16'
-    #papersize='4752mm,1050mm'
+    #papersize = '4752mm,1050mm'
 
+    # 16 languages cover a 10x8 matrix with a total papersize of 2376mmx2100mm
     # Make up a 10x8 matrix with appropriate dimensions
-    nup = '10x8'
-    papersize='2376mm,2100mm'
+    #nup = '10x8'
+    #papersize = '2376mm,2100mm'
+
+
+    # Compute matrix and dimensions from page count
+    pages_per_document = 5
+    pages_per_row = 10
+
+    page_count = len(pdf_selected) * pages_per_document
+    rows = int(round(page_count / float(pages_per_row)))
+
+    nup = '{}x{}'.format(pages_per_row, rows)
+    papersize = '{}mm,{}mm'.format(297 * rows, 210 * pages_per_row)
+
 
     # Render PNG image from multiple multi-page PDF documents
     format = 'png8'

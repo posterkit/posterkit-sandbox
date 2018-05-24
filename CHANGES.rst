@@ -14,6 +14,7 @@ lqdn-gafam-campaign
 - Create 10x8 mosaic from all languages
 - Add SVG rendering
 - Use Amiri font for the Arabic language
+- Fix rendering mosaic image for arbitrary number of translations
 
 
 2018-05-13 0.7.0

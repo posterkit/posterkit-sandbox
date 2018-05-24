@@ -60,6 +60,10 @@ pdf-single: check-target-dir virtualenv
 pdf-all: check-target-dir virtualenv
 	$(venvpath)/bin/gafam-info pdf --language=all --name=all --variant=all $(TARGET_DIR)
 
+# Render mosaic image
+mosaic: check-target-dir virtualenv
+	$(venvpath)/bin/gafam-info mosaic --variant=color $(TARGET_DIR)
+
 
 
 # ===============
