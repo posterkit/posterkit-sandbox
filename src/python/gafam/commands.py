@@ -66,7 +66,9 @@ def run():
         rendering_info = get_rendering_info(options)
         check_options(rendering_info)
         files = render_posters(info=rendering_info, path=path)
-        render_mosaic(path=path, files=files, variant='color')
+
+        # 2018-05-24: Don't render mosaic each time when invoked with a subset of the whole collection
+        #render_mosaic(path=path, files=files, variant='color')
 
     elif options['mosaic']:
         if not options['variant']:
