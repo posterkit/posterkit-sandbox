@@ -3,7 +3,7 @@
 import logging
 from docopt import docopt
 from posterkit import __version__
-from posterkit.pdf import pdf
+from posterkit.makepdf import makepdf
 from posterkit.pdfnup import create_image
 from posterkit.util import boot_logging, normalize_options
 
@@ -48,7 +48,7 @@ def run():
 
     # Render PDF
     if options['pdf']:
-        stream = pdf(options['url'])
+        stream = makepdf(options['url'])
 
         # Write to STDOUT
         print(stream.read())

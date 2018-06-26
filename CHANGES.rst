@@ -10,6 +10,7 @@ in progress
 2018-06-26 0.8.0
 ================
 - Improve documentation
+- Fix "posterkit" command from Python support package
 
 lqdn-gafam-campaign
 -------------------
