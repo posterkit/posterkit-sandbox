@@ -1,6 +1,6 @@
-#######################
-PosterKit-O-Mat CHANGES
-#######################
+###########################
+posterkit-sandbox changelog
+###########################
 
 
 in progress
@@ -9,6 +9,7 @@ in progress
 
 2018-06-26 0.8.0
 ================
+- Improve documentation
 
 lqdn-gafam-campaign
 -------------------

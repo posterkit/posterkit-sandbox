@@ -141,50 +141,13 @@ Test decktape
 Run
 ***
 
-Render PDF document from URL and write to STDOUT::
+Setup ``posterkit`` Python package::
 
-    posterkit makepdf --url=https://examples.posterkit.net/rfa-endlich-normale-menschen/poster.html
-
-Render GAFAM poster campaign PDF document with parameters French/Google/Black and store output to filesystem::
-
-    gafam-info makepdf --language=fr --name=google --variant=black /srv/www/posterkit
-
-Render all GAFAM poster campaign PDF documents::
-
-    gafam-info makepdf --language=all --name=all --variant=all /srv/www/posterkit
-
-
-*******
-Publish
-*******
-
-HTML
-====
-::
-
-    ssh www-data@examples.posterkit.net
-    cd /srv/www/organizations/posterkit/sources/posterkit-sandbox/
-
-    make upgrade
-
-PDF
-===
-::
-
-    ssh www-data@examples.posterkit.net
-    cd /srv/www/organizations/posterkit/sources/posterkit-sandbox/
-
-    # Bring everything up to speed
-    make upgrade
-
-    # Activate Python virtual environment
+    virtualenv .venv
     source .venv/bin/activate
+    python setup.py develop
 
-    # Define where PDF documents should be stored
-    export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial
+Render PDF document from URL and write to PDF file "posterkit-test.pdf"::
 
-    # Render all posters (full matrix of permutations)
-    gafam-info pdf --language=all --name=all --variant=all $TARGET_DIR
+    posterkit pdf --url=https://examples.posterkit.net/rfa-endlich-normale-menschen/poster.html > posterkit-test.pdf
 
-    # Render posters for selected language only
-    gafam-info pdf --language=fr --name=all --variant=all $TARGET_DIR

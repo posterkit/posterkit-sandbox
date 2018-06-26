@@ -10,6 +10,7 @@ Prio 1
 - [x] Update gafam.info
 - [o] Scrolling to anchor does not work yet
 - [o] Fixed 10x8 mosaic doesn't account for more languages properly
+- [o] 1px line at top and bottom of rendered images
 
 - [o] Make the other PosterKit examples work again
 - [o] Update README.rst

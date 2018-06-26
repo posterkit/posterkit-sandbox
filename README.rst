@@ -44,19 +44,7 @@ Open document in browser::
 
 PDF rendering
 -------------
-::
-
-    # Define where PDF documents should be stored
-    export TARGET_DIR=/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial
-
-    # Render all variants of French posters
-    make pdf-single LANGUAGE=fr VARIANT=all
-
-    # Render all variants for all languages
-    make pdf-all
-
-
-Have fun!
+Read all about it at `<README-PDF>`_.
 
 
 Examples
@@ -101,4 +89,10 @@ This uses Fitty_ by `Rik Schennink`_, a library for snugly text resizing. Kudos!
 .. _Rik Schennink: https://github.com/rikschennink
 
 
+----
+
+Have fun!
+
+
 .. todo: Add more turtles all the way down to web browser rendering engines or even below.
+
