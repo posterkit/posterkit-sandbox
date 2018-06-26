@@ -44,7 +44,7 @@ Open document in browser::
 
 PDF rendering
 -------------
-Read all about it at `<README-PDF>`_.
+Read all about it at `README-PDF <https://github.com/posterkit/posterkit-sandbox/blob/master/README-PDF.rst>`_.
 
 
 Examples
