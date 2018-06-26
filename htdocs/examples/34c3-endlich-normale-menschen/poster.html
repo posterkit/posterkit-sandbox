@@ -18,20 +18,20 @@
     <!-- Load whole application -->
 
     <!-- Development -->
-    <script type="text/javascript" src="../../_static/commons.bundle.js"></script>
-    <script type="text/javascript" src="../../_static/layout-basic.bundle.js"></script>
+    <script type="text/javascript" src="../_static/commons.bundle.js"></script>
+    <script type="text/javascript" src="../_static/layout-basic.bundle.js"></script>
 
     <!-- Production -->
     <!--
-    <script type="text/javascript" src="../../_static/commons.bundle.min.js"></script>
-    <script type="text/javascript" src="../../_static/layout-basic.bundle.min.js"></script>
+    <script type="text/javascript" src="../_static/commons.bundle.min.js"></script>
+    <script type="text/javascript" src="../_static/layout-basic.bundle.min.js"></script>
     -->
 
 </head>
 
-<body>
+<body class="passepartout">
 
-<page size="A4">
+<page size="A4" dir="auto">
     <div id="title-container" class="content-centered inverted">
         <div id="title-content">
             <span class="fit">
@@ -57,17 +57,17 @@
     </div>
     <div id="footer-container" class="content-centered inverted">
         <div id="footer-content">
-            <div id="footer-left" class="pull-left">
-                <div id="footer-text">
+            <div id="footer-left">
+                <div id="footer-text" class="fit">
                     Be excellent to each other.
                 </div>
                 <div id="organization-name">
                     events.ccc.de
                 </div>
             </div>
-            <div id="footer-right" class="pull-right content-centered">
+            <div id="footer-right" class="content-centered">
                 <!-- From https://github.com/EventFahrplan/34c3-artwork/blob/master/Logos/171122_34C3_Logotype_Plus.png -->
-                <img id="organization-logo" src="./34c3-tuwat-black.jpg" class="image-fit"/>
+                <img src="./34c3-tuwat-black.jpg" class="image-fit-height"/>
             </div>
         </div>
     </div>

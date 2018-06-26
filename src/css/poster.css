@@ -67,14 +67,11 @@ body {
     height: 100%;
     */
     width: 85%;
+    height: 70%;
 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
-
-#footer-right {
-    height2: 100%;
 }
 
 #footer-left {
@@ -101,9 +98,9 @@ body {
     font-weight: 900;
     font-size: xx-large;
 }
-#footer-content #organization-logo2 {
-    width: 3.0cm;
-    height: 3.0cm;
+
+#footer-right {
+    width: 3.5cm;
 }
 
 /* https://stackoverflow.com/questions/15295697/make-an-image-to-fit-its-parent-dimensions/15295754#15295754 */
@@ -115,6 +112,9 @@ body {
     width: 100%;
     /* height: 100%; */
     overflow: hidden;
+}
+.image-fit-height {
+    height: 100%;
 }
 
 .inverted {

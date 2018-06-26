@@ -1,7 +1,10 @@
 // -*- coding: utf-8 -*-
 // (c) 2018 The PosterKit developers <developers@posterkit.org>
 //
-// https://en.wikipedia.org/wiki/Rigveda
+// Rigveda is an opinionated but convenient library which
+// helps for doing text metrics, typesetting and -autofitting.
+//
+// Etymology: https://en.wikipedia.org/wiki/Rigveda
 //
 const prime = require("prime");
 const readable_glyph_names = require('readable-glyph-names');
@@ -173,15 +176,20 @@ var Typesetting = prime({
             ],
         };
 
-        //console.log('diacritics_keywords:', diacritics_keywords);
+        //console.debug('diacritics_keywords:', diacritics_keywords);
 
         for (var character of text) {
 
+            // Ignore spaces and newlines
+            if (_.includes([' ', '\n'], character)) {
+                continue;
+            }
+
             var unicode_info = this.get_unicode_info(character);
-            console.log('unicode_info:', unicode_info);
+            //console.debug('unicode_info for character "' + character + '":', unicode_info);
 
             if (!unicode_info) {
-                console.warn('Unable to get unicode information for character:', character);
+                console.warn('Unable to get unicode information for character "' + character + '"');
                 continue;
             }
             //console.log('unicode info:', character, character.charCodeAt(0), unicode_info);
@@ -231,6 +239,8 @@ var Typesetting = prime({
 
         // Debugging
         //console.log('character:', char, charcode_dec, charcode_hex, glyph_name);
+
+        if (!glyph_name) return;
 
         var info = {'name': glyph_name};
         return info;

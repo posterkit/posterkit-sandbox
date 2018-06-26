@@ -6,6 +6,10 @@ PosterKit-O-Mat CHANGES
 in progress
 ===========
 
+
+2018-06-26 0.8.0
+================
+
 lqdn-gafam-campaign
 -------------------
 - Use background colors from original posters
@@ -17,6 +21,10 @@ lqdn-gafam-campaign
 - Fix rendering mosaic image for arbitrary number of translations
 - Improve/stabilize naming of mosaic image file
 - Immprove HTML meta image
+
+solo poster examples
+--------------------
+- Adapt basic layout to improved posterkit autolayout engine
 
 
 2018-05-13 0.7.0

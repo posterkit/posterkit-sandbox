@@ -1,3 +1,6 @@
+// -*- coding: utf-8 -*-
+// (c) 2018 The PosterKit developers <developers@posterkit.org>
+
 // -------------
 // Bootstrapping
 // -------------
@@ -7,7 +10,6 @@ require('./fonts.css');
 
 // Libraries
 require('lodash');
-require('purl/purl');
 
 // Application
 require('version.js');
@@ -380,16 +382,6 @@ function prepare_image(options, image) {
 // -----------------
 // Utility functions
 // -----------------
-function setup_display(options) {
-
-    console.log('Setting up display');
-
-    // Display in passepartout style
-    if (options.passepartout && options.passepartout.toLowerCase() == 'true') {
-        $('body').attr({class: 'passepartout'});
-    }
-
-}
 
 function get_colorscheme(options) {
 
@@ -506,32 +498,8 @@ $(document).ready(function() {
     // Propagate version
     $('#version').html(__version__);
 
-    // Get parameters from URI
-    var uri = window.location.href;
-    var url = $.url(uri);
-    var options = url.param();
-
-    console.log('Request', uri);
-    console.log('Running', rigveda.get_current_script());
-    console.log('Received options: ', JSON.stringify(options));
-
-    // Apply reasonable defaults
-
-    // Engine control
-    _.defaults(options, {
-
-        // Choose image loader, one of "classic", "dataurl", "dom"
-        'image-loader': 'dom',
-
-    });
-
-    // Poster control: Lowercase all parameters
-    _.mapValues(['lang', 'name', 'variant'], function(varname) {
-        options[varname] = options[varname] && options[varname].toLowerCase();
-    });
-
-    console.log('Effective options:', JSON.stringify(options));
-
+    // Read URL parameters and compute runtime settings
+    var options = posterkit.get_runtime_settings();
 
     // TODO: Sanity checks against missing or invalid parameters
     // TODO: Provide reasonable default texts (Lorem ipsum?)
@@ -545,7 +513,7 @@ $(document).ready(function() {
     console.info('Starting PosterKit renderer');
 
     // Setup display
-    setup_display(options);
+    posterkit.setup_display(options);
 
     // Setup colors
     setup_colors(options);

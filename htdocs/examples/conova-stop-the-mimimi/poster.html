@@ -18,33 +18,38 @@
     <!-- Load whole application -->
 
     <!-- Development -->
-    <script type="text/javascript" src="../../_static/commons.bundle.js"></script>
-    <script type="text/javascript" src="../../_static/layout-basic.bundle.js"></script>
+    <script type="text/javascript" src="../_static/commons.bundle.js"></script>
+    <script type="text/javascript" src="../_static/layout-basic.bundle.js"></script>
 
     <!-- Production -->
     <!--
-    <script type="text/javascript" src="../../_static/commons.bundle.min.js"></script>
-    <script type="text/javascript" src="../../_static/layout-basic.bundle.min.js"></script>
+    <script type="text/javascript" src="../_static/commons.bundle.min.js"></script>
+    <script type="text/javascript" src="../_static/layout-basic.bundle.min.js"></script>
     -->
 
+    <!-- Custom styles deviating from the default settings -->
     <style type="text/css">
 
-        /* Custom styles deviating from the default settings */
         #title-content {
-            width: 30%;
+            width: 11.0cm;
+        }
+        #footer-content #footer-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         #footer-content #organization-logo {
-            width: 6.0cm;
-            margin-right: 1.0cm;
+            width: 5.0cm;
+            margin-right: 2.0cm;
         }
 
     </style>
 
 </head>
 
-<body>
+<body class="passepartout">
 
-<page size="A4">
+<page size="A4" dir="auto">
     <div id="title-container" class="content-centered inverted">
         <div id="title-content">
             <span class="fit">
@@ -67,7 +72,7 @@
     </div>
     <div id="footer-container" class="content-centered inverted">
         <div id="footer-content">
-            <div id="footer-left" class="pull-left">
+            <div id="footer-left">
                 <div id="footer-text">
                     Sagen Sie ruhig „Freaks“ zu uns.
                 </div>
@@ -75,8 +80,9 @@
                     conova.com
                 </div>
             </div>
-            <div id="footer-right" class="pull-right content-centered">
-                <img id="organization-logo" src="./logo-conova.png" class="image-fit2"/>
+            <div id="footer-right" class="content-centered">
+                <span></span>
+                <img id="organization-logo" src="./logo-conova.png"/>
             </div>
         </div>
     </div>

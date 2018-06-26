@@ -2,6 +2,7 @@
 // (c) 2018 The PosterKit developers <developers@posterkit.org>
 require('jquery');
 require('lodash');
+require('purl/purl');
 const fitty = require('fitty/dist/fitty.min.js');
 
 const rigveda = require('rigveda');
@@ -13,6 +14,60 @@ require('version.js');
 
 function welcome() {
     console.info('Welcome to PosterKit version ' + __version__);
+}
+
+function get_url_parameters() {
+    // Get parameters from URL
+    var uri = window.location.href;
+    console.log('Request', uri);
+    var url = $.url(uri);
+    var options = url.param();
+    return options;
+}
+
+function get_runtime_settings() {
+
+    // Get parameters from URL
+    var options = get_url_parameters();
+
+    console.log('Running', rigveda.get_current_script());
+    console.log('Received options: ', JSON.stringify(options));
+
+    // Apply reasonable defaults
+
+    // Engine control
+    _.defaults(options, {
+
+        // Choose image loader, one of "classic", "dataurl", "dom"
+        'image-loader': 'dom',
+
+    });
+
+    // Poster control: Lowercase all parameters
+    _.mapValues(['lang', 'name', 'variant'], function(varname) {
+        options[varname] = options[varname] && options[varname].toLowerCase();
+    });
+
+    console.log('Effective options:', JSON.stringify(options));
+
+    return options;
+
+}
+
+function setup_display(options) {
+
+    console.log('Setting up display');
+
+    // Toggle passepartout display style
+    if (options.passepartout) {
+        var enable_passepartout = options.passepartout.toLowerCase();
+        if (enable_passepartout == 'true') {
+            $('body').addClass('passepartout');
+        } else if (enable_passepartout == 'false') {
+            $('body').removeClass('passepartout');
+        }
+    }
+
 }
 
 function load_fonts() {
@@ -88,7 +143,7 @@ function run_autolayout(layout_rules, language, poster_name) {
 
     // Apply custom layout settings
     var refitting_allowed = true;
-    layout_rules.forEach(function(layout_rule) {
+    layout_rules && layout_rules.forEach(function(layout_rule) {
         if (layout_rule.predicate && layout_rule.predicate(language, poster_name)) {
             var settings = layout_rule;
             if (settings) {
@@ -198,6 +253,9 @@ function svg_set_fill_color(xml, color) {
 
 
 exports.welcome = welcome;
+exports.setup_display = setup_display;
+exports.get_url_parameters = get_url_parameters;
+exports.get_runtime_settings = get_runtime_settings;
 exports.load_fonts = load_fonts;
 exports.load_content = load_content;
 exports.content_to_dom = content_to_dom;
