@@ -2,10 +2,14 @@
 PosterKit-O-Mat TODO
 ####################
 
-- [o] Make a poster for PosterKit itself ;]
+Prio 1
+======
+- [o] Fix solo examples
+- [o] Make https://posterkit.org/ alive
 
 Content
 =======
+- [o] Make a poster for PosterKit itself ;]
 - [o] Add "le-phraseur" example for obtaining dynamic content via query parameters
 - [o] Add basic user interface for "le-phraseur". Implement form for data entry and/or contenteditable
 - [o] Link from examples back to project page
@@ -148,3 +152,9 @@ Misc
 - https://github.com/xdamman/js-line-wrap-detector
 - https://stackoverflow.com/questions/16744366/javascript-detecting-if-text-would-wrap
 - https://coderwall.com/p/ahazha/force-redraw-on-an-element-jquery
+
+Examples
+========
+- | ticktickboom
+  | https://youtu.be/mCLFPZa9oHg?t=3m48s
+

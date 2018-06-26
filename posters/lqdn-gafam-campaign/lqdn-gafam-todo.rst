@@ -7,7 +7,10 @@ lqdn-gafam-campaign example todo
 Prio 1
 ******
 - [x] Create 10x8 mosaic
-- [o] Update gafam.info
+- [x] Update gafam.info
+- [o] Scrolling to anchor does not work yet
+- [o] Fixed 10x8 mosaic doesn't account for more languages properly
+
 - [o] Make the other PosterKit examples work again
 - [o] Update README.rst
 - [o] Build and publish distribution package
