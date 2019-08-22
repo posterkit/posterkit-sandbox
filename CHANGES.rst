@@ -11,6 +11,7 @@ in progress
 ================
 - Add a bunch of new languages and adjust layout for some
 - Filter empty PDF documents when rendering mosaic
+- Adjust mosaic autolayout
 
 
 2018-06-26 0.8.0

@@ -195,7 +195,8 @@ def render_mosaic(path=None, files=None, variant=None):
 
     # Compute matrix and dimensions from page count
     pages_per_document = 5
-    pages_per_row = 10
+    number_of_columns = 2
+    pages_per_row = pages_per_document * number_of_columns
 
     page_count = len(pdf_selected) * pages_per_document
     rows = int(round(page_count / float(pages_per_row)))
