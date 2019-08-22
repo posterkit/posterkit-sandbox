@@ -10,6 +10,7 @@ Todo
 Prio 1
 ======
 - [o] Make https://posterkit.org/ alive
+- [o] Use "HtmlWebpackPlugin" for solo posters also
 
 
 Content
