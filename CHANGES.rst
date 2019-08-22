@@ -20,7 +20,7 @@ in progress
 lqdn-gafam-campaign
 -------------------
 - Use background colors from original posters
-- Publish/overwrite Arabic resources as they look more beautiful when rendered on Mac OS X
+- Publish/overwrite Arabic resources as they look more beautiful when rendered on macOS
 - Improve introductional text on chooser page
 - Create 10x8 mosaic from all languages
 - Add SVG rendering

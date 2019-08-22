@@ -80,5 +80,5 @@ open-chooser:
 # tweaks
 # ======
 upload-improved-resources:
-	# Publish/overwrite Arabic resources as they look more beautiful when rendered on Mac OS X
+	# Publish/overwrite Arabic resources as they look more beautiful when rendered on macOS
 	cd tmp/out; find ./*/*/*-ar-* -iname '*' -print0 | tar --null --files-from=/dev/stdin -cvf - | ssh www-data@ptrace.gafam.info tar -xvf - -C /srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial; cd -

@@ -65,7 +65,12 @@ Install PDFtk
 PDFtk_ is used for joining single PDF pages together.
 ::
 
+    # Debian
     apt install pdftk
+
+    # macOS
+    # See https://gist.github.com/jvenator/9672772a631c117da151#gistcomment-2995525
+    # https://github.com/pdffillerjs/pdffiller/issues/73
 
 .. _PDFtk: https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
 
@@ -77,11 +82,10 @@ Pdfjam brings ``pdfnup``, which is used for rendering a 5-up overview image of a
     # Debian Linux
     apt install pdfjam
 
-    # Mac OS X
+    # macOS
     # https://discourse.brew.sh/t/missing-formula-location/818/8
-    brew cask install mactex pdfjam
     brew tap FLEWID-AB/pdfjam
-    brew install pdfjam
+    brew cask install mactex pdfjam
 
 
 Install ImageMagick
@@ -91,7 +95,7 @@ Install ImageMagick
     # Debian Linux
     apt install imagemagick
 
-    # Mac OS X
+    # macOS
     brew install imagemagick
 
 
@@ -105,7 +109,7 @@ Install pngquant
     # Debian Linux
     apt install pngquant
 
-    # Mac OS X
+    # macOS
     brew install pngquant
 
 
@@ -117,7 +121,7 @@ Install pdf2svg
     # Debian Linux
     apt install pdf2svg
 
-    # Mac OS X
+    # macOS
     brew install pdf2svg
 
 
