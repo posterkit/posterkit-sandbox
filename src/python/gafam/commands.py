@@ -75,8 +75,16 @@ def run():
             raise DocoptExit('Error: No variant selected, use "--variant={black,eco,color}"')
 
         path = options['path']
+
+        # Scan directory for all PDF files.
         pdf_files = sorted(glob(os.path.join(path, 'pdf', '**', 'lqdn-gafam-poster-*.pdf')))
+
+        # Filter empty source files.
+        pdf_files = [item for item in pdf_files if os.stat(item).st_size > 0]
+
+        # Debugging.
         #print 'pdf_files:', pdf_files
+
         render_mosaic(path=path, files=pdf_files, variant='color')
 
 

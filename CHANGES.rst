@@ -10,6 +10,7 @@ in progress
 2019-08-22 0.9.0
 ================
 - Add a bunch of new languages and adjust layout for some
+- Filter empty PDF documents when rendering mosaic
 
 
 2018-06-26 0.8.0
