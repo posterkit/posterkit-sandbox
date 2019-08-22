@@ -1,7 +1,7 @@
 {
     "name": "posterkit",
     "description": "PosterKit has been created to support the lovely people of La Quadrature du Net and gafam.info in their endeavours",
-    "version": "0.8.0",
+    "version": "0.9.0",
     "license": "CC0-1.0",
     "author": {
         "name": "The PosterKit developers",
@@ -53,6 +53,6 @@
         "webpack-notifier": "^1.6.0"
     },
     "optionalDependencies": {
-        "decktape": "https://github.com/posterkit/decktape#networkidle2"
+        "decktape": "^2.9.3"
     }
 }
