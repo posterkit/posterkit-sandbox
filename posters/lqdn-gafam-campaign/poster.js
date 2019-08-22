@@ -224,6 +224,45 @@ var layout_rules_override = [
             {selector: '#title-content', css: {width: '12.0cm'}},
         ]
     },
+
+
+    // =============
+    //   Hungarian
+    // =============
+    {
+        predicate: function(language, poster_name) {
+            return language == 'hu' && poster_name == 'google';
+        },
+        refitting: false,
+        elements: [
+            {selector: '#body-content', css: {'width': '50%', 'line-height': '2.5rem'}},
+        ]
+    },
+
+
+    // ==========
+    //   Telugu
+    // ==========
+    {
+        predicate: function(language, poster_name) {
+            return language == 'te' && poster_name == 'google';
+        },
+        refitting: false,
+        elements: [
+            {selector: '#body-content', css: {'width': '60%', 'line-height': '3.5rem'}},
+        ]
+    },
+    {
+        predicate: function(language, poster_name) {
+            return language == 'te' && poster_name == 'microsoft';
+        },
+        refitting: false,
+        elements: [
+            {selector: '#title-content', css: {width: '13.0cm'}},
+        ]
+    },
+
+
 ];
 
 
