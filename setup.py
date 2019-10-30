@@ -41,7 +41,7 @@ setup(
     install_requires=[
         'where==1.0.2',
         'docopt==0.6.2',
-        'requests==2.18.4',
+        'requests==2.20.0',
     ],
     extras_require={
         'dev': ['check-manifest'],
