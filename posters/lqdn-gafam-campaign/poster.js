@@ -140,6 +140,29 @@ var layout_rules_override = [
     },
 
 
+    // ==============
+    //    Croatian
+    // ==============
+    {
+        predicate: function(language, poster_name) {
+            return language == 'hr' && (poster_name == 'facebook');
+        },
+        refitting: false,
+        elements: [
+            {selector: '#body-content', css: {'line-height': '10.0rem'}},
+        ]
+    },
+    {
+        predicate: function(language, poster_name) {
+            return language == 'hr' && (poster_name == 'amazon');
+        },
+        refitting: false,
+        elements: [
+            {selector: '#body-content', css: {'line-height': '5.0rem'}},
+        ]
+    },
+
+
     // ===============
     //   Polish (pl)
     // ===============
@@ -262,6 +285,19 @@ var layout_rules_override = [
         ]
     },
 
+
+    // =============
+    //    Turkish
+    // =============
+    {
+        predicate: function(language, poster_name) {
+            return language == 'tr' && (poster_name == 'google' || poster_name == 'apple' || poster_name == 'amazon');
+        },
+        refitting: false,
+        elements: [
+            {selector: '#body-content', css: {'line-height': '8.0rem'}},
+        ]
+    },
 
 ];
 

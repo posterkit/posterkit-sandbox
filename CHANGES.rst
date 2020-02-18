@@ -7,6 +7,11 @@ in progress
 ===========
 
 
+2020-02-18 0.10.0
+=================
+- Tune rendering for Croatian and Turkish
+
+
 2019-08-22 0.9.0
 ================
 - Add a bunch of new languages and adjust layout for some
