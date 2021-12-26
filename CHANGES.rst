@@ -10,6 +10,7 @@ in progress
 - When PDF file already exists, skip rendering it over and over again
 - Fix installation instructions for MacTeX and Pdfjam
 - Update versions of Javascript modules
+- Add yarn.lock
 
 
 2020-02-18 0.10.0
