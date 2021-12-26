@@ -14,6 +14,7 @@ in progress
 - Switch from "i18next-xhr-backend" to "i18next-http-backend"
 - Update two more webpack plugins
 - Use ``--chrome-arg=--no-sandbox`` when starting Decktape
+- ``os.waitstatus_to_exitcode`` is only available on Python >= 3.9
 
 
 2020-02-18 0.10.0
