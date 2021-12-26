@@ -128,6 +128,11 @@ def run_command(command, input=None, passthrough=False):
     return BytesIO(stdout), BytesIO(stderr)
 
 
+def run_command_basic(command):
+    exitcode = os.waitstatus_to_exitcode(os.system(command))
+    return exitcode == 0
+
+
 def to_list(obj):
     """Convert an object to a list if it is not already one"""
     # stolen from cornice.util

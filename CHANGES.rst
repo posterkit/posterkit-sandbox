@@ -6,6 +6,7 @@ posterkit-sandbox changelog
 in progress
 ===========
 - Update to Python 3
+- Improve logging when auxiliary programs are not installed
 
 
 2020-02-18 0.10.0

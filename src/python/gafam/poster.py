@@ -7,7 +7,7 @@ from io import BytesIO
 from collections import OrderedDict
 from posterkit.makepdf import makepdf
 from posterkit.pdfnup import create_image
-from posterkit.util import ensure_directory
+from posterkit.util import ensure_directory, run_command_basic
 
 logger = logging.getLogger(__name__)
 
@@ -160,7 +160,8 @@ def render_posters(info=None, path=None):
                     # Convert PDF to SVG
                     command = "pdf2svg '{inputfile}' '{outputfile}'".format(inputfile=pdfpage_file.name, outputfile=svg_filepath)
                     logger.info(u'The PDF to SVG conversion command is: {}'.format(command))
-                    os.system(command)
+                    if not run_command_basic(command):
+                        logger.warning("PDF to SVG conversion failed")
 
                     # Continue with next page
                     number += 1
@@ -240,7 +241,8 @@ def join_pdf_files(filenames):
     output_file = tmpfile.name
     join_command = 'pdftk {input_files} output {output_file}'.format(**locals())
     logger.info(u'The joining command is: {}'.format(join_command))
-    os.system(join_command)
+    if not run_command_basic(join_command):
+        logger.warning("Joining PDF files failed")
     tmpfile.seek(0)
     buffer = BytesIO(tmpfile.read())
     return buffer
