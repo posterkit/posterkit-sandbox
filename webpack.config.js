@@ -122,12 +122,14 @@ module.exports = {
         }),
 
         // https://github.com/webpack-contrib/copy-webpack-plugin
-        new CopyWebpackPlugin([
-            {
-                from: path.resolve('posters', 'lqdn-gafam-campaign', 'img'),
-                to: '../lqdn-gafam-campaign/img/',
-            },
-        ]),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: path.resolve('posters', 'lqdn-gafam-campaign', 'img'),
+                    to: '../lqdn-gafam-campaign/img/',
+                },
+            ]
+        }),
 
     ],
 
