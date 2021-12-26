@@ -51,7 +51,7 @@ def makepdf(uri):
     tmpfile.seek(0)
     payload = tmpfile.read()
 
-    if 'Error: ' in payload:
+    if b'Error: ' in payload:
         raise SystemError(payload)
 
     # Return as byte buffer
