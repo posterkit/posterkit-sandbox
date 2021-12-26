@@ -129,7 +129,9 @@ def run_command(command, input=None, passthrough=False):
 
 
 def run_command_basic(command):
-    exitcode = os.waitstatus_to_exitcode(os.system(command))
+    exitcode = os.system(command)
+    if hasattr("os", "waitstatus_to_exitcode"):
+        exitcode = os.waitstatus_to_exitcode(exitcode)
     return exitcode == 0
 
 
