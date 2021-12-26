@@ -72,7 +72,7 @@ Enjoy:
 
 .. _gafam-poster-translations: https://github.com/gafam/gafam-poster-translations
 .. _i18next: https://www.i18next.com/
-.. _i18next-xhr-backend: https://github.com/i18next/i18next-xhr-backend
+.. _i18next-http-backend: https://github.com/i18next/i18next-http-backend
 
 
 Licenses
