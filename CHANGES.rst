@@ -8,6 +8,7 @@ in progress
 - Update to Python 3
 - Improve logging when auxiliary programs are not installed
 - When PDF file already exists, skip rendering it over and over again
+- Fix installation instructions for MacTeX and Pdfjam
 
 
 2020-02-18 0.10.0

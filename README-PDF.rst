@@ -69,8 +69,11 @@ PDFtk_ is used for joining single PDF pages together.
     apt install pdftk
 
     # macOS
-    # See https://gist.github.com/jvenator/9672772a631c117da151#gistcomment-2995525
-    # https://github.com/pdffillerjs/pdffiller/issues/73
+    wget https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/pdftk_server-2.02-mac_osx-10.6-setup.pkg
+    wget https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/pdftk_server-2.02-mac_osx-10.11-setup.pkg
+
+Re. macOS: See https://gist.github.com/jvenator/9672772a631c117da151#gistcomment-2995525
+and https://github.com/pdffillerjs/pdffiller/issues/73.
 
 .. _PDFtk: https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
 
@@ -84,8 +87,14 @@ Pdfjam brings ``pdfnup``, which is used for rendering a 5-up overview image of a
 
     # macOS
     # https://discourse.brew.sh/t/missing-formula-location/818/8
-    brew tap FLEWID-AB/pdfjam
-    brew cask install mactex pdfjam
+    # Outdated: brew tap FLEWID-AB/pdfjam
+    brew install --cask mactex
+
+    wget https://raw.githubusercontent.com/rrthomas/pdfjam/89a223db/bin/pdfjam \
+        --output-document=$HOME/.local/bin/pdfjam
+    wget https://raw.githubusercontent.com/rrthomas/pdfjam-extras/622e03a/bin/pdfnup \
+        --output-document=$HOME/.local/bin/pdfnup
+    chmod +x $HOME/.local/bin/pdfjam $HOME/.local/bin/pdfnup
 
 
 Install ImageMagick
