@@ -3,9 +3,24 @@ posterkit-sandbox backlog
 #########################
 
 
-****
-Todo
-****
+*********
+Todo 2021
+*********
+
+- [o] Replace ``purl``: https://github.com/allmarkedup/purl
+- [o] Loading fonts occasionally fails like::
+
+    Loading fonts failed: {
+      family: 'Amiri',
+      style: 'normal',
+      weight: 'normal',
+      stretch: 'normal'
+    }
+
+
+*********
+Todo 2020
+*********
 
 Prio 1
 ======
