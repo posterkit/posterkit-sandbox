@@ -11,7 +11,7 @@ const readable_glyph_names = require('readable-glyph-names');
 const FontFaceObserver = require('fontfaceobserver');
 
 const i18next = require('i18next');
-const i18nextXHRBackend = require('i18next-xhr-backend');
+const i18nextHTTPBackend = require('i18next-http-backend').default;
 const i18nextBrowserLanguageDetector = require('i18next-browser-languagedetector');
 
 
@@ -329,7 +329,7 @@ var InternationalizedResource = prime({
         return new Promise(function(resolve, reject) {
             // Apply text from translation file
             i18next
-                .use(i18nextXHRBackend)
+                .use(i18nextHTTPBackend)
                 //.use(i18nextBrowserLanguageDetector)
                 .init({
                     lng: language,
@@ -339,12 +339,14 @@ var InternationalizedResource = prime({
                         loadPath: _this.url,
                         crossDomain: true
                     }
-                }, function(err, t) {
-                    //console.log('err:', err, t);
+                }, function(err, res) {
+                    //console.log('err:', err, res);
                     if (err !== undefined) {
+                        console.error('Loading i18n content failed');
                         reject(err);
                     } else {
-                        resolve(t);
+                        console.log('Loading i18n content successful');
+                        resolve(res);
                     }
                 });
         });
