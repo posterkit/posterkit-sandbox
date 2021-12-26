@@ -20,7 +20,7 @@ def makepdf(uri):
     #render_command_tpl = "{nodejs} {decktape} --no-sandbox --load-pause 1500 --slides 1 --size 793x1118 generic '{uri}' {outputfile}"
     #render_command_tpl = "{decktape} generic --no-sandbox --slides=1 --size=793x1118 --pause=250 --load-pause=250 '{uri}' '{outputfile}'"
     #render_command_tpl = "{decktape} generic --no-sandbox --slides=1 --size=793x1118 --load-pause=3000 '{uri}' '{outputfile}'"
-    render_command_tpl = "{nodejs} {decktape} generic --no-sandbox --slides=1 --size=793x1118 --load-pause=500 '{uri}' '{outputfile}'"
+    render_command_tpl = "{nodejs} {decktape} generic --chrome-arg=--no-sandbox --slides=1 --size=793x1118 --load-pause=500 '{uri}' '{outputfile}'"
 
     nodejs = find_nodejs()
     if nodejs is None:
