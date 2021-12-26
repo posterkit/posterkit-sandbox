@@ -65,6 +65,15 @@ def render_posters(info=None, path=None):
 
             logger.info('** Rendering PDF posters for variant={variant}'.format(**locals()))
 
+            # Compute output path
+            if path != '-':
+                pdf_filename = PDF_NAME_TEMPLATE.format(**locals())
+                pdf_filepath = os.path.abspath(os.path.join(path, pdf_filename))
+
+            if os.path.exists(pdf_filepath):
+                logger.info(f"{pdf_filepath} already exists, skipping all further rendering steps")
+                continue
+
             # Generate single-page PDF files
             # Render N pages
             outputfiles = []
@@ -106,10 +115,6 @@ def render_posters(info=None, path=None):
             else:
 
                 # A. Save PDF
-
-                # Compute output path
-                pdf_filename = PDF_NAME_TEMPLATE.format(**locals())
-                pdf_filepath = os.path.abspath(os.path.join(path, pdf_filename))
                 logging.info('PDF file path is {}'.format(pdf_filepath))
 
                 # Ensure path exists
