@@ -116,7 +116,7 @@ def render_posters(info=None, path=None):
                 ensure_directory(pdf_filepath)
 
                 # Save PDF
-                with file(pdf_filepath, 'wb') as f:
+                with open(pdf_filepath, 'wb') as f:
                     f.write(pdfstream.read())
 
                 # Remember PDF path
@@ -228,7 +228,7 @@ def save_file(buffer, path, filename):
     ensure_directory(img_filepath)
 
     # Save to filesystem
-    with file(img_filepath, 'wb') as f:
+    with open(img_filepath, 'wb') as f:
         f.write(buffer.read())
 
     return img_filepath

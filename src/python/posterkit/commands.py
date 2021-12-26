@@ -44,7 +44,7 @@ def run():
     boot_logging(options)
 
     # Normalize commandline options
-    options = normalize_options(options, encoding='utf-8')
+    options = normalize_options(options)
 
     # Render PDF
     if options['pdf']:

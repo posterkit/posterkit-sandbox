@@ -5,6 +5,7 @@ posterkit-sandbox changelog
 
 in progress
 ===========
+- Update to Python 3
 
 
 2020-02-18 0.10.0
