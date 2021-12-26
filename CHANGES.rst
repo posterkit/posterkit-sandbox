@@ -11,6 +11,8 @@ in progress
 - Fix installation instructions for MacTeX and Pdfjam
 - Update versions of Javascript modules
 - Add yarn.lock
+- Switch from "i18next-xhr-backend" to "i18next-http-backend"
+- Update two more webpack plugins
 
 
 2020-02-18 0.10.0
