@@ -5,6 +5,9 @@ posterkit-sandbox changelog
 
 in progress
 ===========
+
+general
+-------
 - Update to Python 3
 - Improve logging when auxiliary programs are not installed
 - When PDF file already exists, skip rendering it over and over again
@@ -15,15 +18,22 @@ in progress
 - Update two more webpack plugins
 - Use ``--chrome-arg=--no-sandbox`` when starting Decktape
 - ``os.waitstatus_to_exitcode`` is only available on Python >= 3.9
+- Improve documentation
 
 
 2020-02-18 0.10.0
 =================
+
+lqdn-gafam-campaign
+-------------------
 - Tune rendering for Croatian and Turkish
 
 
 2019-08-22 0.9.0
 ================
+
+lqdn-gafam-campaign
+-------------------
 - Add a bunch of new languages and adjust layout for some
 - Filter empty PDF documents when rendering mosaic
 - Adjust mosaic autolayout

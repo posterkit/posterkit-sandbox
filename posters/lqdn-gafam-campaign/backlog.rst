@@ -1,11 +1,35 @@
-################################
-lqdn-gafam-campaign example todo
-################################
+###########################
+lqdn-gafam-campaign backlog
+###########################
 
 
 ******
 Prio 1
 ******
+In general, macOS offers more fonts than Linux in a default installation.
+However, some are still not optimal yet.
+
+- Problematic the other day, now pretty on both platforms: ar
+- Does not render on Linux at all: bn, te
+- Weird characters with diacritics on Linux: hu, hr, tr
+- More beautiful on macOS: he, ja, zh
+
+Still not as good as the previous renderings:
+- https://ptrace.gafam.info/unofficial/archive-2018/pdf/black/lqdn-gafam-poster-ja-black.pdf
+- https://ptrace.gafam.info/unofficial/archive-2018/pdf/black/lqdn-gafam-poster-zh-black.pdf
+
+Fine tuning:
+- Increase line-height at: te
+- Adjust font size: he
+- Maybe make not bold: ja, zh
+- Font for ja: FuturaKoyu, DejaVuSans, FuturaExtended, UKaiCN
+
+=> Play with "serif" vs. "non-serif" for ja, zh.
+
+
+*********
+Prio 1.25
+*********
 - [x] Create 10x8 mosaic
 - [x] Update gafam.info
 - [o] Scrolling to anchor does not work yet
@@ -25,7 +49,7 @@ Prio 1
 
 
 *********
-Prio 1.25
+Prio 1.33
 *********
 - [x] Render as SVG
 - [o] Tune specific posters
@@ -60,7 +84,7 @@ Prio 1.25
 - [o] Test how image loading works with regular/transparent PNG/JPEG/GIF images
 - [o] How to make the chooser link to local resources (image, pdf)?
 - [o] Investigate further why the Arabic font used when rendering on Mac OS X looks way more beautiful than on Linux.
-  Remark: Therefore, the font quality of Japanese and Chinese translations is way better on Linux, though!
+  Remark: On the other hand, the font quality of Japanese and Chinese translations is way better on Linux, though!
 - [o] Add dynamic anchors for jumping to e.g. #facts-and-figures
 - [o] Make "Facts and figures" section collapsible?
 - [o] Apple logo should be more narrow?

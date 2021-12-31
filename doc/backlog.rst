@@ -3,9 +3,9 @@ posterkit-sandbox backlog
 #########################
 
 
-*********
-Todo 2021
-*********
+****
+2021
+****
 
 - [o] Replace ``purl``: https://github.com/allmarkedup/purl
 - [o] Loading fonts occasionally fails like::
@@ -18,9 +18,10 @@ Todo 2021
     }
 
 
-*********
-Todo 2020
-*********
+
+****
+2020
+****
 
 Prio 1
 ======

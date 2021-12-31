@@ -43,15 +43,21 @@ Install font packages
     apt install fonts-arphic-ukai fonts-arphic-uming
 
     # You might want to install more fonts, but this will eventually amend the outcome
-    # for some languages, you have been warned.
+    # for some other languages, you have been warned.
     apt install fonts-beteckna fonts-uralic
 
     # Also, yields different outcome.
     apt install fonts-ipafont-mincho fonts-ipafont-gothic fonts-unfonts-core
 
     # There are some fonts which - when installed - make the beautiful
-    # Chinese and Japanes fonts disappear, so you might well do:
+    # Chinese and Japanes fonts disappear, so you might well want to invoke:
     apt remove fonts-droid fonts-lmodern
+
+    # https://wiki.debian.org/Fonts
+    rm /etc/fonts/conf.d/65-fonts-lmodern.conf
+    dpkg-reconfigure fontconfig
+    dpkg-reconfigure texlive-latex-base
+
 
 Also, have a look at:
 
@@ -83,7 +89,7 @@ Install pdfjam
 Pdfjam brings ``pdfnup``, which is used for rendering a 5-up overview image of a multipage PDF document.
 
     # Debian Linux
-    apt install pdfjam
+    apt install texlive-extra-utils
 
     # macOS
     # https://discourse.brew.sh/t/missing-formula-location/818/8
@@ -144,7 +150,7 @@ Test decktape
 ::
 
     su - www-data
-    decktape generic --no-sandbox --load-pause 3000 --slides 1 --size 793x1118 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang=cmn&name=google' lqdn-gafam-poster-cmn-google.pdf
+    decktape generic --chrome-arg=--no-sandbox --load-pause 3000 --slides 1 --size 793x1118 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang=cmn&name=google' lqdn-gafam-poster-cmn-google.pdf
 
 .. note:: 793x1118 is supposed to be A4.
 
