@@ -20,6 +20,10 @@ general
 - ``os.waitstatus_to_exitcode`` is only available on Python >= 3.9
 - Improve documentation
 
+lqdn-gafam-campaign
+-------------------
+- Render bn,he,hu,hr,te,tr,ja,zh on macOS, it has better fonts
+
 
 2020-02-18 0.10.0
 =================
