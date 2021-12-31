@@ -3,14 +3,16 @@
 # ===========
 
 $(eval venvpath     := .venv)
-$(eval bumpversion  := $(venvpath)/bin/bumpversion)
+$(eval pip          := $(venvpath)/bin/pip)
 $(eval python       := $(venvpath)/bin/python)
+$(eval bumpversion  := $(venvpath)/bin/bump2version)
 
 virtualenv:
-	@test -e $(venvpath)/bin/python || `command -v virtualenv` --python=`command -v python` --no-site-packages $(venvpath)
+	@test -e $(python) || python3 -m venv --system-site-packages $(venvpath)
+	@$(pip) install --editable=.
 
 bumpversion: virtualenv
-	@$(venvpath)/bin/pip install bumpversion
+	@$(pip) install bumpversion
 	$(bumpversion) $(bump)
 
 
@@ -70,7 +72,7 @@ mosaic: check-target-dir virtualenv
 # local webserver
 # ===============
 webserver:
-	cd htdocs; python -m SimpleHTTPServer 9999
+	cd htdocs; python3 -m http.server 9999
 
 open-chooser:
 	open http://localhost:9999/examples/lqdn-gafam-campaign/chooser.html
@@ -81,4 +83,4 @@ open-chooser:
 # ======
 upload-improved-resources:
 	# Publish/overwrite Arabic resources as they look more beautiful when rendered on macOS
-	cd tmp/out; find ./*/*/*-ar-* -iname '*' -print0 | tar --null --files-from=/dev/stdin -cvf - | ssh www-data@ptrace.gafam.info tar -xvf - -C /srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial; cd -
+	cd var; find ./*/*/*-{bn,he,hu,hr,te,tr,ja,zh}-* -iname '*' -print0 | tar --null --files-from=/dev/stdin -cvf - | ssh www-data@ptrace.gafam.info tar -xvf - -C /srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial; cd -

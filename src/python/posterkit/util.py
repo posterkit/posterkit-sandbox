@@ -28,17 +28,12 @@ def setup_logging(level=logging.INFO):
         level=level)
 
 
-def normalize_options(options, encoding=None, list_items=None):
+def normalize_options(options, list_items=None):
     normalized = {}
     for key, value in options.items():
 
         # Sanitize key
         key = key.strip('--<>')
-
-        # Sanitize charset encoding
-        if encoding and (type(value) is str):
-            value = value.decode(encoding)
-
         normalized[key] = value
 
     return normalized
@@ -131,6 +126,13 @@ def run_command(command, input=None, passthrough=False):
             raise RuntimeError(message)
 
     return BytesIO(stdout), BytesIO(stderr)
+
+
+def run_command_basic(command):
+    exitcode = os.system(command)
+    if hasattr("os", "waitstatus_to_exitcode"):
+        exitcode = os.waitstatus_to_exitcode(exitcode)
+    return exitcode == 0
 
 
 def to_list(obj):

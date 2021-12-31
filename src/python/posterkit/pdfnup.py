@@ -11,7 +11,7 @@ import os
 import logging
 import tempfile
 from io import BytesIO
-from posterkit.util import to_list
+from posterkit.util import to_list, run_command_basic
 
 logger = logging.getLogger(__name__)
 
@@ -36,7 +36,8 @@ def create_image(pdf_files, papersize='297mm,210mm', nup='1', size='1024x', form
 
     command = "pdfnup --papersize '{{{papersize}}}' --nup {nup} --vanilla --keepinfo --outfile '{output_file}' {pdf_files_string}".format(**locals())
     logger.info('Running "pdfnup" command: {}'.format(command))
-    os.system(command)
+    if not run_command_basic(command):
+        logger.warning("Running pdfnup failed")
 
     input_file = tmp_nupped.name
     tmp_image = tempfile.NamedTemporaryFile(delete=DELETE_TEMPFILES)
@@ -60,6 +61,8 @@ def create_image(pdf_files, papersize='297mm,210mm', nup='1', size='1024x', form
     command = "convert -units PixelsPerInch '{input_file}' -density 300 {size_option} '{format}:{output_file}'".format(**locals())
     logger.info('Running "convert" command: {}'.format(command))
     os.system(command)
+    if not run_command_basic(command):
+        logger.warning("Running imagemagick failed")
 
     tmp_image.seek(0)
     buffer = BytesIO(tmp_image.read())

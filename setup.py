@@ -39,9 +39,9 @@ setup(
     packages=find_packages('src/python', exclude=['contrib', 'docs', 'tests']),
     package_dir={'': 'src/python'},
     install_requires=[
-        'where==1.0.2',
-        'docopt==0.6.2',
-        'requests==2.18.4',
+        'where>=1.0.2,<2',
+        'docopt>=0.6.2,<1',
+        'requests>=2.20.0,<3',
     ],
     extras_require={
         'dev': ['check-manifest'],

@@ -7,7 +7,7 @@ from io import BytesIO
 from collections import OrderedDict
 from posterkit.makepdf import makepdf
 from posterkit.pdfnup import create_image
-from posterkit.util import ensure_directory
+from posterkit.util import ensure_directory, run_command_basic
 
 logger = logging.getLogger(__name__)
 
@@ -65,6 +65,15 @@ def render_posters(info=None, path=None):
 
             logger.info('** Rendering PDF posters for variant={variant}'.format(**locals()))
 
+            # Compute output path
+            if path != '-':
+                pdf_filename = PDF_NAME_TEMPLATE.format(**locals())
+                pdf_filepath = os.path.abspath(os.path.join(path, pdf_filename))
+
+            if os.path.exists(pdf_filepath):
+                logger.info(f"{pdf_filepath} already exists, skipping all further rendering steps")
+                continue
+
             # Generate single-page PDF files
             # Render N pages
             outputfiles = []
@@ -106,17 +115,13 @@ def render_posters(info=None, path=None):
             else:
 
                 # A. Save PDF
-
-                # Compute output path
-                pdf_filename = PDF_NAME_TEMPLATE.format(**locals())
-                pdf_filepath = os.path.abspath(os.path.join(path, pdf_filename))
                 logging.info('PDF file path is {}'.format(pdf_filepath))
 
                 # Ensure path exists
                 ensure_directory(pdf_filepath)
 
                 # Save PDF
-                with file(pdf_filepath, 'wb') as f:
+                with open(pdf_filepath, 'wb') as f:
                     f.write(pdfstream.read())
 
                 # Remember PDF path
@@ -160,7 +165,8 @@ def render_posters(info=None, path=None):
                     # Convert PDF to SVG
                     command = "pdf2svg '{inputfile}' '{outputfile}'".format(inputfile=pdfpage_file.name, outputfile=svg_filepath)
                     logger.info(u'The PDF to SVG conversion command is: {}'.format(command))
-                    os.system(command)
+                    if not run_command_basic(command):
+                        logger.warning("PDF to SVG conversion failed")
 
                     # Continue with next page
                     number += 1
@@ -228,7 +234,7 @@ def save_file(buffer, path, filename):
     ensure_directory(img_filepath)
 
     # Save to filesystem
-    with file(img_filepath, 'wb') as f:
+    with open(img_filepath, 'wb') as f:
         f.write(buffer.read())
 
     return img_filepath
@@ -240,7 +246,8 @@ def join_pdf_files(filenames):
     output_file = tmpfile.name
     join_command = 'pdftk {input_files} output {output_file}'.format(**locals())
     logger.info(u'The joining command is: {}'.format(join_command))
-    os.system(join_command)
+    if not run_command_basic(join_command):
+        logger.warning("Joining PDF files failed")
     tmpfile.seek(0)
     buffer = BytesIO(tmpfile.read())
     return buffer

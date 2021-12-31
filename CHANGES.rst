@@ -6,14 +6,38 @@ posterkit-sandbox changelog
 in progress
 ===========
 
+general
+-------
+- Update to Python 3
+- Improve logging when auxiliary programs are not installed
+- When PDF file already exists, skip rendering it over and over again
+- Fix installation instructions for MacTeX and Pdfjam
+- Update versions of Javascript modules
+- Add yarn.lock
+- Switch from "i18next-xhr-backend" to "i18next-http-backend"
+- Update two more webpack plugins
+- Use ``--chrome-arg=--no-sandbox`` when starting Decktape
+- ``os.waitstatus_to_exitcode`` is only available on Python >= 3.9
+- Improve documentation
+
+lqdn-gafam-campaign
+-------------------
+- Render bn,he,hu,hr,te,tr,ja,zh on macOS, it has better fonts
+
 
 2020-02-18 0.10.0
 =================
+
+lqdn-gafam-campaign
+-------------------
 - Tune rendering for Croatian and Turkish
 
 
 2019-08-22 0.9.0
 ================
+
+lqdn-gafam-campaign
+-------------------
 - Add a bunch of new languages and adjust layout for some
 - Filter empty PDF documents when rendering mosaic
 - Adjust mosaic autolayout

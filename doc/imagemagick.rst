@@ -2,6 +2,11 @@
 ImageMagick
 ###########
 
+
+****************************************
+Custom ImageMagick installation on Linux
+****************************************
+
 Debian GNU/Linux 8 (jessie) ships with ImageMagick 6.8.9-9, which is a bit dated.
 You can manually install a recent version of ImageMagick by running::
 
@@ -26,3 +31,5 @@ Check version::
     License: https://www.imagemagick.org/script/license.php
     Features: Cipher DPC HDRI OpenMP
     Delegates (built-in): bzlib djvu fontconfig freetype gvc jbig jng jp2 jpeg lcms lqr lzma openexr png tiff wmf x xml zlib
+
+
