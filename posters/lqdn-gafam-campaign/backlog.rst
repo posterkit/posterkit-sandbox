@@ -2,10 +2,16 @@
 lqdn-gafam-campaign backlog
 ###########################
 
+Remark: Those items are steadily collected when working on this piece of software.
+They merely have a "notes" character.
+
 
 ******
 Prio 1
 ******
+
+Font rendering problems
+=======================
 In general, macOS offers more fonts than Linux in a default installation.
 However, some are still not optimal yet.
 
@@ -26,15 +32,21 @@ Fine tuning:
 
 => Play with "serif" vs. "non-serif" for ja, zh.
 
+General updates
+===============
+- [o] Update mosaic images
+
+Improvements
+============
+- [o] Scrolling to anchor does not work yet
+- [o] The anchors still don't work when visiting the page the first time
+
 
 *********
 Prio 1.25
 *********
-- [x] Create 10x8 mosaic
-- [x] Update gafam.info
-- [o] Scrolling to anchor does not work yet
-- [o] Fixed 10x8 mosaic doesn't account for more languages properly
-- [o] 1px line at top and bottom of rendered images
+- [o] Fixed 10x8 mosaic doesn't account for more languages properly. How to improve?
+- [o] Where is this empty/white 1px line at top and bottom of rendered images coming from?
 
 - [o] Make the other PosterKit examples work again
 - [o] Update README.rst
@@ -43,7 +55,6 @@ Prio 1.25
 - [o] Add disclaimer re. Internet Explorer / Edge
 - [o] Are the upstream black posters really black?
   See https://ptrace.gafam.info/upstream/pdf/lqdn-gafam-poster-de.pdf
-- [o] The anchors still don't work when visiting the page the first time
 - [o] Check what "pngquant --posterize" would yield
 - [o] Alternative wording on https://pbs.twimg.com/media/DVHII5JW0AUeScL.jpg:large
 
@@ -51,7 +62,6 @@ Prio 1.25
 *********
 Prio 1.33
 *********
-- [x] Render as SVG
 - [o] Tune specific posters
 
     - Fall back to English: poster.html?lang=ar&name=apple&variant=eco ff.
@@ -246,3 +256,15 @@ Done
 - [x] Improve intro text on chooser.html
 - [x] Add subtitle for variant "color". E.g. "For displaying on screens"
 - [x] Add remark regarding printing of colored posters. => DON'T!
+- [x] Fix solo examples
+- [x] Add documentation about how to render a solo poster
+- [x] "eco" variant for saving toner using grey colors or dithering
+- [x] Slightly reduce height / Honor printer page margins to make page fit on one physical page
+- [x] Use Promises to encapsulate the "content" function to improve timing problems
+- [x] Body text should be larger
+- [x] Take care of the line height in "body-content" re. different text sizes
+- [x] Use True Type font from LQDN
+- [x] With very short words (e.g. three letters) in the header, the font size will be autofitted too large
+- [x] Create 10x8 mosaic
+- [x] Update gafam.info
+- [x] Render as SVG
