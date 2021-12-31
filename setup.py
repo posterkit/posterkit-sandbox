@@ -20,7 +20,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='posterkit',
-    version='0.9.0',
+    version='0.10.0',
     description='PosterKit has been created to support the lovely people of La Quadrature du Net and gafam.info in their endeavours',
     long_description=long_description,
     long_description_content_type='text/x-rst',
