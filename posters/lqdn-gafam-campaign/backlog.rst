@@ -45,6 +45,7 @@ Improvements
 *********
 Prio 1.25
 *********
+- [o] The ``iso-639-3`` library does not provide local names for languages (chooser.js).
 - [o] Fixed 10x8 mosaic doesn't account for more languages properly. How to improve?
 - [o] Where is this empty/white 1px line at top and bottom of rendered images coming from?
 

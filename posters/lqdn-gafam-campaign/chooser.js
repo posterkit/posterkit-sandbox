@@ -1,7 +1,6 @@
 // chooser-matrix
-require('lodash');
+const _ = require("lodash");
 require('jquery');
-var langs = require('langs');
 require('bulma/css/bulma.css');
 //var bulma = require('bulma.js');
 var fa = require("font-awesome/css/font-awesome.css");
@@ -218,7 +217,38 @@ function get_languages() {
 }
 
 function language_info_by_code(language_code) {
-    // ISO 639-1, 639-2, 639-3 standards
+    /*
+    Resolve two- or three-letter language code.
+
+    Implements ISO 639-1, 639-2, 639-3 standards.
+
+    - https://www.npmjs.com/package/langs (last published 5 years ago)
+    - https://www.npmjs.com/package/iso-639-3 (last published 2 months ago)
+
+    Data point of the `langs` library:
+    {
+      "name": "Abkhaz",
+      "local": "Аҧсуа",
+      "1": "ab",
+      "2": "abk",
+      "2T": "abk",
+      "2B": "abk",
+      "3": "abk"
+    }
+
+    Data point of the `iso-639-3` library:
+    {
+      name: 'English',
+      type: 'living',
+      scope: 'individual',
+      iso6393: 'eng',
+      iso6392B: 'eng',
+      iso6392T: 'eng',
+      iso6391: 'en'
+    }
+
+    */
+    const langs = require('langs');
     var iso_639_standards = ['3', '2B', '2T', '2', '1'];
     for (var iso_639_standard of iso_639_standards) {
         var language = langs.where(iso_639_standard, language_code);
@@ -226,6 +256,20 @@ function language_info_by_code(language_code) {
             language.code = language['1'];
             return language;
         }
+    }
+
+    // Some languages, like Extremaduran, need a fallback.
+    const iso6393 = require('iso-639-3').iso6393;
+    let iso6393lang = _.find(iso6393, {"iso6393": language_code});
+    if (iso6393lang) {
+        // Convert result into data point format of `langs` library.
+        let language = {
+            name: iso6393lang.name,
+            code: iso6393lang.iso6393,
+            // TODO: The `iso-639-3` library does not provide local names for languages.
+            local: null,
+        };
+        return language;
     }
 }
 
