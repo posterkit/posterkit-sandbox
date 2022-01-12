@@ -200,6 +200,7 @@ function get_languages() {
                         console.error('Could not resolve language code:', language_code)
                     }
                 }
+                languages = _.sortBy(languages, "name");
                 resolve(languages);
             })
             .catch(function(error) {
