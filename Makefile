@@ -77,6 +77,9 @@ webserver:
 open-chooser:
 	open http://localhost:9999/examples/lqdn-gafam-campaign/chooser.html
 
+develop:
+	yarn run watch
+
 
 # ======
 # tweaks
