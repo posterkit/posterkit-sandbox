@@ -6,6 +6,7 @@
 //
 // Etymology: https://en.wikipedia.org/wiki/Rigveda
 //
+const _ = require("lodash");
 const prime = require("prime");
 const readable_glyph_names = require('readable-glyph-names');
 const FontFaceObserver = require('fontfaceobserver');
@@ -124,6 +125,14 @@ var Typesetting = prime({
     },
 
     has_diacritics: function(text) {
+        if (!this.has_diacritics_cached) {
+            const f = _.bind(this.has_diacritics_real, this);
+            this.has_diacritics_cached = _.memoize(f);
+        }
+        return this.has_diacritics_cached(text);
+    },
+
+    has_diacritics_real: function(text) {
 
         // Single chars not available in lightweight unicode database
         var diacritics_fixed = {
