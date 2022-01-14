@@ -44,6 +44,6 @@ page[size="A5"][layout="portrait"] {
 @media print {
     body, page {
         margin: 0;
-        box-shadow: 0;
+        box-shadow: 0 0 0 0;
     }
 }

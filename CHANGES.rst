@@ -6,6 +6,10 @@ posterkit-sandbox changelog
 in progress
 ===========
 
+general
+-------
+- Fix and improve CSS properties
+
 lqdn-gafam-campaign
 -------------------
 - Add ``iso-639-3`` library for resolving more languages like "Extremaduran"
