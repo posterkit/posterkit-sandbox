@@ -9,6 +9,7 @@ in progress
 general
 -------
 - Fix and improve CSS properties
+- Add ``caron`` to the list of diacritic marks to improve rendering Czech glyphs
 
 lqdn-gafam-campaign
 -------------------

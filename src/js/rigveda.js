@@ -155,7 +155,7 @@ var Typesetting = prime({
             }
         });
 
-        //console.log(unicode);
+        // List of diacritic marks
         var diacritics_keywords = {
             ascender: [
 
@@ -170,6 +170,7 @@ var Typesetting = prime({
                 'ring',
                 //'germandbls',  // Needs more/different tuning
                 'ishort',
+                'caron',
             ],
             descender: [
                 'cedilla',
