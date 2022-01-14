@@ -10,6 +10,7 @@ lqdn-gafam-campaign
 -------------------
 - Add ``iso-639-3`` library for resolving more languages like "Extremaduran"
 - For display, sort languages by name instead of code
+- Remove unknown or deprecated CSS- and SVG-properties
 
 2021-12-31 0.11.0
 =================

@@ -25,7 +25,6 @@
     url('https://ptrace.gafam.info/unofficial/font/Lato-Regular.ttf') format('truetype');
     font-style: normal;
     font-weight: normal;
-    text-rendering: optimizeLegibility;
 }
 
 /* Webfont: Lato-Heavy */
@@ -39,7 +38,6 @@
     url('https://ptrace.gafam.info/unofficial/font/Lato-Heavy.ttf') format('truetype');
     font-style: normal;
     font-weight: normal;
-    text-rendering: optimizeLegibility;
 }
 
 
