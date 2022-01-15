@@ -48,7 +48,7 @@ var Typesetting = prime({
         });
     },
 
-    fit_text_bounding_box: function(element, language) {
+    fit_text_bounding_box: function(element, language, section) {
 
         console.info('Fitting bounding box to text content');
 
@@ -97,6 +97,25 @@ var Typesetting = prime({
             font_size_line_height_ratio = 1.00;
         }
 
+        // Adjust for Cyrillic glyphs
+        if (language == 'ru' && section != 'title') {
+            font_size_height_ratio = 1.10;
+            font_size_line_height_ratio = 1.25;
+        }
+
+        // Adjust for Telugu glyphs
+        if (language == 'te' && section != 'title') {
+            font_size_line_height_ratio = 1.20;
+            if (with_diacritics.descender) {
+                font_size_height_ratio = 1.40;
+            }
+        }
+
+        // Adjust for Turkish glyphs
+        if (language == 'tr' && section != 'title') {
+            font_size_line_height_ratio = 1.25;
+        }
+
         // Adjust for Arabic variant of Amiri Font
         if (language == 'ar' && _.includes(font_family, 'Amiri')) {
             font_size_height_ratio = 1.10;
@@ -138,12 +157,20 @@ var Typesetting = prime({
         var diacritics_fixed = {
             // Russian
             //'Й': { any: true, ascender: true, descender: false },
+            'Д': { any: true, ascender: false, descender: true },
             // Arabic
             "آ": { any: true, ascender: true, descender: false },
             "جُ": { any: true, ascender: true, descender: false },
             "م": { any: true, ascender: false, descender: true },
             "دِ": { any: true, ascender: false, descender: true },
             "تِ": { any: true, ascender: false, descender: true },
+            // Bengali
+            "উ": { any: true, ascender: true, descender: false },
+            "ট": { any: true, ascender: true, descender: false },
+            // Telugu
+            "ల్ల": { any: true, ascender: false, descender: true },
+            "థా": { any: true, ascender: false, descender: true },
+            "తుం": { any: true, ascender: false, descender: true },
         };
 
         var response = {
@@ -180,6 +207,7 @@ var Typesetting = prime({
                 //'germandbls',  // Needs more/different tuning
                 'ishort',
                 'caron',
+                'breve',
             ],
             descender: [
                 'cedilla',

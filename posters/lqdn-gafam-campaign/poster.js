@@ -163,23 +163,6 @@ var layout_rules_override = [
     },
 
 
-    // ===============
-    //   Polish (pl)
-    // ===============
-    {
-        predicate: function(language, poster_name) {
-            return language == 'pl';
-        },
-        refitting: false,
-        elements: [
-            {selector: '#body-content', css: {'font-family': 'LatoWebHeavy'}},
-            {selector: '#footer-text', css: {'font-family': 'LatoWeb'}},
-            //{selector: '#body-content', css: {'font-family': 'Muli', 'font-weight': 900}},
-            //{selector: '#footer-text', css: {'font-family': 'Muli', 'font-weight': 400}},
-        ]
-    },
-
-
     // ==================
     //   Esperanto (eo)
     // ==================
@@ -191,19 +174,6 @@ var layout_rules_override = [
         elements: [
             {selector: '#body-content', css: {width: '80%'}},
             {selector: '#footer-text', css: {'font-family': 'LatoWeb'}},
-        ]
-    },
-
-
-    // ===================
-    //   Portuguese (pt)
-    // ===================
-    {
-        predicate: function(language, poster_name) {
-            return (language == 'pt');
-        },
-        elements: [
-            {selector: '#body-content', css: {width: '85%'}},
         ]
     },
 
@@ -248,6 +218,18 @@ var layout_rules_override = [
         ]
     },
 
+    // ===============
+    //   Hebrew (he)
+    // ===============
+    {
+        predicate: function(language, poster_name) {
+            return language == 'he' && poster_name == 'google';
+        },
+        //refitting: false,
+        elements: [
+            {selector: '#body-content', css: {'width': '70%'}},
+        ]
+    },
 
     // =============
     //   Hungarian
@@ -259,6 +241,19 @@ var layout_rules_override = [
         refitting: false,
         elements: [
             {selector: '#body-content', css: {'width': '50%', 'line-height': '2.5rem'}},
+        ]
+    },
+
+
+    // ==================
+    //   Russian (ru)
+    // ==================
+    {
+        predicate: function(language, poster_name) {
+            return language == 'ru';
+        },
+        elements: [
+            {selector: '#footer-text', css: {'font-family': 'LatoWeb'}},
         ]
     },
 

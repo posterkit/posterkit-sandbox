@@ -166,7 +166,7 @@ function run_autolayout(layout_rules, language, poster_name) {
 
     $('#title-content .fit').on('fit', function() {
         //console.log('#title-content .fit');
-        Typesetting.fit_text_bounding_box(this, language);
+        Typesetting.fit_text_bounding_box(this, language, 'title');
     });
 
     var refit_body_debounced = _.debounce(refit_body_size, 10, { 'maxWait': 500 });
