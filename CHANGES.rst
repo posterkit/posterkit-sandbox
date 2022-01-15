@@ -12,6 +12,7 @@ general
 - Add ``caron`` to the list of diacritic marks to improve rendering Czech glyphs
 - Add runtime cache for ``rigveda::has_diacritics``
 - Improve rendering for specific languages/glyphs
+- Adjust cache busting
 
 lqdn-gafam-campaign
 -------------------

@@ -24,6 +24,9 @@ const posterkit = require('posterkit');
 // Where to get i18next data from
 var i18next_data_url = 'https://raw.githubusercontent.com/gafam/gafam-poster-translations/master/json/{{lng}}.json';
 
+// TODO: Bust resource cache. Can we append the webpack application hash?
+i18next_data_url += '?c=42';
+
 // How to map JSON data to DOM
 var dom_content_map = [
     {id: 'title-content',       field: 'title',     transform: title_content},

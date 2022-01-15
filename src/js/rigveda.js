@@ -299,7 +299,7 @@ var Resource = prime({
 
             console.log('Resource.fetch', _this.url);
 
-            // FIXME: Bust resource cache. Can we append the webpack application hash?
+            // TODO: Bust resource cache. Can we append the webpack application hash?
             _this.url += '?c=42';
 
             $.get(_this.url).then(function(content, status, xhr) {
