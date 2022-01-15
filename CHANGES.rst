@@ -13,6 +13,7 @@ general
 - Add runtime cache for ``rigveda::has_diacritics``
 - Improve rendering for specific languages/glyphs
 - Adjust cache busting
+- Upgrade some JavaScript packages to resolve Dependabot alerts
 
 lqdn-gafam-campaign
 -------------------
