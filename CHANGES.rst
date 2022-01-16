@@ -14,6 +14,7 @@ general
 - Improve rendering for specific languages/glyphs
 - Adjust cache busting
 - Upgrade some JavaScript packages to resolve Dependabot alerts
+- Improve installation instructions for ``pdfnup`` on Linux
 
 lqdn-gafam-campaign
 -------------------

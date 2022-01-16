@@ -90,6 +90,9 @@ Pdfjam brings ``pdfnup``, which is used for rendering a 5-up overview image of a
 
     # Debian Linux
     apt install texlive-extra-utils
+    wget https://raw.githubusercontent.com/rrthomas/pdfjam-extras/622e03a/bin/pdfnup \
+        --output-document=/usr/local/bin/pdfnup
+    chmod +x /usr/local/bin/pdfnup
 
     # macOS
     # https://discourse.brew.sh/t/missing-formula-location/818/8
