@@ -44,7 +44,7 @@ HTML
 ::
 
     ssh www-data@examples.posterkit.net
-    cd /srv/www/organizations/posterkit/sources/posterkit-sandbox/
+    cd /srv/www/organizations/posterkit/sources/posterkit-sandbox
 
     make upgrade
 
@@ -53,7 +53,7 @@ PDF
 ::
 
     ssh www-data@examples.posterkit.net
-    cd /srv/www/organizations/posterkit/sources/posterkit-sandbox/
+    cd /srv/www/organizations/posterkit/sources/posterkit-sandbox
 
     # Bring everything up to speed
     make upgrade

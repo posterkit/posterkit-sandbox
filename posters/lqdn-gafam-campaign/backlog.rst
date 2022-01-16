@@ -35,6 +35,8 @@ Fine tuning:
 General updates
 ===============
 - [o] Update mosaic images
+- [o] Try vertical mosaic image
+
 
 Improvements
 ============

@@ -15,6 +15,7 @@ general
 - Adjust cache busting
 - Upgrade some JavaScript packages to resolve Dependabot alerts
 - Improve installation instructions for ``pdfnup`` on Linux
+- Improve Makefile, package.json and documentation
 
 lqdn-gafam-campaign
 -------------------

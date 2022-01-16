@@ -22,8 +22,8 @@
     },
     "scripts": {
         "watch": "webpack --mode=development --config=webpack.develop.config.js --watch --hot",
-        "build": "webpack --mode=development --config=webpack.develop.config.js --display detailed --display-error-details --progress",
-        "release": "webpack --mode=production --config=webpack.release.config.js --display detailed --display-error-details --progress"
+        "build": "webpack --mode=development --config=webpack.develop.config.js --display=detailed --display-error-details --progress",
+        "release": "webpack --mode=production --config=webpack.release.config.js --display=detailed --display-error-details --progress"
     },
     "devDependencies": {
         "bulma": "^0.9.3",
