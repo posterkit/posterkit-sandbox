@@ -91,8 +91,21 @@ mosaic: check-target-dir virtualenv
 # Tweaks
 # ======
 
+$(eval macos-languages := cs,hu,hr,pl,ru,tr,zh)
+
+# Render, publish and overwrite resources with improved glyphs.
+# They look more beautiful when rendered on macOS.
+
+build-improved-resources:
+	$(gafam-info) pdf --language=$(macos-languages) --name=all --variant=all var
 
 
+# ==========
+# Publishing
+# ==========
+
+upload-mosaic:
+	scp var/img/mosaic/lqdn-gafam-poster-mosaic-color-horizontal.png root@ptrace.gafam.info:/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial/img/mosaic/
 
 upload-improved-resources:
-	cd var; find ./*/*/*-{bn,he,hu,hr,te,tr,ja,zh}-* -iname '*' -print0 | tar --null --files-from=/dev/stdin -cvf - | ssh www-data@ptrace.gafam.info tar -xvf - -C /srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial; cd -
+	cd var; find ./*/*/*-{$(macos-languages)}-* -iname '*' -print0 | tar --null --files-from=/dev/stdin -cvf - | ssh root@ptrace.gafam.info tar -xvf - -C /srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial; cd -
