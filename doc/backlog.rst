@@ -17,3 +17,4 @@ Todo
     }
 
   Then, DeckTape gets stuck and the process runs into a timeout, croaking.
+- [o] Use ``oxipng`` for optimizing all png images.

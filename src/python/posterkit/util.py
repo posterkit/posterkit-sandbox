@@ -157,3 +157,10 @@ def ensure_directory(directory):
     filedir = os.path.dirname(directory)
     if not os.path.exists(filedir):
         os.makedirs(filedir)
+
+
+def python2round(f):
+    # https://stackoverflow.com/questions/21839140/python-3-rounding-behavior-in-python-2/21840060#21840060
+    if round(f + 1) - round(f) != 1:
+        return f + abs(f) / f * 0.5
+    return round(f)

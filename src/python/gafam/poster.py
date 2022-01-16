@@ -7,7 +7,7 @@ from io import BytesIO
 from collections import OrderedDict
 from posterkit.makepdf import makepdf
 from posterkit.pdfnup import create_image
-from posterkit.util import ensure_directory, run_command_basic
+from posterkit.util import ensure_directory, python2round, run_command_basic
 
 logger = logging.getLogger(__name__)
 
@@ -205,7 +205,7 @@ def render_mosaic(path=None, files=None, variant=None):
     pages_per_row = pages_per_document * number_of_columns
 
     page_count = len(pdf_selected) * pages_per_document
-    rows = int(round(page_count / float(pages_per_row)))
+    rows = int(python2round(page_count / float(pages_per_row)))
 
     nup = '{}x{}'.format(pages_per_row, rows)
     papersize = '{}mm,{}mm'.format(297 * rows, 210 * pages_per_row)
@@ -221,6 +221,7 @@ def render_mosaic(path=None, files=None, variant=None):
     img_filename = MOSAIC_NAME_TEMPLATE.format(**locals())
 
     # Save image
+    # TODO: Optionally optimize image using `oxipng`.
     filepath = save_file(image, path, img_filename)
     logger.info('Saved mosaic image to {}'.format(filepath))
 
