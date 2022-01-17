@@ -25,6 +25,7 @@ lqdn-gafam-campaign
 - Add Makefile targets ``build-improved-resources`` and ``upload-mosaic``
 - Improve Python 3 compatibility for mosaic rendering
 - Fix broken "ý" glyphs with Czech language
+- Fix rendering mosaic image: The number of rows could be miscomputed
 
 
 2021-12-31 0.11.0

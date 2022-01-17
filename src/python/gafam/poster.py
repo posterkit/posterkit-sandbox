@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-# (c) 2018 The PosterKit developers <developers@posterkit.org>
+# (c) 2018-2022 The PosterKit developers <developers@posterkit.org>
 import os
 import logging
+import math
 import tempfile
 from io import BytesIO
 from collections import OrderedDict
 from posterkit.makepdf import makepdf
 from posterkit.pdfnup import create_image
-from posterkit.util import ensure_directory, python2round, run_command_basic
+from posterkit.util import ensure_directory, run_command_basic
 
 logger = logging.getLogger(__name__)
 
@@ -205,7 +206,7 @@ def render_mosaic(path=None, files=None, variant=None):
     pages_per_row = pages_per_document * number_of_columns
 
     page_count = len(pdf_selected) * pages_per_document
-    rows = int(python2round(page_count / float(pages_per_row)))
+    rows = math.ceil(page_count / float(pages_per_row))
 
     nup = '{}x{}'.format(pages_per_row, rows)
     papersize = '{}mm,{}mm'.format(297 * rows, 210 * pages_per_row)
