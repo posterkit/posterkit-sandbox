@@ -259,6 +259,21 @@ var layout_rules_override = [
         ]
     },
 
+    // ===============
+    //   Polish (pl)
+    // ===============
+    {
+        predicate: function(language, poster_name) {
+            return language == 'pl';
+        },
+        refitting: false,
+        elements: [
+            //{selector: '#body-content', css: {'font-family': 'Muli', 'font-weight': 900}},
+            //{selector: '#footer-text', css: {'font-family': 'Muli', 'font-weight': 400}},
+            {selector: '#body-content', css: {'font-family': 'LatoWebHeavy'}},
+            {selector: '#footer-text', css: {'font-family': 'LatoWeb'}},
+        ]
+    },
 
     // ==================
     //   Russian (ru)

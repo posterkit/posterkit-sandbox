@@ -24,8 +24,9 @@ lqdn-gafam-campaign
 - Remove unknown or deprecated CSS- and SVG-properties
 - Add Makefile targets ``build-improved-resources`` and ``upload-mosaic``
 - Improve Python 3 compatibility for mosaic rendering
-- Fix broken "ý" glyphs with Czech language
+- Fix broken "ý" glyphs with Czech language by using Lato font
 - Fix rendering mosaic image: The number of rows could be miscomputed
+- Re-add CSS rule for Polish language to use Lato font again
 
 
 2021-12-31 0.11.0
