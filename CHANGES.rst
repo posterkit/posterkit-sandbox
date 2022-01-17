@@ -16,6 +16,7 @@ general
 - Upgrade some JavaScript packages to resolve Dependabot alerts
 - Improve installation instructions for ``pdfnup`` on Linux
 - Improve Makefile, package.json and documentation
+- Fix log message when detecting diacritics
 
 lqdn-gafam-campaign
 -------------------

@@ -250,8 +250,7 @@ var Typesetting = prime({
 
         if (response.any) {
             console.log(
-                'Found diacritic for unicode name "' + unicode_info.name + '" ' +
-                'in "' + text + '":', response); // + '" through keyword "' + keyword + '"');
+                'Found diacritics in ' + text + '":', response); // + '" through keyword "' + keyword + '"');
         }
 
         return response;
