@@ -28,6 +28,7 @@ lqdn-gafam-campaign
 - Fix broken "ý" glyphs with Czech language by using Lato font
 - Fix rendering mosaic image: The number of rows could be miscomputed
 - Re-add CSS rule for Polish language to use Lato font again
+- Render mosaic in 2- and 3-column variants
 
 
 2021-12-31 0.11.0

@@ -203,6 +203,7 @@ def render_mosaic(path=None, files=None, variant=None):
     # Compute matrix and dimensions from page count
     pages_per_document = 5
     number_of_columns = 2
+    #number_of_columns = 3
     pages_per_row = pages_per_document * number_of_columns
 
     page_count = len(pdf_selected) * pages_per_document
@@ -217,7 +218,7 @@ def render_mosaic(path=None, files=None, variant=None):
     image = create_image(pdf_selected, papersize=papersize, nup=nup, size=None, format=format)
 
     # Compute filename
-    direction = 'horizontal'
+    direction = f'{number_of_columns}-columns'
     suffix = 'png'
     img_filename = MOSAIC_NAME_TEMPLATE.format(**locals())
 

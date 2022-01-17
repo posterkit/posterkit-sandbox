@@ -105,7 +105,7 @@ build-improved-resources:
 # ==========
 
 upload-mosaic:
-	scp var/img/mosaic/lqdn-gafam-poster-mosaic-color-horizontal.png root@ptrace.gafam.info:/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial/img/mosaic/
+	rsync -auv var/img/mosaic/*.png root@ptrace.gafam.info:/srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial/img/mosaic/
 
 upload-improved-resources:
 	cd var; find ./*/*/*-{$(macos-languages)}-* -iname '*' -print0 | tar --null --files-from=/dev/stdin -cvf - | ssh root@ptrace.gafam.info tar -xvf - -C /srv/www/organizations/gafam/ptrace.gafam.info/htdocs/unofficial; cd -
