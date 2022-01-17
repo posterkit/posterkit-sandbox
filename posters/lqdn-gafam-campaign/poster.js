@@ -165,6 +165,18 @@ var layout_rules_override = [
         ]
     },
 
+    // ==============
+    //   Czech (cs)
+    // ==============
+    {
+        predicate: function(language, poster_name) {
+            return language == 'cs';
+        },
+        elements: [
+            {selector: '#body-content', css: {'font-family': 'LatoWebHeavy', 'line-height': '5.5rem'}},
+            {selector: '#footer-text', css: {'font-family': 'LatoWeb'}},
+        ]
+    },
 
     // ==================
     //   Esperanto (eo)
