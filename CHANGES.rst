@@ -17,6 +17,7 @@ general
 - Improve installation instructions for ``pdfnup`` on Linux
 - Improve Makefile, package.json and documentation
 - Fix log message when detecting diacritics
+- Update JavaScript dependencies
 
 lqdn-gafam-campaign
 -------------------

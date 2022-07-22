@@ -35,7 +35,7 @@
         "font-awesome": "^4.7.0",
         "fontfaceobserver": "^2.1.0",
         "html-loader": "^1.3.2",
-        "html-webpack-plugin": "^4.5.2",
+        "html-webpack-plugin": "^4.5",
         "i18next": "^21.6.3",
         "i18next-browser-languagedetector": "^6.1.0",
         "i18next-http-backend": "^1.3.1",
@@ -50,16 +50,21 @@
         "uglifyjs-webpack-plugin": "^2.2.0",
         "webpack": "^4.46",
         "webpack-cli": "^3.3",
-        "webpack-dev-server": "^4.3",
+        "webpack-dev-server": "^4.9",
         "webpack-notifier": "^1.15.0"
     },
     "optionalDependencies": {
-        "decktape": "^3.4.0"
+        "decktape": "^3.4.1"
     },
     "resolutions": {
         "ansi-regex": "^5.0.1",
+        "cross-fetch": "^3.1.5",
+        "follow-redirects": "^1.14.8",
         "glob-parent": "^5.1.2",
+        "mout": "^1.2.3",
+        "node-fetch": "^2.6.7",
         "serialize-javascript": "^3.1",
+        "urijs": "^1.19",
         "xmldom": "https://github.com/xmldom/xmldom/archive/refs/tags/v0.7.0.tar.gz"
     }
 }
