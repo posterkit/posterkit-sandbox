@@ -16,7 +16,7 @@ Development
 Rendering the posters as PDF documents
 **************************************
 
-The lowlevel command which will be executed is::
+The low-level command which will be executed is::
 
     decktape generic --chrome-arg=--no-sandbox --load-pause 3000 --slides 1 --size 793x1118 'https://examples.posterkit.net/lqdn-gafam-campaign/poster.html?lang=fr&name=google' lqdn-gafam-poster-fr-google.pdf
 
@@ -78,4 +78,15 @@ PDF
 
     # Render posters for selected language only
     gafam-info pdf --language=fr --name=all --variant=all $TARGET_DIR
+
+
+************************************************
+Render and publish posters with non-latin glyphs
+************************************************
+
+Render, publish and overwrite resources with improved glyphs. They look more
+beautiful when rendered on macOS::
+
+    make build-improved-resources
+    make upload-improved-resources
 

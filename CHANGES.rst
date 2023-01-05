@@ -6,6 +6,9 @@ posterkit-sandbox changelog
 in progress
 ===========
 
+- GAFAM: Render posters in Greek and Ukrainian languages on macOS
+  for improved rendering capabilities for non-latin glyphs.
+
 
 2023-01-05 0.12.0
 =================

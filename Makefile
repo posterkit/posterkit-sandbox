@@ -91,7 +91,7 @@ mosaic: check-target-dir virtualenv
 # Tweaks
 # ======
 
-$(eval macos-languages := cs,hu,hr,pl,ru,tr,zh)
+$(eval macos-languages := cs,el,hu,hr,pl,ru,tr,uk,zh)
 
 # Render, publish and overwrite resources with improved glyphs.
 # They look more beautiful when rendered on macOS.
