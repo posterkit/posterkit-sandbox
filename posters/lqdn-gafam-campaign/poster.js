@@ -165,6 +165,21 @@ var layout_rules_override = [
         ]
     },
 
+
+    // ====================
+    //   Cyrillic glyphs
+    // ====================
+    {
+        predicate: function(language, poster_name) {
+            return language == 'el' || language == 'ru' || language == 'uk';
+        },
+        elements: [
+            {selector: '#body-content', css: {'font-family': 'LatoWebHeavy'}},
+            {selector: '#footer-text', css: {'font-family': 'LatoWeb'}},
+        ]
+    },
+
+
     // ==============
     //   Czech (cs)
     // ==============
@@ -274,19 +289,6 @@ var layout_rules_override = [
             {selector: '#footer-text', css: {'font-family': 'LatoWeb'}},
         ]
     },
-
-    // ==================
-    //   Russian (ru)
-    // ==================
-    {
-        predicate: function(language, poster_name) {
-            return language == 'el' || language == 'ru' || language == 'uk';
-        },
-        elements: [
-            {selector: '#footer-text', css: {'font-family': 'LatoWeb'}},
-        ]
-    },
-
 
     // ==========
     //   Telugu
