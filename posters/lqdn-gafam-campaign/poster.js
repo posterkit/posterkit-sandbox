@@ -280,7 +280,7 @@ var layout_rules_override = [
     // ==================
     {
         predicate: function(language, poster_name) {
-            return language == 'ru';
+            return language == 'el' || language == 'ru' || language == 'uk';
         },
         elements: [
             {selector: '#footer-text', css: {'font-family': 'LatoWeb'}},
