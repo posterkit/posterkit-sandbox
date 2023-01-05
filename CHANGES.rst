@@ -6,6 +6,10 @@ posterkit-sandbox changelog
 in progress
 ===========
 
+
+2023-01-05 0.12.0
+=================
+
 general
 -------
 - Fix and improve CSS properties
