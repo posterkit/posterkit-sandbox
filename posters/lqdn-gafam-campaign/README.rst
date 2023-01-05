@@ -3,6 +3,15 @@ PosterKit example: The GAFAM posters by La Quadrature du Net
 ############################################################
 
 
+***********
+Development
+***********
+::
+
+    make webserver
+    make open-chooser
+
+
 **************************************
 Rendering the posters as PDF documents
 **************************************
