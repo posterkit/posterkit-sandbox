@@ -54,7 +54,7 @@
         "webpack-notifier": "^1.15.0"
     },
     "optionalDependencies": {
-        "decktape": "^3.4.1"
+        "decktape": "^3.10.0"
     },
     "resolutions": {
         "ansi-regex": "^5.0.1",
