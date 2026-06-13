@@ -61,8 +61,8 @@ var title_logo_map = {
 };
 
 var footer_logo_map = {
-    'white': './img/logo-soue-white.svg',
-    'dark': './img/logo-soue-dark.svg',
+    //'white': './img/logo-soue-white.svg',
+    //'dark': './img/logo-soue-dark.svg',
 }
 
 // Custom styles to be applied at runtime
@@ -82,7 +82,7 @@ var layout_rules_override = [
             return poster_name == 'federal';
         },
         elements: [
-            {selector: '#title-content', css: {width: '12.0cm'}},
+            {selector: '#title-content', css: {width: '10.0cm'}},
         ]
     },
 
