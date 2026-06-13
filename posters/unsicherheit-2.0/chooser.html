@@ -48,17 +48,87 @@
                 <a href="https://github.com/unsicherheit">Unsicherheit 2.0 poster campaign</a>
                 texts to support the
                 <a href="https://sicherheit-ohne-ueberwachung.org/">Sicherheit ohne Überwachung</a>
-                network.
+                alliance.
             </h2>
         </div>
     </div>
 </section>
 
-<section id="facts-and-figures" class="section">
+
+<section class="section">
     <div class="container is-fluid">
 
         <h2 class="content is-spaced has-text-dark is-size-3 has-text-weight-bold">
-            Facts and figures
+            Choose display format
+        </h2>
+        <div id="display-format-chooser" class="tabs is-toggle">
+            <ul title="Display format: Either &quot;passepartout&quot; or &quot;print&quot;">
+                <li class="is-active" data-format="print" data-target="#display-format-print">
+                    <a>
+                        <span class="icon is-small"><i class="fa fa-print" aria-hidden="true"></i></span>
+                        <span>Print view</span>
+                    </a>
+                </li>
+                <li data-format="passepartout" data-target="#display-format-passepartout">
+                    <a>
+                        <span class="icon is-small"><i class="fa fa-image" aria-hidden="true"></i></span>
+                        <span>Passepartout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content display-format-details">
+            <div id="display-format-print">
+                <p>
+                This layout comes without any bells and whistles and is optimized for printing.
+                </p>
+                <!--
+                <p>
+                Please also consider appropriate print job settings like
+                </p>
+                <ul>
+                    <li>
+                        Background graphics: <code>True</code>
+                    </li>
+                    <li>
+                        Margins: <code>None</code>
+                    </li>
+                </ul>
+                -->
+            </div>
+            <div id="display-format-passepartout">
+                <p>
+                This layout frames all posters using a beautiful passepartout
+                and is optimized for displaying on screens.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+<section id="select-language" class="section">
+    <div class="container is-fluid">
+
+        <h2 class="content is-spaced has-text-dark is-size-3 has-text-weight-bold">
+            Choose language and variant
+        </h2>
+        <p class="content is-spaced">
+            The library offers translations into <%= language_names.slice(0, -1).join(', ') %>
+            and <%= language_names.slice(-1) %>,
+            each with multiple variants (<%= variant_names.join(', ') %>).
+            Thanks to all the contributors.
+        </p>
+        <hr/>
+        <div id="chooser-matrix"/>
+
+    </div>
+</section>
+
+<section id="notes" class="section">
+    <div class="container is-fluid">
+
+        <h2 class="content is-spaced has-text-dark is-size-3 has-text-weight-bold">
+            Notes
         </h2>
 
         <div class="content is-size-5">
@@ -112,89 +182,24 @@
                     The translation files are hosted in the repository
                     <a href="https://github.com/unsicherheit/poster-translations">poster-translations</a> on GitHub.
                     Pull requests are welcome.
+                    <!--
                     <br/>
                     Using <a href="https://hosted.weblate.org/projects/unsicherheit-2.0/translations/">Unsicherheit 2.0 posters on Weblate</a>,
                     the translations can also be edited online.
+                    -->
                 </li>
+                <!--
                 <li>
                     If you have further questions or feedback, you can contact us at
-                    <a class="button" href='mailt&#111;&#58;%68%&#54;&#53;&#37;6Cl&#111;&#64;&#103;&#97;%6&#54;%61m&#46;&#37;69&#110;fo'>hello&#64;ga&#102;am&#46;info</a>
+                    <a class="button" href='mailt&#111;&#58;%68%&#54;&#53;&#37;6Cl&#111;&#64;&#103;&#97;%6&#54;%61m&#46;&#37;69&#110;fo'>hello&#64;example.org</a>
                 </li>
-            </ul>
-        </div>
-
-    </div>
-</section>
-
-
-<section class="section">
-    <div class="container is-fluid">
-
-        <h2 class="content is-spaced has-text-dark is-size-3 has-text-weight-bold">
-            Choose display format
-        </h2>
-        <div id="display-format-chooser" class="tabs is-toggle">
-            <ul title="Display format: Either &quot;passepartout&quot; or &quot;print&quot;">
-                <li class="is-active" data-format="print" data-target="#display-format-print">
-                    <a>
-                        <span class="icon is-small"><i class="fa fa-print" aria-hidden="true"></i></span>
-                        <span>Print view</span>
-                    </a>
-                </li>
-                <li data-format="passepartout" data-target="#display-format-passepartout">
-                    <a>
-                        <span class="icon is-small"><i class="fa fa-image" aria-hidden="true"></i></span>
-                        <span>Passepartout</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="content display-format-details">
-            <div id="display-format-print">
-                <p>
-                This layout comes without any bells and whistles and is optimized for printing.
-                </p>
-                <!--
-                <p>
-                Please also consider appropriate print job settings like
-                </p>
-                <ul>
-                    <li>
-                        Background graphics: <code>True</code>
-                    </li>
-                    <li>
-                        Margins: <code>None</code>
-                    </li>
-                </ul>
                 -->
-            </div>
-            <div id="display-format-passepartout">
-                <p>
-                This layout frames all posters using a beautiful passepartout
-                and is optimized for displaying.
-                </p>
-            </div>
+            </ul>
         </div>
 
     </div>
 </section>
-<section id="select-language" class="section">
-    <div class="container is-fluid">
 
-        <h2 class="content is-spaced has-text-dark is-size-3 has-text-weight-bold">
-            Choose language and variant
-        </h2>
-        <p class="content is-spaced">
-            The library offers translations into <%= language_names.slice(0, -1).join(', ') %>
-            and <%= language_names.slice(-1) %>,
-            each with multiple variants (<%= variant_names.join(', ') %>).
-            Thanks to all the contributors.
-        </p>
-        <hr/>
-        <div id="chooser-matrix"/>
-
-    </div>
-</section>
 </script>
 
 
@@ -231,11 +236,13 @@
                             <i class="fa fa-github fa-3x" aria-hidden="true"></i>
                         </span>
                     </a>
+                    <!--
                     <a href="https://hosted.weblate.org/projects/unsicherheit-2.0/translations/<%= language.code %>/"
                        title="Online translation of &quot;<%= language.code %>.po&quot; <%= ctx_msg %>"
                        aria-label="weblate" target="_blank">
                         <img src="img/weblate-128.png" width="36"/>
                     </a>
+                    -->
                     <a href="#select-language" title="Back to top">
                         <i class="fa fa-arrow-circle-o-up fa-3x" aria-hidden="true"></i>
                     </a>
@@ -262,18 +269,18 @@
     <div class="box language-variant-box">
         <article class="">
             <div class="block">
-                <div class="title is-size-4">
+                <span class="title is-size-4">
                     Variant "<strong><%= variant %></strong>"
-                </div>
-                <div class="subtitle">
+                </span>
+                <span class="subtitle">
                     <% if (variant == 'black') { %>
-                    For saturated printing
+                    for saturated printing
                     <% } else if (variant == 'eco') { %>
-                    For economic printing
+                    for economic printing
                     <% } else if (variant == 'color') { %>
-                    For displaying on screens
+                    for displaying on screens
                     <% } %>
-                </div>
+                </span>
             </div>
             <div class="columns is-desktop">
                 <!--
@@ -287,10 +294,12 @@
                 <div class="column is-8">
                     <div class="media-content is-flex" style="align-items: stretch;">
                         <div class="content columns is-desktop">
-                            <div class="column is-10 is-flex">
-                                <div class="is-size-5">
+                            <div class="column is-12">
+                                <p>
+                                <span class="is-size-5">
                                     Single page
-                                </div>
+                                </span>
+                                </p>
                                 <div class="buttons has-addons language-variant-buttons">
                                     <!--
                                     <a class="button has-background-grey has-text-light poster-link-all" data-language="<%= language.code %>" data-variant="<%= variant %>">All</a>
@@ -301,8 +310,8 @@
                                 </div>
                             </div>
 
+                            <!--
                             <div class="column is-2 is-flex">
-                                <!--
                                 <div class="is-size-5">
                                     Download
                                 </div>
@@ -317,8 +326,8 @@
                                         PDF
                                     </a>
                                 </div>
-                                -->
                             </div>
+                            -->
 
                         </div>
                     </div>
