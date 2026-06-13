@@ -12,11 +12,11 @@ module.exports = {
         'layout-basic': [
             path.resolve('src', 'js', 'layout-basic'),
         ],
-        'example-lqdn-gafam-chooser': [
-            path.resolve('posters', 'lqdn-gafam-campaign', 'chooser.js'),
+        'example-unsicherheit-chooser': [
+            path.resolve('posters', 'unsicherheit-2.0', 'chooser.js'),
         ],
-        'example-lqdn-gafam-poster': [
-            path.resolve('posters', 'lqdn-gafam-campaign', 'poster.js'),
+        'example-unsicherheit-poster': [
+            path.resolve('posters', 'unsicherheit-2.0', 'poster.js'),
         ],
     },
 
@@ -109,15 +109,15 @@ module.exports = {
         // https://www.npmjs.com/package/html-webpack-plugin
         // https://github.com/jantimon/html-webpack-plugin
         new HtmlWebpackPlugin({
-            chunks: ['commons', 'example-lqdn-gafam-chooser'],
-            filename: '../lqdn-gafam-campaign/chooser.html',
-            template: path.resolve('posters', 'lqdn-gafam-campaign', 'chooser.html'),
+            chunks: ['commons', 'example-unsicherheit-chooser'],
+            filename: '../unsicherheit-2.0/chooser.html',
+            template: path.resolve('posters', 'unsicherheit-2.0', 'chooser.html'),
             inject: 'head',
         }),
         new HtmlWebpackPlugin({
-            chunks: ['commons', 'example-lqdn-gafam-poster'],
-            filename: '../lqdn-gafam-campaign/poster.html',
-            template: path.resolve('posters', 'lqdn-gafam-campaign', 'poster.html'),
+            chunks: ['commons', 'example-unsicherheit-poster'],
+            filename: '../unsicherheit-2.0/poster.html',
+            template: path.resolve('posters', 'unsicherheit-2.0', 'poster.html'),
             inject: 'head',
         }),
 
@@ -125,8 +125,8 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns: [
                 {
-                    from: path.resolve('posters', 'lqdn-gafam-campaign', 'img'),
-                    to: '../lqdn-gafam-campaign/img/',
+                    from: path.resolve('posters', 'unsicherheit-2.0', 'img'),
+                    to: '../unsicherheit-2.0/img/',
                 },
             ]
         }),
