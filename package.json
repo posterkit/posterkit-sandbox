@@ -54,7 +54,7 @@
         "webpack-notifier": "^1.15.0"
     },
     "optionalDependencies": {
-        "decktape": "^3.10.0"
+        "decktape": "^3.16.1"
     },
     "resolutions": {
         "ansi-regex": "^5.0.1",
@@ -68,5 +68,10 @@
         "serialize-javascript": "^3.1",
         "urijs": "^1.19",
         "xmldom": "https://github.com/xmldom/xmldom/archive/refs/tags/v0.7.0.tar.gz"
+    },
+    "allowScripts": {
+        "fsevents@2.3.2": true,
+        "fsevents@1.2.13": true,
+        "puppeteer@25.1.0": true
     }
 }

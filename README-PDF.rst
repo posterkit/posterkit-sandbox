@@ -31,6 +31,15 @@ Install recent Node.js::
     source /opt/nodejs-9.4.0/bin/activate
     npm install --unsafe-perm -g decktape
 
+If a later invocation signals your installation can't find the Chrome browser,
+try installing it explicitly::
+
+    export PUPPETEER_CHROME_VERSION=149.0.7827.22
+    npx puppeteer browsers install
+
+Problem: ``Error: Could not find Chrome (ver. 146.0.7680.153)``
+Solution: ``export PUPPETEER_CHROME_VERSION=149.0.7827.22``, based on
+ingredients of ``~/.cache/puppeteer/chrome``.
 
 Install font packages
 =====================
