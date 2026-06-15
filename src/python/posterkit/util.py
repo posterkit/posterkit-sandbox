@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# (c) 2018 The PosterKit developers <developers@posterkit.org>
+# (c) 2018-2026 The PosterKit developers <developers@posterkit.org>
 import os
 import sys
 import logging
@@ -58,32 +58,6 @@ def find_program_candidate(candidates):
         candidate_effective = os.path.abspath(candidate)
         if os.path.isfile(candidate_effective):
             return candidate_effective
-
-
-@memoize
-def find_nodejs():
-    candidates = [
-        '/opt/nodejs-9.4.0/bin/nodejs',
-    ]
-
-    # More location candidates from the system
-    candidates += where.where('node')
-    candidates += where.where('nodejs')
-
-    return find_program_candidate(candidates)
-
-
-@memoize
-def find_decktape():
-    candidates = [
-        './node_modules/.bin/decktape',
-        '/opt/nodejs-9.4.0/bin/decktape',
-    ]
-
-    # More location candidates from the system
-    candidates += where.where('decktape')
-
-    return find_program_candidate(candidates)
 
 
 def run_command(command, input=None, passthrough=False):
@@ -157,3 +131,15 @@ def ensure_directory(directory):
     filedir = os.path.dirname(directory)
     if not os.path.exists(filedir):
         os.makedirs(filedir)
+
+
+def save_buffer(buffer, path):
+
+    # Ensure path exists
+    ensure_directory(path)
+
+    # Save to filesystem
+    with open(path, 'wb') as f:
+        f.write(buffer.read())
+
+    return path
