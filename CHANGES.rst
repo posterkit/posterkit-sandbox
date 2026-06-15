@@ -8,6 +8,7 @@ in progress
 
 - GAFAM: Render posters in Greek and Ukrainian languages on macOS
   for improved rendering capabilities for non-latin glyphs.
+- JavaScript: Restored rendering by updating decktape
 
 
 2023-01-05 0.12.0
