@@ -32,6 +32,9 @@ def run():
         --all                   Render posters in all languages and variants
         <path>                  Where to store the output files [default: .]
 
+    Options for "mosaic":
+        --source=<source>       Path to directory including rendered PDF files.
+
     Examples:
 
         # Render single-page PDF document and output to STDOUT
@@ -45,6 +48,8 @@ def run():
 
         # Render multi-page PDF documents for all languages and variants and store to output path
         gafam-info pdf --language=all --name=all --variant=all /srv/www/posterkit
+
+        gafam-info mosaic --variant=color --source=/srv/www/posterkit/series/**/*.pdf /srv/www/posterkit
 
     """
 
@@ -73,19 +78,24 @@ def run():
     elif options['mosaic']:
         if not options['variant']:
             raise DocoptExit('Error: No variant selected, use "--variant={black,eco,color}"')
+        if not options['path']:
+            raise DocoptExit('Error: No output path selected')
 
         path = options['path']
 
         # Scan directory for all PDF files.
-        pdf_files = sorted(glob(os.path.join(path, 'pdf', '**', 'lqdn-gafam-poster-*.pdf')))
+        pdf_path_pattern = options["source"]
+        pdf_files = sorted(glob(pdf_path_pattern))
 
         # Filter empty source files.
-        pdf_files = [item for item in pdf_files if os.stat(item).st_size > 0]
+        pdf_files = [item for item in pdf_files if item.endswith(".pdf") and os.stat(item).st_size > 0]
+        if not pdf_files:
+            raise FileNotFoundError('Error: No input PDF files found')
 
         # Debugging.
-        #print 'pdf_files:', pdf_files
+        # print('pdf_files:', pdf_files)
 
-        render_mosaic(path=path, files=pdf_files, variant='color')
+        render_mosaic(path=path, files=pdf_files, variant=options['variant'])
 
 
 def check_options(options):

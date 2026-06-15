@@ -83,7 +83,7 @@ pdf-all: check-target-dir virtualenv
 
 # Render mosaic image
 mosaic: check-target-dir virtualenv
-	$(gafam-info) mosaic --variant=color $(TARGET_DIR)
+	$(gafam-info) mosaic --variant=color --source=$(TARGET_DIR)/series/**/*.pdf $(TARGET_DIR)
 
 
 
