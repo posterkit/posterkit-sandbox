@@ -42,7 +42,16 @@ def pdf_to_svg(pdf, outputfile):
         logger.warning("PDF to SVG conversion failed")
 
 
-def layout_pdf(pdf_files, papersize='297mm,210mm', nup='1') -> BytesIO:
+def layout_pdf(pdf_files, papersize=None, nup=None) -> BytesIO:
+    """
+    Use pdfjam to n-up pages of PDF files.
+
+    TODO: Add "--no-tidy" for debugging
+    TODO: Maybe add/amend --pdf{title,author,subject,keywords}
+    """
+
+    papersize = papersize or '297mm,210mm'
+    nup = nup or '1'
 
     pdf_files = to_list(pdf_files)
     logger.info('Laying out PDF files: {}'.format(pdf_files))
@@ -86,13 +95,9 @@ def pdf_to_bitmap(pdf: BytesIO, size='1024x', format='png'):
     return convert_image(input_file, format=format, more_options=size_option)
 
 
-def create_image(pdf_files, papersize='297mm,210mm', nup='1', size='1024x', format='png'):
+def layout_image(pdf_files, papersize=None, nup=None, size='1024x', format='png'):
     """
-    # Layout multiple pages in matrix
-    pdfnup --nup 2x3 --landscape=true --no-tidy lqdn-gafam-poster-de.pdf
-
-    # Convert to GIF format appropriately
-    convert -units PixelsPerInch lqdn-gafam-poster-de-nup.pdf -density 72 -trim +repage -resize 595x gafam-german-card.gif
+    Lay out PDF pages n-up, then convert to bitmap image.
     """
     logger.info("Laying out PDF: %s", pdf_files)
     pdf = layout_pdf(pdf_files, papersize=papersize, nup=nup)

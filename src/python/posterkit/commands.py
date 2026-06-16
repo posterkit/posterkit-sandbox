@@ -7,7 +7,7 @@ from tempfile import NamedTemporaryFile
 import requests
 from docopt import docopt
 from posterkit import __version__
-from posterkit.exposure import create_image, html_to_pdf
+from posterkit.exposure import layout_image, html_to_pdf
 from posterkit.settings import DELETE_TEMPFILES
 from posterkit.util import boot_logging, normalize_options
 
@@ -65,5 +65,5 @@ def run():
             tmpfile.write(requests.get(pdf).content)
             tmpfile.flush()
             pdf = tmpfile.name
-        image = create_image(pdf, nup=options['nup'], size=options['size'], format=options['format'])
+        image = layout_image(pdf, nup=options['nup'], size=options['size'], format=options['format'])
         sys.stdout.buffer.write(image.getvalue())
