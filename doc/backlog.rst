@@ -18,7 +18,6 @@ Todo
 
   Then, DeckTape gets stuck and the process runs into a timeout, croaking.
 - [o] Use ``oxipng`` for optimizing all png images.
-- [o] Directly use ``pdfjam`` instead of ``pdfnup``
 - [o] Submit patch for macOS to ``pdfjam``::
 
     uname -o 2> /dev/null || uname -s

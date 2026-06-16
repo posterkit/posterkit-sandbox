@@ -50,19 +50,14 @@ def layout_pdf(pdf_files, papersize='297mm,210mm', nup='1') -> BytesIO:
     buffer = NamedTemporaryFile(suffix='.pdf', delete=DELETE_TEMPFILES)
     output_file = buffer.name
 
-    # Run "pdfnup" for tiled layout
-    # TODO: Add "--no-tidy" for debugging
-    # TODO: Maybe add/amend --pdf{title,author,subject,keywords}
-
     # Compute list of input files as string
     pdf_files_string = ' '.join(map(lambda item: "'{}'".format(item), pdf_files))
 
-    command = "pdfnup --papersize '{{{papersize}}}' --nup {nup} --vanilla --keepinfo --outfile '{output_file}' {pdf_files_string}".format(**locals())
-    logger.info('Running "pdfnup" command: {}'.format(command))
+    command = "pdfjam --suffix nup --nup {nup} --papersize '{{{papersize}}}' --landscape --vanilla --keepinfo --outfile '{output_file}' {pdf_files_string}".format(**locals())
+    logger.info('Layout command: %s', command)
     if not run_command_basic(command):
-        logger.warning("Running pdfnup failed")
+        logger.warning("Layout command failed")
 
-    buffer.seek(0)
     return BytesIO(buffer.read())
 
 

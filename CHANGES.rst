@@ -11,6 +11,7 @@ in progress
 - JavaScript: Restored rendering by updating decktape
 - Python: Generalized rendering utilities
 - Python: Added software tests
+- Python: Directly used ``pdfjam`` instead of ``pdfnup``
 
 
 2023-01-05 0.12.0
