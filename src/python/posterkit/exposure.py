@@ -14,8 +14,17 @@ from posterkit.util import run_command_basic, to_list, find_program_candidate, m
 logger = logging.getLogger(__name__)
 
 
+@memoize
+def find_imagemagick():
+    candidates = []
+    candidates += where.where('magick')
+    candidates += where.where('convert')
+    return find_program_candidate(candidates)
+
+
 def convert_image(input_file, format="png", more_options="") -> BytesIO:
-    command = f"magick '{input_file}' -append -units PixelsPerInch -density 300 {more_options} '{format}:-'"
+    imagemagick = find_imagemagick()
+    command = f"{imagemagick} '{input_file}' -append -units PixelsPerInch -density 300 {more_options} '{format}:-'"
     logger.info('Image conversion command: {}'.format(command))
     response = subprocess.check_output(command, shell=True)
     return BytesIO(response)
@@ -53,12 +62,15 @@ def layout_pdf(pdf_files, papersize='297mm,210mm', nup='1') -> BytesIO:
     if not run_command_basic(command):
         logger.warning("Running pdfnup failed")
 
+    buffer.seek(0)
     return BytesIO(buffer.read())
 
 
 def pdf_to_bitmap(pdf: BytesIO, size='1024x', format='png'):
     buffer = NamedTemporaryFile(delete=DELETE_TEMPFILES)
+    pdf.seek(0)
     buffer.write(pdf.getvalue())
+    buffer.flush()
     input_file = buffer.name
 
     # Dumb trimming
@@ -87,62 +99,23 @@ def create_image(pdf_files, papersize='297mm,210mm', nup='1', size='1024x', form
     # Convert to GIF format appropriately
     convert -units PixelsPerInch lqdn-gafam-poster-de-nup.pdf -density 72 -trim +repage -resize 595x gafam-german-card.gif
     """
-
+    logger.info("Laying out PDF: %s", pdf_files)
     pdf = layout_pdf(pdf_files, papersize=papersize, nup=nup)
     return pdf_to_bitmap(pdf=pdf, size=size, format=format)
 
 
-@memoize
-def find_nodejs():
-    candidates = [
-        '/opt/nodejs-9.4.0/bin/nodejs',
-    ]
-
-    # More location candidates from the system
-    candidates += where.where('node')
-    candidates += where.where('nodejs')
-
-    return find_program_candidate(candidates)
-
-
-@memoize
-def find_decktape():
-    candidates = [
-        './node_modules/.bin/decktape',
-        '/opt/nodejs-9.4.0/bin/decktape',
-    ]
-
-    # More location candidates from the system
-    candidates += where.where('decktape')
-
-    return find_program_candidate(candidates)
-
-
 def html_to_pdf(uri: str) -> BytesIO:
 
-    tmpfile = NamedTemporaryFile(delete=DELETE_TEMPFILES)
+    tmpfile = NamedTemporaryFile(suffix=".pdf", delete=DELETE_TEMPFILES)
 
     # TODO: Also populate --pdf-author, --pdf-title, --pdf-subject.
     #render_command_tpl = "{nodejs} {decktape} --no-sandbox --load-pause 1500 --slides 1 --size 793x1118 generic '{uri}' {outputfile}"
     #render_command_tpl = "{decktape} generic --no-sandbox --slides=1 --size=793x1118 --pause=250 --load-pause=250 '{uri}' '{outputfile}'"
     #render_command_tpl = "{decktape} generic --no-sandbox --slides=1 --size=793x1118 --load-pause=3000 '{uri}' '{outputfile}'"
-    render_command_tpl = "{nodejs} {decktape} generic --chrome-arg=--no-sandbox --slides=1 --size=793x1118 --load-pause=500 '{uri}' '{outputfile}'"
+    render_command_tpl = "npx decktape generic --chrome-arg=--no-sandbox --slides=1 --size=793x1118 --load-pause=500 '{uri}' '{outputfile}'"
 
-    nodejs = find_nodejs()
-    if nodejs is None:
-        raise KeyError('Could not find Node.js executable')
-
-    decktape = find_decktape()
-    if decktape is None:
-        raise NameError('Could not find "decktape" installation')
-
-    render_command = render_command_tpl.format(
-        nodejs=nodejs,
-        decktape=decktape,
-        uri=uri,
-        outputfile=tmpfile.name)
-
-    logger.info(f'The rendering command is: {render_command}')
+    render_command = render_command_tpl.format(uri=uri, outputfile=tmpfile.name)
+    logger.info(f'Rendering command: {render_command}')
 
     # TODO: Check if stdout contains error messages like
     #
@@ -168,7 +141,7 @@ def concat_pdf_files(filenames: List[str]) -> BytesIO:
     tmpfile = NamedTemporaryFile(delete=True)
     output_file = tmpfile.name
     join_command = 'pdftk {input_files} output {output_file}'.format(**locals())
-    logger.info(u'The joining command is: {}'.format(join_command))
+    logger.info(u'PDF concatenation command: {}'.format(join_command))
     if not run_command_basic(join_command):
         logger.warning("Joining PDF files failed")
     tmpfile.seek(0)

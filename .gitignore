@@ -1,6 +1,8 @@
 # Base
 /.idea
 /.venv*
+coverage.xml
+.coverage*
 *.pyc
 *.egg-info
 .DS_Store

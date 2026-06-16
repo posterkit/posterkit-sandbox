@@ -1,0 +1,46 @@
+[tool.pytest]
+ini_options.minversion = "2.0"
+ini_options.testpaths = [
+  "src/python",
+  "tests/python",
+]
+ini_options.addopts = """
+  -rfEXsS -p pytester --strict-markers --verbosity=3
+  --cov --cov-report=term-missing --cov-report=xml
+  """
+ini_options.markers = []
+ini_options.xfail_strict = true
+ini_options.log_format = "%(asctime)-15s [%(name)-36s] %(levelname)-8s: %(message)s"
+ini_options.log_level = "DEBUG"
+ini_options.log_cli_level = "DEBUG"
+
+[tool.coverage]
+run.branch = false
+run.omit = [
+  "tests/*",
+]
+run.patch = [ "subprocess" ]
+run.source = [ "src/python" ]
+report.fail_under = 0
+report.show_missing = true
+
+[tool.poe]
+tasks.check = [
+  # "lint",
+  "test",
+]
+tasks.format = [
+  # Format project metadata.
+  { cmd = "pyproject-fmt --keep-full-version pyproject.toml" },
+  # Format code.
+  # Configure Ruff not to auto-fix a few items that are useful in workbench mode.
+  # e.g.: unused imports (F401), unused variables (F841), `print` statements (T201), commented-out code (ERA001)
+  { cmd = "ruff format" },
+  { cmd = "ruff check --fix --ignore=ERA --ignore=F401 --ignore=F841 --ignore=T20 --ignore=ERA001" },
+]
+tasks.lint = [
+  { cmd = "ruff format --check" },
+  { cmd = "ruff check" },
+  { cmd = "validate-pyproject pyproject.toml" },
+]
+tasks.test = { cmd = "pytest" }

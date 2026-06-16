@@ -63,6 +63,7 @@ def run():
         tmpfile = NamedTemporaryFile(suffix=".pdf", delete=DELETE_TEMPFILES)
         if pdf.startswith('http'):
             tmpfile.write(requests.get(pdf).content)
+            tmpfile.flush()
             pdf = tmpfile.name
         image = create_image(pdf, nup=options['nup'], size=options['size'], format=options['format'])
         sys.stdout.buffer.write(image.getvalue())
