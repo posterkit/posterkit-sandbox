@@ -10,6 +10,7 @@ in progress
   for improved rendering capabilities for non-latin glyphs.
 - JavaScript: Restored rendering by updating decktape
 - Python: Generalized rendering utilities
+- Python: Added software tests
 
 
 2023-01-05 0.12.0

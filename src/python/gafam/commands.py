@@ -49,6 +49,7 @@ def run():
         # Render multi-page PDF documents for all languages and variants and store to output path
         gafam-info pdf --language=all --name=all --variant=all /srv/www/posterkit
 
+        # Render mosaic image from multiple series' PDF documents
         gafam-info mosaic --variant=color --source=/srv/www/posterkit/series/**/*.pdf /srv/www/posterkit
 
     """

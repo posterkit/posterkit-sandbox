@@ -114,6 +114,8 @@ Pdfjam brings ``pdfnup``, which is used for rendering a 5-up overview image of a
         --output-document=$HOME/.local/bin/pdfnup
     chmod +x $HOME/.local/bin/pdfjam $HOME/.local/bin/pdfnup
 
+Problem: ``pdfjam ERROR: LaTeX package pdfpages.sty is not installed``
+Solution: ``apt install texlive-latex-recommended``
 
 Install ImageMagick
 ===================

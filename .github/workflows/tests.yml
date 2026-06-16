@@ -1,0 +1,68 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+  workflow_dispatch: {}
+  workflow_call: {}
+  pull_request:
+  schedule:
+    - cron: '0 3 * * *'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - 'ubuntu-latest'
+        python-version:
+          - '3.14'
+
+    runs-on: ${{ matrix.os }}
+    steps:
+
+      - name: Acquire sources
+        uses: actions/checkout@v6
+
+      - name: Install Prerequisites (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends --no-install-suggests \
+              imagemagick pdf2svg pdftk poppler-utils texlive-extra-utils texlive-latex-recommended
+          sudo wget https://raw.githubusercontent.com/tobybreckon/pdfjam-extras/d77d1da/bin/pdfnup \
+              --output-document=/usr/local/bin/pdfnup
+          sudo chmod +x /usr/local/bin/pdfnup
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          activate-environment: 'true'
+          cache-suffix: ${{ matrix.python-version }}
+          enable-cache: true
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install project
+        run: |
+          uv pip install --editable='.[develop,test]'
+          yarn install
+
+      - name: Run linters and software tests
+        run: poe check
+
+      # https://github.com/codecov/codecov-action
+      - name: Upload coverage results to Codecov
+        uses: codecov/codecov-action@v6
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          fail_ci_if_error: true

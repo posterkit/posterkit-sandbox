@@ -44,8 +44,17 @@ setup(
         'requests>=2.20.0,<3',
     ],
     extras_require={
-        'dev': ['check-manifest'],
-        'test': ['coverage'],
+        'develop': [
+            "check-manifest",
+            "poethepoet<1",
+            "pyproject-fmt<3",
+            "ruff<0.12",
+            "validate-pyproject<1",
+        ],
+        'test': [
+            "pytest",
+            "pytest-cov",
+        ],
     },
     entry_points={
         'console_scripts': [
