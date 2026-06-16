@@ -5,7 +5,7 @@ import logging
 import math
 from typing import Dict, Any
 
-from posterkit.exposure import convert_image, create_image, pdf_to_svg, layout_pdf, html_to_pdf, concat_pdf_files
+from posterkit.exposure import convert_image, layout_image, pdf_to_svg, layout_pdf, html_to_pdf, concat_pdf_files
 from posterkit.util import ensure_directory, save_buffer
 
 logger = logging.getLogger(__name__)
@@ -149,7 +149,7 @@ def render_composites(info=None, path=None):
                 "sizes": ['1280x', '2560x']
             }
             for size in bitmap_variant["sizes"]:
-                image = create_image(pdf_filepath, size=size, **nup_options)
+                image = layout_image(pdf_filepath, size=size, **nup_options)
                 img_filename = SERIES_BITMAP_TEMPLATE.format(**context, size=size, suffix="png")
                 img_filepath = os.path.abspath(os.path.join(path, img_filename))
                 logging.info('Image file path: {}'.format(img_filepath))
@@ -202,7 +202,7 @@ def render_mosaic(path=None, files=None, variant=None):
 
     # Render PNG image from multiple multi-page PDF documents
     format = 'png'
-    image = create_image(pdf_selected, papersize=papersize, nup=nup, size=None, format=format)
+    image = layout_image(pdf_selected, papersize=papersize, nup=nup, size=None, format=format)
 
     # Compute filename
     context.update({
