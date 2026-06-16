@@ -95,13 +95,10 @@ and https://github.com/pdffillerjs/pdffiller/issues/73.
 
 Install pdfjam
 ==============
-Pdfjam brings ``pdfnup``, which is used for rendering a 5-up overview image of a multipage PDF document.
+::
 
     # Debian Linux
     apt install texlive-extra-utils
-    wget https://raw.githubusercontent.com/rrthomas/pdfjam-extras/622e03a/bin/pdfnup \
-        --output-document=/usr/local/bin/pdfnup
-    chmod +x /usr/local/bin/pdfnup
 
     # macOS
     # https://discourse.brew.sh/t/missing-formula-location/818/8
@@ -110,9 +107,7 @@ Pdfjam brings ``pdfnup``, which is used for rendering a 5-up overview image of a
 
     wget https://raw.githubusercontent.com/rrthomas/pdfjam/89a223db/bin/pdfjam \
         --output-document=$HOME/.local/bin/pdfjam
-    wget https://raw.githubusercontent.com/rrthomas/pdfjam-extras/622e03a/bin/pdfnup \
-        --output-document=$HOME/.local/bin/pdfnup
-    chmod +x $HOME/.local/bin/pdfjam $HOME/.local/bin/pdfnup
+    chmod +x $HOME/.local/bin/pdfjam
 
 Problem: ``pdfjam ERROR: LaTeX package pdfpages.sty is not installed``
 Solution: ``apt install texlive-latex-recommended``
