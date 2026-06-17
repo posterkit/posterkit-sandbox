@@ -38,7 +38,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install --yes --no-install-recommends --no-install-suggests \
-              imagemagick pdf2svg pdftk poppler-utils texlive-extra-utils texlive-latex-recommended
+              ghostscript imagemagick pdf2svg pdftk poppler-utils texlive-extra-utils texlive-latex-recommended
 
       - name: Install uv
         uses: astral-sh/setup-uv@v7
