@@ -69,7 +69,7 @@ def render_pages(info, path):
             logger.info(f'** Rendering single-page PDF posters for variant={variant}')
             for index, name in enumerate(info['name']):
                 number = index + 1
-                logger.info(f'*** Rendering single-page PDF poster with language={language}, variant={variant}, name={name}')
+                logger.info(f'*** Rendering single-page poster document with language={language}, variant={variant}, name={name}')
 
                 context.update({"language": language, "variant": variant, "name": name, "number": number})
 
@@ -77,17 +77,21 @@ def render_pages(info, path):
                 uri = URI_TEMPLATE.format(**context)
 
                 # Single-page PDF
+                logger.info("Creating PDF")
                 pdf_single_filename = SINGLE_PAGE_TEMPLATE.format(**context, suffix="pdf")
                 pdf_single_path = os.path.join(path, pdf_single_filename)
-                logging.info('PDF path: {}'.format(pdf_single_path))
                 if not (os.path.exists(pdf_single_path) and os.path.getsize(pdf_single_path) > 0):
                     stream = html_to_pdf(uri)
                     save_buffer(stream, pdf_single_path)
+                    logger.info("Saved PDF: %s", pdf_single_path)
+                else:
+                    logger.info('PDF exists: %s', pdf_single_path)
 
                 # Single-page SVG
+                logger.info("Creating SVG")
                 svg_filename = SINGLE_PAGE_TEMPLATE.format(**context, suffix="svg")
                 svg_filepath = os.path.abspath(os.path.join(path, svg_filename))
-                logging.info('SVG path: {}'.format(svg_filepath))
+                logger.info('SVG path: {}'.format(svg_filepath))
                 if not (os.path.exists(svg_filepath) and os.path.getsize(svg_filepath) > 0):
                     # Ensure path exists
                     ensure_directory(svg_filepath)
@@ -95,6 +99,7 @@ def render_pages(info, path):
                     pdf_to_svg(pdf=pdf_single_path, outputfile=svg_filepath)
 
                 # Single-page PNG
+                logger.info("Creating PNG")
                 png_filename = SINGLE_PAGE_TEMPLATE.format(**context, suffix="png")
                 png_filepath = os.path.abspath(os.path.join(path, png_filename))
                 stream = convert_image(input_file=pdf_single_path, format="png")
@@ -126,7 +131,7 @@ def render_composites(info=None, path=None):
             # Compute output path
             pdf_filename = SERIES_PDF_TEMPLATE.format(**context)
             pdf_filepath = os.path.abspath(os.path.join(path, pdf_filename))
-            logging.info('PDF path: {}'.format(pdf_filepath))
+            logger.info('PDF path: {}'.format(pdf_filepath))
 
             # A. Composite PDF (regular)
             pdf_files = []
@@ -152,7 +157,7 @@ def render_composites(info=None, path=None):
                 image = layout_image(pdf_filepath, size=size, **nup_options)
                 img_filename = SERIES_BITMAP_TEMPLATE.format(**context, size=size, suffix="png")
                 img_filepath = os.path.abspath(os.path.join(path, img_filename))
-                logging.info('Image file path: {}'.format(img_filepath))
+                logger.info('Image file path: {}'.format(img_filepath))
                 #if os.path.exists(img_filepath) and os.path.getsize(img_filepath) > 0:
                 #    continue
                 save_buffer(image, img_filepath)
