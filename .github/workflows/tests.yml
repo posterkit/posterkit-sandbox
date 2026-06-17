@@ -51,7 +51,6 @@ jobs:
       - name: Install project
         run: |
           uv pip install --editable='.[develop,test]'
-          yarn install
 
       - name: Run linters and software tests
         run: poe check
