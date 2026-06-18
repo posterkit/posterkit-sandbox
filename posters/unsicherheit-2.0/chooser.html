@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Metadata -->
+    <meta charset="utf-8"/>
+
+    <title>The Unsicherheit 2.0 poster campaign library</title>
+
+    <meta name="description" content="Library of resources for the Unsicherheit 2.0 poster campaign"/>
+    <meta name="keywords" content="poster, sticker, campaign, information, translation, localization, toolkit"/>
+
+    <meta property="og:type" content="article"/>
+    <meta property="article:author" content="The Unsicherheit developers"/>
+    <meta property="article:publisher" content="https://github.com/unsicherheit"/>
+
+    <meta property="og:title" content="The Unsicherheit 2.0 poster campaign library"/>
+    <meta property="og:site_name" content="Unsicherheit 2.0 poster campaign"/>
+    <meta property="og:description" content="Library of resources for the Unsicherheit 2.0 poster campaign"/>
+    <meta property="og:url" content="https://github.com/unsicherheit"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:image:secure_url" content=""/>
+
+    <meta name="twitter:title" content="The Unsicherheit 2.0 poster campaign library"/>
+    <meta name="twitter:description" content="Library of resources for the Unsicherheit 2.0 poster campaign"/>
+    <meta name="twitter:image" content=""/>
+    <meta name="twitter:image:alt" content="Logo of the Unsicherheit 2.0 poster campaign library"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+
+    <!-- Let browser know website is optimized for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <!-- Webpack injection section -->
+</head>
+
+<body>
+
+<script id="page" type="text/template" class="template">
+<section class="section">
+    <div class="container is-fluid">
+        <h1 class="content is-spaced has-text-dark is-size-2 has-text-weight-bold" style="line-height: 1.0">
+            The Unsicherheit 2.0 poster campaign library
+        </h1>
+        <div class="column is-7-desktop is-8-tablet is-10-mobile is-paddingless">
+            <h2 class="is-size-4">
+                This page hosts the translations and corresponding resources of the
+                <a href="https://github.com/unsicherheit">Unsicherheit 2.0 poster campaign</a>
+                texts to support the
+                <a href="https://sicherheit-ohne-ueberwachung.org/">Sicherheit ohne Überwachung</a>
+                alliance.
+            </h2>
+        </div>
+    </div>
+</section>
+
+
+<section class="section">
+    <div class="container is-fluid">
+
+        <h2 class="content is-spaced has-text-dark is-size-3 has-text-weight-bold">
+            Choose display format
+        </h2>
+        <div id="display-format-chooser" class="tabs is-toggle">
+            <ul title="Display format: Either &quot;passepartout&quot; or &quot;print&quot;">
+                <li class="is-active" data-format="print" data-target="#display-format-print">
+                    <a>
+                        <span class="icon is-small"><i class="fa fa-print" aria-hidden="true"></i></span>
+                        <span>Print view</span>
+                    </a>
+                </li>
+                <li data-format="passepartout" data-target="#display-format-passepartout">
+                    <a>
+                        <span class="icon is-small"><i class="fa fa-image" aria-hidden="true"></i></span>
+                        <span>Passepartout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content display-format-details">
+            <div id="display-format-print">
+                <p>
+                This layout comes without any bells and whistles and is optimized for printing.
+                </p>
+                <!--
+                <p>
+                Please also consider appropriate print job settings like
+                </p>
+                <ul>
+                    <li>
+                        Background graphics: <code>True</code>
+                    </li>
+                    <li>
+                        Margins: <code>None</code>
+                    </li>
+                </ul>
+                -->
+            </div>
+            <div id="display-format-passepartout">
+                <p>
+                This layout frames all posters using a beautiful passepartout
+                and is optimized for displaying on screens.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+<section id="select-language" class="section">
+    <div class="container is-fluid">
+
+        <h2 class="content is-spaced has-text-dark is-size-3 has-text-weight-bold">
+            Choose language and variant
+        </h2>
+        <p class="content is-spaced">
+            The library offers translations into <%= language_names.slice(0, -1).join(', ') %>
+            and <%= language_names.slice(-1) %>,
+            each with multiple variants (<%= variant_names.join(', ') %>).
+            Thanks to all the contributors.
+        </p>
+        <hr/>
+        <div id="chooser-matrix"/>
+
+    </div>
+</section>
+
+<section id="notes" class="section">
+    <div class="container is-fluid">
+
+        <h2 class="content is-spaced has-text-dark is-size-3 has-text-weight-bold">
+            Notes
+        </h2>
+
+        <div class="content is-size-5">
+
+            <h5>
+                Guidelines
+            </h5>
+            <ul>
+                <li>
+                    <div class="notification is-warning column is-8-desktop is-8-tablet is-10-mobile">
+                        <h4 class="is-inline">Note</h4>
+                        <p>
+                            <b>Please do not print the "color" variant of the posters.</b>
+                            <br/>
+                            Instead, choose one of the "black" or "eco" variants and print it on <b>colored paper</b>.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+
+            <h5>
+                Audience
+            </h5>
+            <ul>
+                <li>
+                    Campaigners. The published resources are ready for printing.
+                    This quickly lets you get started to spread the word.
+                </li>
+                <li>
+                    Translators. Let's translate the posters into other languages
+                    as well, so everybody can understand the message.
+                    <br/>
+                    If you feel you can contribute a translation into yet another language,
+                    don't hesitate.
+                </li>
+            </ul>
+
+            <h5>
+                Details
+            </h5>
+            <ul>
+                <li>
+                    All resources and the derived outputs are
+                    <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>-licensed (Public Domain).
+                </li>
+                <li>
+                    The HTML layout, the PDF documents and the thumbnail images are composed and rendered
+                    using <a href="https://github.com/posterkit/posterkit-sandbox">PosterKit</a>.
+                </li>
+                <li>
+                    The translation files are hosted in the repository
+                    <a href="https://github.com/unsicherheit/poster-translations">poster-translations</a> on GitHub.
+                    Pull requests are welcome.
+                    <!--
+                    <br/>
+                    Using <a href="https://hosted.weblate.org/projects/unsicherheit-2.0/translations/">Unsicherheit 2.0 posters on Weblate</a>,
+                    the translations can also be edited online.
+                    -->
+                </li>
+                <!--
+                <li>
+                    If you have further questions or feedback, you can contact us at
+                    <a class="button" href='mailt&#111;&#58;%68%&#54;&#53;&#37;6Cl&#111;&#64;&#103;&#97;%6&#54;%61m&#46;&#37;69&#110;fo'>hello&#64;example.org</a>
+                </li>
+                -->
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+</script>
+
+
+<script id="language-entry" type="text/template" class="template">
+
+    <%
+    var ctx_msg = 'for language &quot;' + language.name + ' (' + language.code + ')&quot;';
+    %>
+
+    <a name="language-<%= language.code %>"/>
+    <div class="block language-entry">
+        <div class="level slim-header">
+            <div class="level-left">
+                <div class="level-item has-text-danger heading language-heading">
+                    <div class="icon is-large">
+                        <i class="fa fa-language fa-3x" aria-hidden="true"></i>
+                    </div>
+                    <h2 class="is-inline has-text-weight-bold">
+                        <div class="is-size-2">
+                            <%= language.name %>
+                        </div>
+                        <div class="is-size-4">
+                            <%= language.local %>
+                        </div>
+                    </h2>
+                </div>
+            </div>
+            <div class="level-right language-icons">
+                <div class="level-item">
+                    <a href="https://github.com/unsicherheit/poster-translations/blob/main/po/<%= language.code %>.po"
+                       title="Translation file &quot;<%= language.code %>.po&quot; <%= ctx_msg %>"
+                       aria-label="github" target="_blank">
+                        <span class="icon is-large">
+                            <i class="fa fa-github fa-3x" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                    <!--
+                    <a href="https://hosted.weblate.org/projects/unsicherheit-2.0/translations/<%= language.code %>/"
+                       title="Online translation of &quot;<%= language.code %>.po&quot; <%= ctx_msg %>"
+                       aria-label="weblate" target="_blank">
+                        <img src="img/weblate-128.png" width="36"/>
+                    </a>
+                    -->
+                    <a href="#select-language" title="Back to top">
+                        <i class="fa fa-arrow-circle-o-up fa-3x" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <%
+        _.forEach(rows, function(row) {
+            print(row);
+        });
+        %>
+    </div>
+
+</script>
+
+
+<script id="language-variant" type="text/template" class="template">
+
+    <%
+    var ctx_msg = 'for language &quot;' + language.name + ' (' + language.code + ')&quot; and variant &quot;' + variant + '&quot;';
+    %>
+
+    <div class="box language-variant-box">
+        <article class="">
+            <div class="block">
+                <span class="title is-size-4">
+                    Variant "<strong><%= variant %></strong>"
+                </span>
+                <span class="subtitle">
+                    <% if (variant == 'black') { %>
+                    for saturated printing
+                    <% } else if (variant == 'eco') { %>
+                    for economic printing
+                    <% } else if (variant == 'color') { %>
+                    for displaying on screens
+                    <% } %>
+                </span>
+            </div>
+            <div class="columns is-desktop">
+                <!--
+                <div class="column is-4">
+                    <a href="https://examples.posterkit.net/unsicherheit-2.0/final/img/<%= variant %>/unsicherheit-poster-<%= language.code %>-<%= variant %>-5x1-2560x.png"
+                       title="Thumbnail image <%= ctx_msg %>" target="_blank">
+                        <img class="thumbnail-image" src="https://examples.posterkit.net/unsicherheit-2.0/final/img/<%= variant %>/unsicherheit-poster-<%= language.code %>-<%= variant %>-5x1-1280x.png"/>
+                    </a>
+                </div>
+                -->
+                <div class="column is-8">
+                    <div class="media-content is-flex" style="align-items: stretch;">
+                        <div class="content columns is-desktop">
+                            <div class="column is-12">
+                                <p>
+                                <span class="is-size-5">
+                                    Single page
+                                </span>
+                                </p>
+                                <div class="buttons has-addons language-variant-buttons">
+                                    <!--
+                                    <a class="button has-background-grey has-text-light poster-link-all" data-language="<%= language.code %>" data-variant="<%= variant %>">All</a>
+                                    -->
+                                    <% _.forEach(items, function(item) { %>
+                                    <a class="button is-outlined poster-link-single" data-href="<%= item.uri %>" title="<%= item.title %>" target="_blank"><%= item.title %></a>
+                                    <% }); %>
+                                </div>
+                            </div>
+
+                            <!--
+                            <div class="column is-2 is-flex">
+                                <div class="is-size-5">
+                                    Download
+                                </div>
+                                <div>
+                                    <a href="https://examples.posterkit.net/unsicherheit-2.0/final/pdf/<%= variant %>/unsicherheit-poster-<%= language.code %>-<%= variant %>.pdf"
+                                       title="Download PDF document <%= ctx_msg %>"
+                                       class="button is-large is-link" target="_blank">
+                                        <div class="icon">
+                                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                        </div>
+                                        &nbsp;&nbsp;
+                                        PDF
+                                    </a>
+                                </div>
+                            </div>
+                            -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <!--
+    <div class="columns is-mobile">
+        <div class="column is-1">
+            <%= variant %>
+        </div>
+        <div class="column is-5">
+            <div class="buttons has-addons">
+            <% _.forEach(items, function(item) { %>
+            <a class="button" href="<%= item.uri %>" title="<%= item.title %>" target="_blank"><%= item.title %></a>
+            <% }); %>
+            </div>
+        </div>
+        <div class="column is-2">
+            <a class="button is-link poster-link" data-language="<%= language %>" data-variant="<%= variant %>">All</a>
+        </div>
+    </div>
+    -->
+
+</script>
+
+</body>
+</html>

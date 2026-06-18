@@ -25,6 +25,7 @@ open-chooser:
 	open http://localhost:9999/examples/lqdn-gafam-campaign/chooser.html
 
 watch:
+	export NODE_OPTIONS=--openssl-legacy-provider
 	yarn run watch
 
 
