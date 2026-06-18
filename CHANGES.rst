@@ -12,7 +12,7 @@ in progress
 - Python: Generalized rendering utilities
 - Python: Added software tests
 - Python: Directly used ``pdfjam`` instead of ``pdfnup``
-
+- HTML: Displayed connectivity errors in chooser when loading texts fails
 
 2023-01-05 0.12.0
 =================

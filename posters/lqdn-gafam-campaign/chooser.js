@@ -45,7 +45,21 @@ $(document).ready(function() {
                 //console.log('jump_to_anchor:', section_name);
                 jump_to_anchor(section_name);
             }
-        });
+        })
+        .catch(function(err) {
+            var error_upstream =
+                "<pre style='margin:0; padding:0'>" + JSON.stringify(err, null, 2) + "</pre>";
+            var error_message = "<div style='font-weight: bold'><div style='color: red'>" +
+                "Failed to load media chooser, apologies.<br>" +
+                "Please inspect the error displayed above.</div>" +
+                "The project tried to pull its text definitions<br>" +
+                "from a GitHub repository, but that didn't work." +
+                "</div>"
+            var logger = document.getElementById("logger");
+            var element = document.createElement("div");
+            element.innerHTML += error_message + error_upstream;
+            logger.appendChild(element);
+        })
 });
 
 
@@ -210,8 +224,12 @@ function get_languages() {
                 } else if (error.responseJSON) {
                     reason = error.responseJSON;
                 }
-                console.error('Error querying directory contents from GitHub repository "gafam/gafam-poster-translations":', reason, error);
-                reject('Error querying directory contents from GitHub repository');
+                var message = 'Error accessing GitHub repository: gafam/gafam-poster-translations';
+                console.error(message, reason, error);
+                try {
+                    reason = JSON.parse(reason);
+                } catch (e) {}
+                reject({"status": error.status, "message": message, "reason": reason});
             });
     });
     return promise;
