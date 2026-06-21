@@ -50,7 +50,7 @@
         "uglifyjs-webpack-plugin": "^2.2.0",
         "webpack": "^4.46",
         "webpack-cli": "^3.3",
-        "webpack-dev-server": "^4.9",
+        "webpack-dev-server": "^5.2",
         "webpack-notifier": "^1.15.0"
     },
     "resolutions": {
